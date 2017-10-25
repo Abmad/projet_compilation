@@ -1,0 +1,26 @@
+//Programme de tests simples
+
+//Ceci est un commentaire
+
+//Debut du programme
+PROG
+	//Declarations de variables
+	int i, j, k;
+	int i[taille]; //La taille d'un tableau est obligatoirement renseignee (Pour le moment)
+	
+	//Declarations de fonctions et procedures
+	int ma_fonction()
+	{
+		int a;
+		a = 10;
+		return a;
+	}
+	
+	ma_procedure(int z)
+	{
+		z = z + 1;
+	}
+
+	
+
+
