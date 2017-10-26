@@ -1,26 +1,92 @@
-//Programme de tests simples
-
-//Ceci est un commentaire
-
-//Debut du programme
 PROG
-	//Declarations de variables
-	int i, j, k;
-	int i[taille]; //La taille d'un tableau est obligatoirement renseignee (Pour le moment)
-	
-	//Declarations de fonctions et procedures
-	int ma_fonction()
-	{
-		int a;
-		a = 10;
-		return a;
-	}
-	
-	ma_procedure(int z)
-	{
-		z = z + 1;
-	}
+Main
+var a : int;
+var z : float;
+var e : bool;
+var r : char;
+var t : string[10];
 
-	
+type monTab : tab[1..10] of int;
+type monTab : tab[1..10,2..3] of int;
+
+type maStruct : Struct
+monChamps : int;
+monChamps : int;
+EndStruct;
+
+procedure maProc()
+{
+var int : a = 0;
+var z : float;
+var e : bool;
+var r : char;
+var t : string[10]
+
+Main
+EndMain
+};
+
+function mafonc() return int
+{
+var a : int;
+var z : float;
+var e : bool;
+var r : char;
+var t : string[10]
+
+Main
+a = 1;
+return a
+EndMain
+}
+
+Main
+a = 1;
+b = a;
+
+if(a) then
+{
+Main
+a = 1;
+b = a
+EndMain
+}
+else
+{
+Main
+a = 1;
+b = a
+EndMain
+};
+
+while(a) do
+{
+Main
+a = 1;
+b = a
+EndMain
+};
+do
+{
+Main
+a = 1;
+b = a
+EndMain
+}while(a);
+
+var cpt : int = 10;
+
+for( a=0;a<cpt; a=a+1)
+{
+Main
+b = a
+EndMain
+};
 
 
+maProc();
+maProc(1)
+
+EndMain
+
+EndMain
