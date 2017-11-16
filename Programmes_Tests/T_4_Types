@@ -1,0 +1,20 @@
+PROG
+{
+var a : int;
+var z : float;
+
+type monTab : tab[1..10] of int;
+type monTab : tab[1..10,2..3] of int;
+
+type maStruct : Struct
+monChamps : int;
+monChamps : int;
+EndStruct
+
+Main
+
+monTab[a] = 11;
+monTab[11] = 2*(2*5+"aaaa"-9*5/8+6/8*(8+8.5))
+
+EndMain
+}

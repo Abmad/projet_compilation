@@ -1,0 +1,35 @@
+PROG
+{
+
+procedure maProc()
+{
+var a : int;
+var z : float = "aaaaaaaaaa"
+
+Main
+a = 10;
+z = z + "zzz"
+EndMain
+};
+
+function mafonc() return int
+{
+var a : int;
+var z : float
+
+Main
+a = 2*(2*5+6-9*5/8+6/8*(8+8.5));
+
+return a
+EndMain
+}
+
+
+
+Main
+
+a = mafonc(r);
+maProc()
+
+EndMain
+}

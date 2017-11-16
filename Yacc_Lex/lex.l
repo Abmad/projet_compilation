@@ -19,6 +19,22 @@ PROG {printf("%s", yytext);return (PROG);}
 = {printf("%s", yytext);return (OPAFF);}
 ; {printf("%s", yytext);return (POINT_VIRGULE);}
 
+\+ {printf("%s", yytext);return (PLUS);}
+- {printf("%s", yytext);return (MOINS);}
+\* {printf("%s", yytext);return (MULT);}
+\/ {printf("%s", yytext);return (DIV);}
+
+\< {printf("%s", yytext);return (PLUS_PETIT);}
+\> {printf("%s", yytext);return (PLUS_GRAND);}
+\<= {printf("%s", yytext);return (PLUS_PETIT_EGAL);}
+\>= {printf("%s", yytext);return (PLUS_GRAND_EGAL);}
+== {printf("%s", yytext);return (EGAL);}
+!= {printf("%s", yytext);return (DIFFERENT);}
+&& {printf("%s", yytext);return (ET);}
+\|\| {printf("%s", yytext);return (OU);}
+
+true|false {printf("%s", yytext);return (CSTE_BOOL);}
+
 Main {printf("%s", yytext);return (DEBUT);}
 EndMain {printf("%s", yytext);return (FIN);}
 
@@ -43,12 +59,15 @@ if {printf("%s", yytext);return (SI);}
 then {printf("%s", yytext);return (ALORS);}
 else {printf("%s", yytext);return (SINON);}
 
-for {printf("%s", yytext);return (POUR);}
 while {printf("%s", yytext);return (TANT_QUE);}
 do {printf("%s", yytext);return (FAIRE);}
 
+\"[a-zA-Z0-9 ]*\" {printf("%s", yytext);return (CSTE_STRING);}
+\'[a-zA-Z0-9 ]\' {printf("%s", yytext);return (CSTE_CHAR);}
 [a-zA-Z][a-zA-Z0-9]* {printf("%s", yytext);return (IDF);}
 [1-9][0-9]* {printf("%s", yytext);return (CSTE_ENTIERE);}
+[0-9]+\.[0-9]+ {printf("%s", yytext);return (CSTE_REEL);}
+
 \n {printf("%s", yytext);nbLignes++;}
 
 %%

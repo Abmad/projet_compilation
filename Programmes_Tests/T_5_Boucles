@@ -1,0 +1,40 @@
+PROG
+{
+var a : int;
+var z : float
+
+Main
+
+if(a) then
+{
+Main
+a = 1;
+b = a
+EndMain
+}
+else
+{
+Main
+a = 1;
+b = a
+EndMain
+};
+
+while(azerty+2) do
+{
+Main
+a = 1;
+b = a
+EndMain
+};
+
+do
+{
+Main
+a = 1;
+b = a
+EndMain
+}while(a)
+
+EndMain
+}

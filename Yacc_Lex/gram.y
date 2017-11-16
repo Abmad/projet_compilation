@@ -1,21 +1,22 @@
 %{
 #include<stdio.h>
 %}
-%token PROG POINT_VIRGULE DEBUT FIN
-%token IDF DEUX_POINTS
-%token CROCHET_OUVRANT CROCHET_FERMANT
-%token ENTIER REEL BOOLEEN
-%token CARACTERE CHAINE CSTE_ENTIERE VARIABLE
-%token TYPE STRUCT FSTRUCT TABLEAU DE VIRGULE POINT
-%token PROCEDURE PARENTHESE_OUVRANTE PARENTHESE_FERMANTE
-%token ACCOLADE_OUVRANTE ACCOLADE_FERMANTE
-%token FONCTION RETOURNE
+
+%token POINT_VIRGULE DEUX_POINTS CROCHET_OUVRANT CROCHET_FERMANT VIRGULE POINT PARENTHESE_OUVRANTE PARENTHESE_FERMANTE ACCOLADE_OUVRANTE ACCOLADE_FERMANTE
+%token CSTE_ENTIERE CSTE_REEL CSTE_STRING CSTE_CHAR CSTE_BOOL
+%token ENTIER REEL BOOLEEN CARACTERE CHAINE
+%token PLUS_PETIT PLUS_GRAND ET OU PLUS_PETIT_EGAL PLUS_GRAND_EGAL EGAL DIFFERENT
+%token PLUS MOINS MULT DIV
+%token TANT_QUE FAIRE SI ALORS SINON
+%token VARIABLE TYPE
+%token STRUCT FSTRUCT TABLEAU DE
+%token PROCEDURE FONCTION RETOURNE
 %token OPAFF
-%token SI ALORS SINON
-%token TANT_QUE FAIRE
-%token POUR
+%token PROG DEBUT FIN
+%token IDF
+
 %%
-programme             : PROG BEGIN corps END
+programme             : PROG ACCOLADE_OUVRANTE corps ACCOLADE_FERMANTE
                       ;
 
 corps                 : liste_declarations liste_instructions
@@ -76,7 +77,7 @@ type_simple           : ENTIER
                       ;
 
 declaration_variable  : VARIABLE IDF DEUX_POINTS nom_type
-		      | VARIABLE IDF DEUX_POINTS nom_type OPAFF expression
+                      | VARIABLE IDF DEUX_POINTS nom_type OPAFF expression
      		      ;
 
 declaration_procedure : PROCEDURE IDF liste_parametres ACCOLADE_OUVRANTE corps ACCOLADE_FERMANTE
@@ -99,7 +100,6 @@ un_param              : IDF DEUX_POINTS type_simple
 instruction           : affectation
                       | condition
                       | tant_que
-                      | pour
                       | repeter_tant_que
                       | appel
                       | RETOURNE resultat_retourne
@@ -128,21 +128,63 @@ condition             : SI PARENTHESE_OUVRANTE expression PARENTHESE_FERMANTE AL
 
 tant_que              : TANT_QUE PARENTHESE_OUVRANTE expression PARENTHESE_FERMANTE FAIRE ACCOLADE_OUVRANTE liste_instructions ACCOLADE_FERMANTE
                       ;
-repeter_tant_que      : FAIRE ACCOLADE_OUVRANTE liste_instructions ACCOLADE_FERMANTE TANT_QUE PARENTHESE_OUVRANTE expression PARENTHESE_FERMANTE POINT_VIRGULE
-                      ;
-pour                  : POUR PARENTHESE_OUVRANTE declaration_variable POINT_VIRGULE expression POINT_VIRGULE affectation PARENTHESE_FERMANTE ACCOLADE_OUVRANTE liste_instructions ACCOLADE_FERMANTE
-                      | POUR PARENTHESE_OUVRANTE affectation POINT_VIRGULE expression POINT_VIRGULE affectation PARENTHESE_FERMANTE ACCOLADE_OUVRANTE liste_instructions ACCOLADE_FERMANTE
+
+repeter_tant_que      : FAIRE ACCOLADE_OUVRANTE liste_instructions ACCOLADE_FERMANTE TANT_QUE PARENTHESE_OUVRANTE expression PARENTHESE_FERMANTE
                       ;
 
 affectation           : variable OPAFF expression
                       ;
 
 variable              : IDF
-                      | IDF CROCHET_OUVRANT expression CROCHET_FERMANT
+	 	      | IDF variable_suite
+		      ;
+
+variable_suite        : CROCHET_OUVRANT liste_expression CROCHET_FERMANT variable_fin
                       ;
 
-expression            : CSTE_ENTIERE
-                      | variable
+variable_fin          : 
+		      | variable_suite
+		      ;
+
+expression            : expression_calcul
+		      | expression expression_logique expression_calcul                     
+		      ;
+
+expression_calcul     : expression_calcul PLUS expression_suite
+                      | expression_calcul MOINS expression_suite
+		      | expression_suite
                       ;
+
+expression_suite      : expression_suite MULT expression_fin
+                      | expression_suite DIV expression_fin
+                      | expression_fin
+                      ;
+
+expression_fin        : PARENTHESE_OUVRANTE expression PARENTHESE_FERMANTE
+                      | constante
+		      | variable
+		      | appel 
+                      ;
+
+liste_expression      : liste_expression VIRGULE expression
+		      | expression
+		      ;
+
+constante             : CSTE_ENTIERE
+                      | CSTE_REEL
+                      | CSTE_STRING
+                      | CSTE_CHAR
+                      | CSTE_BOOL
+                      ;
+
+expression_logique    : PLUS_PETIT
+		      | PLUS_GRAND
+		      | ET
+		      | OU
+		      | PLUS_PETIT_EGAL
+		      | PLUS_GRAND_EGAL
+		      | EGAL
+		      | DIFFERENT
+		      ;
 
 %%

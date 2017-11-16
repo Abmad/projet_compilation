@@ -1,0 +1,10 @@
+PROG
+{
+var a : int;
+var b : string[3]
+
+Main
+a = 1;
+b = "aaa"
+EndMain
+}
