@@ -101,3 +101,7 @@ void affiche_table_lexico(int j){//Créé par Dan Robert Tsoumbou Moutimba
         printf("%d, %s, %d, %f\n",table_lexico[i].hash_code, table_lexico[i].exp_lexeme_char, table_lexico[i].exp_lexeme_int, table_lexico[i].exp_lexeme_double);
     }
 }
+void init_tab_lex(){
+    
+    printf("init\n");
+}

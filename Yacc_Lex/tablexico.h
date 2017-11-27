@@ -29,5 +29,6 @@ int add_lexeme_double(double lex);
 
 void affiche_table_lexico(int j);
 
+void init_tab_lex();
 
 
