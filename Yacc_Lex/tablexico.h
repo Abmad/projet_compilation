@@ -17,15 +17,11 @@ typedef struct {
 
 int cpt, cpt2, cpt3;
 
-lexeme table_lexico[longueur];
+lexeme table_lexico[LONGUEUR];
 
 int longueur_int(int valeur);
 
 int add_lexeme_char(char* lex);
-
-int add_lexeme_int(int lex);
-
-int add_lexeme_double(double lex);
 
 void affiche_table_lexico(int j);
 
