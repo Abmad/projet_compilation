@@ -1,44 +1,67 @@
 %{
 #include<stdio.h>
+#include "arbre.h"
 %}
 
+%union{
+struct arbre *type1;
+
+int type2;
+}
 %token POINT_VIRGULE DEUX_POINTS CROCHET_OUVRANT CROCHET_FERMANT VIRGULE POINT PARENTHESE_OUVRANTE PARENTHESE_FERMANTE ACCOLADE_OUVRANTE ACCOLADE_FERMANTE
-%token CSTE_ENTIERE CSTE_REEL CSTE_STRING CSTE_CHAR CSTE_BOOL
-%token ENTIER REEL BOOLEEN CARACTERE CHAINE
-%token PLUS_PETIT PLUS_GRAND ET OU PLUS_PETIT_EGAL PLUS_GRAND_EGAL EGAL DIFFERENT
-%token PLUS MOINS MULT DIV
-%token TANT_QUE FAIRE SI ALORS SINON
+%token<type2> CSTE_ENTIERE CSTE_REEL CSTE_STRING CSTE_CHAR CSTE_BOOL
+%token<type2> ENTIER REEL BOOLEEN CARACTERE CHAINE
+%token<type2> PLUS_PETIT PLUS_GRAND ET OU PLUS_PETIT_EGAL PLUS_GRAND_EGAL EGAL DIFFERENT
+%token<type2> PLUS MOINS MULT DIV
+%token<type2> TANT_QUE FAIRE SI ALORS SINON
 %token VARIABLE TYPE
 %token STRUCT FSTRUCT TABLEAU DE
 %token PROCEDURE FONCTION RETOURNE
-%token OPAFF
+%token<type2> OPAFF
 %token PROG DEBUT FIN
-%token IDF
+%token<type2> IDF
+
+%type<type1> liste_instructions suite_liste_inst instruction resultat_retourne appel liste_arguments liste_args un_arg condition tant_que repeter_tant_que affectation variable variable_suite variable_fin expression expression_calcul expression_suite expression_fin liste_expression constante expression_logique corps
+
+
 
 %%
-programme             : PROG ACCOLADE_OUVRANTE corps ACCOLADE_FERMANTE
+programme             : PROG ACCOLADE_OUVRANTE corps ACCOLADE_FERMANTE {afficher_arbre($3,0);}
                       ;
 
-corps                 : liste_declarations liste_instructions
-                      | liste_instructions
+corps                 : liste_declarations liste_instructions {$$=$2;}
                       ;
 
-liste_declarations    : declaration 
-                      | liste_declarations POINT_VIRGULE declaration
+liste_declarations    : liste_declaration_var liste_declaration_type liste_declaration_proc liste_declaration_fct
+		      ;
+
+
+liste_declaration_var :	
+		      | declaration_variable
+                      | declaration_variable POINT_VIRGULE liste_declaration_var
                       ;
 
-liste_instructions    : DEBUT suite_liste_inst FIN
+liste_declaration_type : 
+		       | declaration_type
+                       | declaration_type POINT_VIRGULE liste_declaration_type
+                       ;
+
+liste_declaration_proc :	
+  		       | declaration_procedure 
+                       | declaration_procedure POINT_VIRGULE liste_declaration_proc
+                       ;
+
+liste_declaration_fct :
+		      | declaration_fonction
+                      | declaration_fonction POINT_VIRGULE liste_declaration_fct
                       ;
 
-suite_liste_inst      :
-                      | instruction
-                      | suite_liste_inst POINT_VIRGULE instruction
+liste_instructions    : DEBUT suite_liste_inst FIN {$$=$2;}
                       ;
 
-declaration           : declaration_type
-                      | declaration_variable
-                      | declaration_procedure
-                      | declaration_fonction
+suite_liste_inst      : {$$=arbre_vide();}
+                      | instruction {$$=$1;}
+                      | suite_liste_inst POINT_VIRGULE instruction {$$= concat_pere_frere($1,$3);}
                       ;
 
 declaration_type      : TYPE IDF DEUX_POINTS suite_declaration_type
@@ -97,94 +120,94 @@ liste_param           :
 un_param              : IDF DEUX_POINTS type_simple
                       ;
 
-instruction           : affectation
-                      | condition
-                      | tant_que
-                      | repeter_tant_que
-                      | appel
-                      | RETOURNE resultat_retourne
+instruction           : affectation {$$=$1;}
+                      | condition {$$=$1;}
+                      | tant_que {$$=$1;}
+                      | repeter_tant_que {$$=$1;}
+                      | appel {$$=$1;}
+                      | RETOURNE resultat_retourne {$$=$2;}
                       ;
 
-resultat_retourne     :
-                      | expression
+resultat_retourne     : {$$=arbre_vide();}
+                      | expression {$$=$1;}
                       ;
 
-appel                 : IDF liste_arguments
+appel                 : IDF liste_arguments {$$= concat_pere_fils(creer_noeud($1),$2);}
                       ;
 
-liste_arguments       : PARENTHESE_OUVRANTE PARENTHESE_FERMANTE
-                      | PARENTHESE_OUVRANTE liste_args PARENTHESE_FERMANTE
+liste_arguments       : PARENTHESE_OUVRANTE PARENTHESE_FERMANTE {$$=arbre_vide();}
+                      | PARENTHESE_OUVRANTE liste_args PARENTHESE_FERMANTE {$$=$2;}
                       ;
 
-liste_args            : un_arg
-                      | liste_args VIRGULE un_arg
+liste_args            : un_arg {$$=$1;}
+                      | liste_args VIRGULE un_arg {$$= concat_pere_frere($1,$3);}
                       ;
 
-un_arg                : expression
+un_arg                : expression {$$=$1;}
                       ;
 
-condition             : SI PARENTHESE_OUVRANTE expression PARENTHESE_FERMANTE ALORS ACCOLADE_OUVRANTE liste_instructions ACCOLADE_FERMANTE SINON ACCOLADE_OUVRANTE liste_instructions ACCOLADE_FERMANTE
+condition             : SI PARENTHESE_OUVRANTE expression PARENTHESE_FERMANTE ALORS ACCOLADE_OUVRANTE liste_instructions ACCOLADE_FERMANTE SINON ACCOLADE_OUVRANTE liste_instructions ACCOLADE_FERMANTE {$$= concat_pere_frere (concat_pere_fils(creer_noeud($1),concat_pere_frere($3,$7)),concat_pere_fils(creer_noeud($9),$11));}
                       ;
 
-tant_que              : TANT_QUE PARENTHESE_OUVRANTE expression PARENTHESE_FERMANTE FAIRE ACCOLADE_OUVRANTE liste_instructions ACCOLADE_FERMANTE
+tant_que              : TANT_QUE PARENTHESE_OUVRANTE expression PARENTHESE_FERMANTE FAIRE ACCOLADE_OUVRANTE liste_instructions ACCOLADE_FERMANTE {$$=concat_pere_fils(creer_noeud($1),concat_pere_frere($3,$7));}
                       ;
 
-repeter_tant_que      : FAIRE ACCOLADE_OUVRANTE liste_instructions ACCOLADE_FERMANTE TANT_QUE PARENTHESE_OUVRANTE expression PARENTHESE_FERMANTE
+repeter_tant_que      : FAIRE ACCOLADE_OUVRANTE liste_instructions ACCOLADE_FERMANTE TANT_QUE PARENTHESE_OUVRANTE expression PARENTHESE_FERMANTE  {$$=concat_pere_fils(creer_noeud($1),concat_pere_frere($3,$7));}
                       ;
 
-affectation           : variable OPAFF expression
+affectation           : variable OPAFF expression {$$=concat_pere_fils(creer_noeud($1),concat_pere_frere($1,$3));}
                       ;
 
-variable              : IDF
-	 	      | IDF variable_suite
+variable              : IDF {$$= creer_noeud($1);}
+	 	      | IDF variable_suite {$$=concat_pere_frere(creer_noeud($1),$2);}
 		      ;
 
-variable_suite        : CROCHET_OUVRANT liste_expression CROCHET_FERMANT variable_fin
+variable_suite        : CROCHET_OUVRANT liste_expression CROCHET_FERMANT variable_fin {$$=concat_pere_frere($2,$4);}
                       ;
 
-variable_fin          : 
-		      | variable_suite
+variable_fin          : {$$=arbre_vide();}
+		      | variable_suite {$$=$1;}
 		      ;
 
-expression            : expression_calcul
-		      | expression expression_logique expression_calcul                     
+expression            : expression_calcul {$$=$1;}
+		      | expression expression_logique expression_calcul {$$= concat_pere_frere($1,concat_pere_frere($2,$3));} 
 		      ;
 
-expression_calcul     : expression_calcul PLUS expression_suite
-                      | expression_calcul MOINS expression_suite
-		      | expression_suite
+expression_calcul     : expression_calcul PLUS expression_suite {$$=concat_pere_fils(creer_noeud($2),concat_pere_frere($1,$3));}
+                      | expression_calcul MOINS expression_suite {$$=concat_pere_fils(creer_noeud($2),concat_pere_frere($1,$3));}
+		      | expression_suite {$$=$1;}
                       ;
 
-expression_suite      : expression_suite MULT expression_fin
-                      | expression_suite DIV expression_fin
-                      | expression_fin
+expression_suite      : expression_suite MULT expression_fin {$$=concat_pere_fils(creer_noeud($2),concat_pere_frere($1,$3));}
+                      | expression_suite DIV expression_fin {$$=concat_pere_fils(creer_noeud($2),concat_pere_frere($1,$3));}
+                      | expression_fin {$$=$1;}
                       ;
 
-expression_fin        : PARENTHESE_OUVRANTE expression PARENTHESE_FERMANTE
-                      | constante
-		      | variable
-		      | appel 
+expression_fin        : PARENTHESE_OUVRANTE expression PARENTHESE_FERMANTE {$$=$2;}
+                      | constante {$$=$1;}
+		      | variable {$$=$1;}
+		      | appel {$$=$1;}
                       ;
 
-liste_expression      : liste_expression VIRGULE expression
-		      | expression
+liste_expression      : liste_expression VIRGULE expression {$$=concat_pere_frere($1,$3);}
+		      | expression {$$=$1;}
 		      ;
 
-constante             : CSTE_ENTIERE
-                      | CSTE_REEL
-                      | CSTE_STRING
-                      | CSTE_CHAR
-                      | CSTE_BOOL
+constante             : CSTE_ENTIERE {$$=creer_noeud($1);}
+                      | CSTE_REEL {$$=creer_noeud($1);}
+                      | CSTE_STRING {$$=creer_noeud($1);}
+                      | CSTE_CHAR {$$=creer_noeud($1);}
+                      | CSTE_BOOL {$$=creer_noeud($1);}
                       ;
 
-expression_logique    : PLUS_PETIT
-		      | PLUS_GRAND
-		      | ET
-		      | OU
-		      | PLUS_PETIT_EGAL
-		      | PLUS_GRAND_EGAL
-		      | EGAL
-		      | DIFFERENT
+expression_logique    : PLUS_PETIT {$$=creer_noeud($1);}
+		      | PLUS_GRAND {$$=creer_noeud($1);}
+		      | ET {$$=creer_noeud($1);}
+		      | OU {$$=creer_noeud($1);}
+		      | PLUS_PETIT_EGAL {$$=creer_noeud($1);}
+		      | PLUS_GRAND_EGAL {$$=creer_noeud($1);}
+		      | EGAL {$$=creer_noeud($1);}
+		      | DIFFERENT {$$=creer_noeud($1);}
 		      ;
 
 %%
