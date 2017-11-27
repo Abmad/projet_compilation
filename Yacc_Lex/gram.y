@@ -1,10 +1,11 @@
 %{
+extern int nbLignes;
 #include<stdio.h>
 #include "arbre.h"
 %}
 
 %union{
-struct arbre *type1;
+arbre *type1;
 
 int type2;
 }
@@ -211,3 +212,8 @@ expression_logique    : PLUS_PETIT {$$=creer_noeud(PLUS_PETIT,-992);}
 		      ;
 
 %%
+int yyerror()
+{
+	printf("\nerreur de syntaxe %i\n", nbLignes);
+}
+int main(){ init_tab_lex(); yyparse(); }

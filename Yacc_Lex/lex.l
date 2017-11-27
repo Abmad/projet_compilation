@@ -73,8 +73,4 @@ do {return (FAIRE);}
 \n {nbLignes++;}
 
 %%
-int yyerror()
-{
-	printf("\nerreur de syntaxe %i\n", nbLignes);
-}
 
