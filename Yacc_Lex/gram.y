@@ -1,7 +1,10 @@
 %{
-extern int nbLignes;
 #include<stdio.h>
 #include "arbre.h"
+extern int nbLignes;
+extern char* yytext;
+extern int yylex() ;
+int yyerror() ;
 %}
 
 %union{
