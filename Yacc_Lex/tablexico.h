@@ -13,7 +13,7 @@ typedef struct {
     int hash_code;
 } lexeme;
 
-#define longueur 250;
+#define longueur 250
 
 int cpt, cpt2, cpt3;
 
