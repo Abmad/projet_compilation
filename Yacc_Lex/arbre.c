@@ -4,10 +4,11 @@
 /*
  *Fonction de création d'un noeud
  */
-arbre * creer_noeud(int _val_noeud)
+arbre * creer_noeud(int _nature, int _val_noeud)
 {
     arbre *new_noeud = malloc(sizeof(new_noeud));
     new_noeud->val_noeud = _val_noeud;
+    new_noeud->nature = _nature;
     new_noeud->gauche = NULL;
     new_noeud->droite = NULL;
     
@@ -49,7 +50,7 @@ void afficher_arbre(arbre * _arbre, int indent)
 {
     char * type = malloc(sizeof(char));
     if(type){
-        switch((*_arbre).val_noeud)
+        switch((*_arbre).nature)
         {
             case NOEUD_PRINCIPAL:
                 type = "NOEUD_PRINCIPAL";
@@ -109,7 +110,7 @@ void afficher_arbre(arbre * _arbre, int indent)
     }else{
         type = "ERROR MALLOC";
     }
-    printf( "%*s%s\n", indent * 2, "", type );
+    printf( "%*s%s:%s\n", indent * 2, "", type, (*_arbre).val_noeud);
     if(_arbre->gauche){
         afficher_arbre(_arbre->gauche, indent + 1);
     }

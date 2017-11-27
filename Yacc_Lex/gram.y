@@ -11,13 +11,13 @@ int type2;
 %token POINT_VIRGULE DEUX_POINTS CROCHET_OUVRANT CROCHET_FERMANT VIRGULE POINT PARENTHESE_OUVRANTE PARENTHESE_FERMANTE ACCOLADE_OUVRANTE ACCOLADE_FERMANTE
 %token<type2> CSTE_ENTIERE CSTE_REEL CSTE_STRING CSTE_CHAR CSTE_BOOL
 %token<type2> ENTIER REEL BOOLEEN CARACTERE CHAINE
-%token<type2> PLUS_PETIT PLUS_GRAND ET OU PLUS_PETIT_EGAL PLUS_GRAND_EGAL EGAL DIFFERENT
-%token<type2> PLUS MOINS MULT DIV
-%token<type2> TANT_QUE FAIRE SI ALORS SINON
+%token PLUS_PETIT PLUS_GRAND ET OU PLUS_PETIT_EGAL PLUS_GRAND_EGAL EGAL DIFFERENT
+%token PLUS MOINS MULT DIV
+%token TANT_QUE FAIRE SI ALORS SINON
 %token VARIABLE TYPE
 %token STRUCT FSTRUCT TABLEAU DE
 %token PROCEDURE FONCTION RETOURNE
-%token<type2> OPAFF
+%token OPAFF
 %token PROG DEBUT FIN
 %token<type2> IDF
 
@@ -92,7 +92,7 @@ nom_type              : type_simple
                       | IDF
                       ;
 
-type_simple           : ENTIER
+type_simple           : ENTIER 
                       | REEL
                       | BOOLEEN
                       | CARACTERE
@@ -132,7 +132,7 @@ resultat_retourne     : {$$=arbre_vide();}
                       | expression {$$=$1;}
                       ;
 
-appel                 : IDF liste_arguments {$$= concat_pere_fils(creer_noeud($1),$2);}
+appel                 : IDF liste_arguments {$$= concat_pere_fils(creer_noeud(IDF,$1),$2);}
                       ;
 
 liste_arguments       : PARENTHESE_OUVRANTE PARENTHESE_FERMANTE {$$=arbre_vide();}
@@ -146,20 +146,20 @@ liste_args            : un_arg {$$=$1;}
 un_arg                : expression {$$=$1;}
                       ;
 
-condition             : SI PARENTHESE_OUVRANTE expression PARENTHESE_FERMANTE ALORS ACCOLADE_OUVRANTE liste_instructions ACCOLADE_FERMANTE SINON ACCOLADE_OUVRANTE liste_instructions ACCOLADE_FERMANTE {$$= concat_pere_frere (concat_pere_fils(creer_noeud($1),concat_pere_frere($3,$7)),concat_pere_fils(creer_noeud($9),$11));}
+condition             : SI PARENTHESE_OUVRANTE expression PARENTHESE_FERMANTE ALORS ACCOLADE_OUVRANTE liste_instructions ACCOLADE_FERMANTE SINON ACCOLADE_OUVRANTE liste_instructions ACCOLADE_FERMANTE {$$= concat_pere_frere (concat_pere_fils(creer_noeud(SI,-979),concat_pere_frere($3,$7)),concat_pere_fils(creer_noeud(SINON,-976),$11));}
                       ;
 
-tant_que              : TANT_QUE PARENTHESE_OUVRANTE expression PARENTHESE_FERMANTE FAIRE ACCOLADE_OUVRANTE liste_instructions ACCOLADE_FERMANTE {$$=concat_pere_fils(creer_noeud($1),concat_pere_frere($3,$7));}
+tant_que              : TANT_QUE PARENTHESE_OUVRANTE expression PARENTHESE_FERMANTE FAIRE ACCOLADE_OUVRANTE liste_instructions ACCOLADE_FERMANTE {$$=concat_pere_fils(creer_noeud(TANT_QUE,-987),concat_pere_frere($3,$7));}
                       ;
 
-repeter_tant_que      : FAIRE ACCOLADE_OUVRANTE liste_instructions ACCOLADE_FERMANTE TANT_QUE PARENTHESE_OUVRANTE expression PARENTHESE_FERMANTE  {$$=concat_pere_fils(creer_noeud($1),concat_pere_frere($3,$7));}
+repeter_tant_que      : FAIRE ACCOLADE_OUVRANTE liste_instructions ACCOLADE_FERMANTE TANT_QUE PARENTHESE_OUVRANTE expression PARENTHESE_FERMANTE  {$$=concat_pere_fils(creer_noeud(FAIRE,-976),concat_pere_frere($3,$7));}
                       ;
 
-affectation           : variable OPAFF expression {$$=concat_pere_fils(creer_noeud($1),concat_pere_frere($1,$3));}
+affectation           : variable OPAFF expression {$$=concat_pere_fils(creer_noeud(OPAFF,-980),concat_pere_frere($1,$3));}
                       ;
 
-variable              : IDF {$$= creer_noeud($1);}
-	 	      | IDF variable_suite {$$=concat_pere_frere(creer_noeud($1),$2);}
+variable              : IDF {$$= creer_noeud(IDF,$1);}
+	 	      | IDF variable_suite {$$=concat_pere_frere(creer_noeud(IDF,$1),$2);}
 		      ;
 
 variable_suite        : CROCHET_OUVRANT liste_expression CROCHET_FERMANT variable_fin {$$=concat_pere_frere($2,$4);}
@@ -173,13 +173,13 @@ expression            : expression_calcul {$$=$1;}
 		      | expression expression_logique expression_calcul {$$= concat_pere_frere($1,concat_pere_frere($2,$3));} 
 		      ;
 
-expression_calcul     : expression_calcul PLUS expression_suite {$$=concat_pere_fils(creer_noeud($2),concat_pere_frere($1,$3));}
-                      | expression_calcul MOINS expression_suite {$$=concat_pere_fils(creer_noeud($2),concat_pere_frere($1,$3));}
+expression_calcul     : expression_calcul PLUS expression_suite {$$=concat_pere_fils(creer_noeud(PLUS,-990),concat_pere_frere($1,$3));}
+                      | expression_calcul MOINS expression_suite {$$=concat_pere_fils(creer_noeud(MOINS,-991),concat_pere_frere($1,$3));}
 		      | expression_suite {$$=$1;}
                       ;
 
-expression_suite      : expression_suite MULT expression_fin {$$=concat_pere_fils(creer_noeud($2),concat_pere_frere($1,$3));}
-                      | expression_suite DIV expression_fin {$$=concat_pere_fils(creer_noeud($2),concat_pere_frere($1,$3));}
+expression_suite      : expression_suite MULT expression_fin {$$=concat_pere_fils(creer_noeud(MULT,-989),concat_pere_frere($1,$3));}
+                      | expression_suite DIV expression_fin {$$=concat_pere_fils(creer_noeud(DIV,-988),concat_pere_frere($1,$3));}
                       | expression_fin {$$=$1;}
                       ;
 
@@ -193,21 +193,21 @@ liste_expression      : liste_expression VIRGULE expression {$$=concat_pere_frer
 		      | expression {$$=$1;}
 		      ;
 
-constante             : CSTE_ENTIERE {$$=creer_noeud($1);}
-                      | CSTE_REEL {$$=creer_noeud($1);}
-                      | CSTE_STRING {$$=creer_noeud($1);}
-                      | CSTE_CHAR {$$=creer_noeud($1);}
-                      | CSTE_BOOL {$$=creer_noeud($1);}
+constante             : CSTE_ENTIERE {$$=creer_noeud(CSTE_ENTIERE, $1);}
+                      | CSTE_REEL {$$=creer_noeud(CSTE_REEL, $1);}
+                      | CSTE_STRING {$$=creer_noeud(CSTE_STRING, $1);}
+                      | CSTE_CHAR {$$=creer_noeud(CSTE_CHAR, $1);}
+                      | CSTE_BOOL {$$=creer_noeud(CSTE_BOOL, $1);}
                       ;
 
-expression_logique    : PLUS_PETIT {$$=creer_noeud($1);}
-		      | PLUS_GRAND {$$=creer_noeud($1);}
-		      | ET {$$=creer_noeud($1);}
-		      | OU {$$=creer_noeud($1);}
-		      | PLUS_PETIT_EGAL {$$=creer_noeud($1);}
-		      | PLUS_GRAND_EGAL {$$=creer_noeud($1);}
-		      | EGAL {$$=creer_noeud($1);}
-		      | DIFFERENT {$$=creer_noeud($1);}
+expression_logique    : PLUS_PETIT {$$=creer_noeud(PLUS_PETIT,-992);}
+		      | PLUS_GRAND {$$=creer_noeud(PLUS_GRAND,-993);}
+		      | ET {$$=creer_noeud(ET,-994);}
+		      | OU {$$=creer_noeud(OU,-995);}
+		      | PLUS_PETIT_EGAL {$$=creer_noeud(PLUS_PETIT_EGAL,-996);}
+		      | PLUS_GRAND_EGAL {$$=creer_noeud(PLUS_GRAND_EGAL,-997);}
+		      | EGAL {$$=creer_noeud(EGAL,-998);}
+		      | DIFFERENT {$$=creer_noeud(DIFFERENT,-999);}
 		      ;
 
 %%
