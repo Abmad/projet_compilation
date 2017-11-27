@@ -1,6 +1,6 @@
 #include "tablexico.h"
 
-lexeme table_lexico[longueur];
+lexeme table_lexico[LONGUEUR];
 
 int longueur_int(int valeur){ //Calcule la longueur d'un entier
     int retour = 0;
@@ -45,57 +45,10 @@ int add_lexeme_char(char* lex){//Créé par Dan Robert Tsoumbou Moutimba
     cpt=0;
 }
 
-int add_lexeme_int(int lex){//Créé par Dan Robert Tsoumbou Moutimba
-    assert(cpt2<longueur);
-    if(table_lexico[cpt2].longueur==0 && table_lexico[cpt2].exp_lexeme_int!=lex){
-        lexeme l;
-        l.exp_lexeme_int = lex;
-        l.exp_lexeme_char = NULL;
-        l.exp_lexeme_double = 0;
-        l.longueur = longueur_int(lex);
-        l.suiv = &table_lexico[cpt2+1];
-        l.hash_code = cpt2 +1;
-        table_lexico[cpt2] = l;
-        
-        return l.hash_code;
-    }
-    else if(table_lexico[cpt2].longueur==longueur_int(lex) && table_lexico[cpt2].exp_lexeme_int==lex){
-        //lexème déjà présent dans la table, aucune action n'est effectuée.
-    }
-    else{
-        cpt2 = cpt2 +1;
-        add_lexeme_int(lex);
-    }
-    cpt2=0;
-}
-
-int add_lexeme_double(double lex){//Créé par Dan Robert Tsoumbou Moutimba
-    assert(cpt3<longueur);
-    if(table_lexico[cpt3].longueur==0 && table_lexico[cpt3].exp_lexeme_int!=lex){
-        lexeme l;
-        l.exp_lexeme_double = lex;
-        l.exp_lexeme_char = 0;
-        l.exp_lexeme_int=0;
-        l.longueur = longueur_int((int) lex);
-        l.suiv = &table_lexico[cpt3+1];
-        l.hash_code = cpt3 +1;
-        table_lexico[cpt3] = l;
-        
-        return l.hash_code;
-    }
-    else if(table_lexico[cpt3].longueur==longueur_int(lex) && table_lexico[cpt3].exp_lexeme_double==lex){
-        //lexème déjà présent dans la table, aucune action n'est effectuée.
-    }
-    else{
-        cpt3 = cpt3 +1;
-        add_lexeme_double(lex);
-    }
-    cpt3=0;
-}
 
 //affiche le contenu de la table jusqu'à la j-ieme case
 void affiche_table_lexico(int j){//Créé par Dan Robert Tsoumbou Moutimba
-    assert(j<longueur);
+    assert(j<LONGUEUR);
     int i=0;
     for(i=0;i<j;i++){
         printf("%d, %s, %d, %f\n",table_lexico[i].hash_code, table_lexico[i].exp_lexeme_char, table_lexico[i].exp_lexeme_int, table_lexico[i].exp_lexeme_double);
