@@ -7,6 +7,7 @@
 //
 #include<stdio.h>
 #include<stdlib.h>
+
 #define NOEUD_PRINCIPAL 0
 #define CSTE_ENTIERE 1
 #define CSTE_REEL 2
@@ -34,7 +35,7 @@
 /*
  * Structure d'un noeud
  */
-type def struct noeud
+struct noeud
 {
     int nature;
     int val_noeud;
@@ -43,9 +44,10 @@ type def struct noeud
     struct noeud * droite;
 }noeud;
 typedef struct noeud * arbre;
-arbre * concat_pere_fils(arbre _pere, arbre _fils);
-arbre * concat_pere_frere(arbre _pere, arbre _frere);
-arbre * creer_noeud(int _nature, int _val_noeud);
-arbre* arbre_vide();
+arbre  concat_pere_fils(arbre _pere, arbre _fils);
+arbre  concat_pere_frere(arbre _pere, arbre _frere);
+arbre  creer_noeud(int _nature, int _val_noeud);
+arbre arbre_vide();
 void afficher_arbre(arbre _arbre, int indent);
+
 

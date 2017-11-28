@@ -111,7 +111,7 @@ void afficher_arbre(arbre _arbre, int indent)
                 break;
             case OPAFF: type = "OPAFF";
                 break;
-            case FAIRE: type = FAIRE;
+            case FAIRE: type = "FAIRE";
                 break;
             case TANT_QUE: type = "TANT_QUE";
                 break;
