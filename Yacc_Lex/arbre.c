@@ -117,13 +117,15 @@ void afficher_arbre(arbre _arbre, int indent)
                 break;
             case C_SINON: type = "SINON";
                 break;
-
+            case C_IDF:
                 type = "IDF";
                 break;
         }
     }else{
         type = "ERROR MALLOC";
     }
+if(indent == 0)
+printf("\n");
     printf( "%*s%s:%d\n", indent * 2, "", type, (*_arbre).val_noeud);
     if(_arbre->gauche){
         afficher_arbre(_arbre->gauche, indent + 1);

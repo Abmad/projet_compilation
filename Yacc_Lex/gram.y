@@ -221,4 +221,5 @@ int yyerror()
 }
 int main(){ //init_tab_lex(); 
 yyparse();
+//affiche_table_lexico(7);
  }
