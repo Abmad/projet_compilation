@@ -1,5 +1,5 @@
 #include "arbre.h"
-
+#include "tablexico.h"
 
 /*
  *Fonction de création d'un noeud
