@@ -9,12 +9,7 @@ int yyerror() ;
 %}
 
 %union{
-<<<<<<< HEAD
 arbre type1;
-=======
-typedef struct noeud arbre;
-arbre *type1;
->>>>>>> a2299e9f92da810cd3d65f056086c61482a74ebc
 int type2;
 }
 %token POINT_VIRGULE DEUX_POINTS CROCHET_OUVRANT CROCHET_FERMANT VIRGULE POINT PARENTHESE_OUVRANTE PARENTHESE_FERMANTE ACCOLADE_OUVRANTE ACCOLADE_FERMANTE
