@@ -9,67 +9,67 @@ int nbLignes = 0;
 
 %%
 
-PROG {printf("%s\n",yytext);return (PROG);}
-, {printf("%s\n",yytext);return (VIRGULE);}
-: {printf("%s\n",yytext);return (DEUX_POINTS);}
-\. {printf("%s\n",yytext);return (POINT);}
-\[ {printf("%s\n",yytext);return (CROCHET_OUVRANT);}
-\] {printf("%s\n",yytext);return (CROCHET_FERMANT);}
-\{ {printf("%s\n",yytext);return (ACCOLADE_OUVRANTE);}
-\} {printf("%s\n",yytext);return (ACCOLADE_FERMANTE);}
-\( {printf("%s\n",yytext);return (PARENTHESE_OUVRANTE);}
-\) {printf("%s\n",yytext);return (PARENTHESE_FERMANTE);}
-= {printf("%s\n",yytext);return (OPAFF);}
-; {printf("%s\n",yytext);return (POINT_VIRGULE);}
+PROG {return (PROG);}
+, {return (VIRGULE);}
+: {return (DEUX_POINTS);}
+\. {return (POINT);}
+\[ {return (CROCHET_OUVRANT);}
+\] {return (CROCHET_FERMANT);}
+\{ {return (ACCOLADE_OUVRANTE);}
+\} {return (ACCOLADE_FERMANTE);}
+\( {return (PARENTHESE_OUVRANTE);}
+\) {return (PARENTHESE_FERMANTE);}
+= {return (OPAFF);}
+; {return (POINT_VIRGULE);}
 
-\+ {printf("%s\n",yytext);return (PLUS);}
-- {printf("%s\n",yytext);return (MOINS);}
-\* {printf("%s\n",yytext);return (MULT);}
-\/ {printf("%s\n",yytext);return (DIV);}
+\+ {return (PLUS);}
+- {return (MOINS);}
+\* {return (MULT);}
+\/ {return (DIV);}
 
-\< {printf("%s\n",yytext);return (PLUS_PETIT);}
-\> {printf("%s\n",yytext);return (PLUS_GRAND);}
-\<= {printf("%s\n",yytext);return (PLUS_PETIT_EGAL);}
-\>= {printf("%s\n",yytext);return (PLUS_GRAND_EGAL);}
-== {printf("%s\n",yytext);return (EGAL);}
-!= {printf("%s\n",yytext);return (DIFFERENT);}
-&& {printf("%s\n",yytext);return (ET);}
-\|\| {printf("%s\n",yytext);return (OU);}
+\< {return (PLUS_PETIT);}
+\> {return (PLUS_GRAND);}
+\<= {return (PLUS_PETIT_EGAL);}
+\>= {return (PLUS_GRAND_EGAL);}
+== {return (EGAL);}
+!= {return (DIFFERENT);}
+&& {return (ET);}
+\|\| {return (OU);}
 
-true|false {yylval.type2=add_lexeme_char(yytext);printf("%s\n",yytext);return (CSTE_BOOL);}
+true|false {yylval.type2=add_lexeme_char(yytext);return (CSTE_BOOL);}
 
-Main {printf("%s\n",yytext);return (DEBUT);}
-EndMain {printf("%s\n",yytext);return (FIN);}
+Main {return (DEBUT);}
+EndMain {return (FIN);}
 
-var {printf("%s\n",yytext);return (VARIABLE);}
-type {printf("%s\n",yytext);return (TYPE);}
+var {return (VARIABLE);}
+type {return (TYPE);}
 
-int {yylval.type2=add_lexeme_char(yytext);printf("%s\n",yytext);return (ENTIER);}
-float {yylval.type2=add_lexeme_char(yytext);printf("%s\n",yytext);return (REEL);}
-bool {yylval.type2=add_lexeme_char(yytext);printf("%s\n",yytext);return (BOOLEEN);}
-char {yylval.type2=add_lexeme_char(yytext);printf("%s\n",yytext);return (CARACTERE);}
-string {yylval.type2=add_lexeme_char(yytext);printf("%s\n",yytext);return (CHAINE);}
+int {yylval.type2=add_lexeme_char(yytext);return (ENTIER);}
+float {yylval.type2=add_lexeme_char(yytext);return (REEL);}
+bool {yylval.type2=add_lexeme_char(yytext);return (BOOLEEN);}
+char {yylval.type2=add_lexeme_char(yytext);return (CARACTERE);}
+string {yylval.type2=add_lexeme_char(yytext);return (CHAINE);}
 
-tab {printf("%s\n",yytext);return (TABLEAU);}
-of {printf("%s\n",yytext);return (DE);}
-Struct {printf("%s\n",yytext);return (STRUCT);}
-EndStruct {printf("%s\n",yytext);return (FSTRUCT);}
-procedure {printf("%s\n",yytext);return (PROCEDURE);}
-function {printf("%s\n",yytext);return (FONCTION);}
-printf("%s\n",yytext);return {printf("%s\n",yytext);return (RETOURNE);}
+tab {return (TABLEAU);}
+of {return (DE);}
+Struct {return (STRUCT);}
+EndStruct {return (FSTRUCT);}
+procedure {return (PROCEDURE);}
+function {return (FONCTION);}
+return {return (RETOURNE);}
 
-if {printf("%s\n",yytext);return (SI);}
-then {printf("%s\n",yytext);return (ALORS);}
-else {printf("%s\n",yytext);return (SINON);}
+if {return (SI);}
+then {return (ALORS);}
+else {return (SINON);}
 
-while {printf("%s\n",yytext);return (TANT_QUE);}
-do {printf("%s\n",yytext);return (FAIRE);}
+while {return (TANT_QUE);}
+do {return (FAIRE);}
 
-\"[a-zA-Z0-9 ]*\" {yylval.type2=add_lexeme_char(yytext);printf("%s\n",yytext);return (CSTE_STRING);}
-\'[a-zA-Z0-9 ]\' {yylval.type2=add_lexeme_char(yytext);printf("%s\n",yytext);return (CSTE_CHAR);}
-[a-zA-Z][a-zA-Z0-9]* {yylval.type2=add_lexeme_char(yytext);printf("%s\n",yytext);return (IDF);}
-[1-9][0-9]* {yylval.type2=atoi(yytext);printf("%s\n",yytext);return (CSTE_ENTIERE);}
-[0-9]+\.[0-9]+ {yylval.type2=add_lexeme_char(yytext);printf("%s\n",yytext);return (CSTE_REEL);}
+\"[a-zA-Z0-9 ]*\" {yylval.type2=add_lexeme_char(yytext);return (CSTE_STRING);}
+\'[a-zA-Z0-9 ]\' {yylval.type2=add_lexeme_char(yytext);return (CSTE_CHAR);}
+[a-zA-Z][a-zA-Z0-9]* {yylval.type2=add_lexeme_char(yytext);return (IDF);}
+[1-9][0-9]* {yylval.type2=atoi(yytext);return (CSTE_ENTIERE);}
+[0-9]+\.[0-9]+ {yylval.type2=add_lexeme_char(yytext);return (CSTE_REEL);}
 
 \n {nbLignes++;}
 
