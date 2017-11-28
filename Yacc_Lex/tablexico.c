@@ -22,8 +22,7 @@ int longueur_int(int valeur){ //Calcule la longueur d'un entier
 
 //ajoute un lexème dans la table lexicographique
 int add_lexeme_char(char* lex){//Créé par Dan Robert Tsoumbou Moutimba
-return 556;
-/*    assert(cpt<LONGUEUR);
+    assert(cpt<LONGUEUR);
     if(table_lexico[cpt].longueur==0 && table_lexico[cpt].exp_lexeme_char!=lex){
         lexeme l;
         l.exp_lexeme_char = lex;
@@ -44,7 +43,7 @@ return 556;
         add_lexeme_char(lex);
     }
     cpt=0;
-*/
+    
 }
 
 
