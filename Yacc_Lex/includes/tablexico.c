@@ -29,7 +29,7 @@ int add_lexeme_char(char* lex){//Créé par Dan Robert Tsoumbou Moutimba
         l.exp_lexeme_int = 0;
         l.exp_lexeme_double = 0;
         l.longueur = strlen(lex);
-        l.suiv = &table_lexico[cpt+1];
+        l.suiv = &(table_lexico[cpt+1]);
         l.hash_code=cpt+1;
         table_lexico[cpt] = l;
         
