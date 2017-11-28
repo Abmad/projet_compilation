@@ -6,8 +6,8 @@ touch $logf
 lex $1 2> $logf 
 yacc -v -d $2 2> $logf
 gcc -c lex.yy.c 2> $logf
-gcc -c ./includes/*.c
-gcc y.tab.c lex.yy.o ./includes/*.o -o compilation -ly -ll 2> $logf
+gcc -c arbre.c tablexico.c 2> $logf
+gcc y.tab.c lex.yy.o arbre.o tablexico.o -o compilation -ly -ll 2> $logf
 echo "Done! check log for more details"
 else
 echo "Usage : ./compilation <fichier lex> <fichier yac>"
