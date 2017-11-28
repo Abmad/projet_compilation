@@ -45,10 +45,12 @@ arbre concat_pere_frere(arbre _pere, arbre _frere)
 /*
  *Fonction d'affichage d'un arbre
  */
-void afficher_arbre(arbre _arbre, int indent)
+void afficher_arbre(arbre _arbre, int l)
 {
 
-
+    int i;
+    if(_arbre == NULL) return ;
+    
  char * type =malloc(sizeof(char)*1000);
     if(type){
         switch((*_arbre).nature)
@@ -124,15 +126,20 @@ void afficher_arbre(arbre _arbre, int indent)
     }else{
         type = "ERROR MALLOC";
     }
-if(indent == 0)
-printf("\n");
-    printf( "%*s%s:%d\n", indent * 2, "", type, (*_arbre).val_noeud);
+   
+    afficher_arbre(_arbre->gauche,l+1);
+    for(i=0;i<l;++i)>
+        printf(" ");
+    printf("%s \n",type,_arbre->val_noeud);
+    afficher_arbre(_arbre->droite,l+1);
+    /*printf( "%*s%s:%d\n", indent * 2, "", type, (*_arbre).val_noeud);
     if(_arbre->gauche){
         afficher_arbre(_arbre->gauche, indent + 1);
     }
     if(_arbre->droite){
         afficher_arbre(_arbre->droite, indent);
     }
+     */
 }
 
 
