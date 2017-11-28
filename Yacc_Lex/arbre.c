@@ -55,71 +55,71 @@ void afficher_arbre(arbre _arbre, int indent)
     if(type){
         switch((*_arbre).nature)
         {
-            case NOEUD_PRINCIPAL:
+            case C_NOEUD_PRINCIPAL:
                 type = "NOEUD_PRINCIPAL";
                 break;
-            case CSTE_ENTIERE:
+            case C_CSTE_ENTIERE:
                 type = "CSTE_ENTIERE";
                 break;
-            case CSTE_REEL:
+            case C_CSTE_REEL:
                 type = "CSTE_REEL";
                 break;
-            case CSTE_STRING:
+            case C_CSTE_STRING:
                 type = "CSTE_STRING";
                 break;
-            case CSTE_CHAR:
+            case C_CSTE_CHAR:
                 type = "CSTE_CHAR";
                 break;
-            case CSTE_BOOL:
+            case C_CSTE_BOOL:
                 type = "CSTE_BOOL";
                 break;
-            case PLUS_PETIT:
+            case C_PLUS_PETIT:
                 type = "PLUS_PETIT";
                 break;
-            case PLUS_GRAND:
+            case C_PLUS_GRAND:
                 type = "PLUS_GRAND";
                 break;
-            case ET:
+            case C_ET:
                 type = "ET";
                 break;
-            case OU:
+            case C_OU:
                 type = "OU";
                 break;
-            case PLUS_PETIT_EGAL:
+            case C_PLUS_PETIT_EGAL:
                 type = "PLUS_PETIT_EGAL";
                 break;
-            case PLUS_GRAND_EGAL:
+            case C_PLUS_GRAND_EGAL:
                 type = "PLUS_GRAND_EGAL";
                 break;
-            case EGAL:
+            case C_EGAL:
                 type = "EGAL";
                 break;
-            case DIFFERENT:
+            case C_DIFFERENT:
                 type = "DIFFERENT";
                 break;
-            case PLUS:
+            case C_PLUS:
                 type = "PLUS";
                 break;
-            case MOINS:
+            case C_MOINS:
                 type = "MOINS";
                 break;
-            case MULT:
+            case C_MULT:
                 type = "MULT";
                 break;
-            case DIV:
+            case C_DIV:
                 type = "DIV";
                 break;
-            case OPAFF: type = "OPAFF";
+            case C_OPAFF: type = "OPAFF";
                 break;
-            case FAIRE: type = "FAIRE";
+            case C_FAIRE: type = "FAIRE";
                 break;
-            case TANT_QUE: type = "TANT_QUE";
+            case C_TANT_QUE: type = "TANT_QUE";
                 break;
-            case SI: type = "SI";
+            case C_SI: type = "SI";
                 break;
-            case SINON: type = "SINON";
+            case C_SINON: type = "SINON";
                 break;
-            case IDF:
+
                 type = "IDF";
                 break;
         }

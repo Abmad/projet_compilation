@@ -8,30 +8,30 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-#define NOEUD_PRINCIPAL 0
-#define CSTE_ENTIERE 1
-#define CSTE_REEL 2
-#define CSTE_STRING 3
-#define CSTE_CHAR 4
-#define CSTE_BOOL 5
-#define PLUS_PETIT 6
-#define PLUS_GRAND 7
-#define ET 8
-#define OU 9
-#define PLUS_PETIT_EGAL 10
-#define PLUS_GRAND_EGAL 11
-#define EGAL 12
-#define DIFFERENT 13
-#define PLUS 14
-#define MOINS 15
-#define MULT 16
-#define DIV 17
-#define OPAFF 18
-#define FAIRE 19
-#define TANT_QUE 20
-#define SI 21
-#define SINON 22
-#define IDF 23
+#define C_NOEUD_PRINCIPAL 0
+#define C_CSTE_ENTIERE 1
+#define C_CSTE_REEL 2
+#define C_CSTE_STRING 3
+#define C_CSTE_CHAR 4
+#define C_CSTE_BOOL 5
+#define C_PLUS_PETIT 6
+#define C_PLUS_GRAND 7
+#define C_ET 8
+#define C_OU 9
+#define C_PLUS_PETIT_EGAL 10
+#define C_PLUS_GRAND_EGAL 11
+#define C_EGAL 12
+#define C_DIFFERENT 13
+#define C_PLUS 14
+#define C_MOINS 15
+#define C_MULT 16
+#define C_DIV 17
+#define C_OPAFF 18
+#define C_FAIRE 19
+#define C_TANT_QUE 20
+#define C_SI 21
+#define C_SINON 22
+#define C_IDF 23
 /*
  * Structure d'un noeud
  */
@@ -39,10 +39,10 @@ struct noeud
 {
     int nature;
     int val_noeud;
-    int num_declaration;//fonction assossiation de noms
+    int num_declaration;
     struct noeud * gauche;
     struct noeud * droite;
-}noeud;
+};
 typedef struct noeud * arbre;
 arbre  concat_pere_fils(arbre _pere, arbre _fils);
 arbre  concat_pere_frere(arbre _pere, arbre _frere);

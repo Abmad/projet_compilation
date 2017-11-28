@@ -1,7 +1,8 @@
 %{
-#include "y.tab.h"
 #include <stdio.h>
+#include "arbre.h"
 #include "tablexico.h"
+#include "y.tab.h"
 int nbLignes = 0;
 
 %}
