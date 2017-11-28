@@ -35,18 +35,18 @@
 /*
  * Structure d'un noeud
  */
-struct noeud
+type def struct noeud
 {
     int nature;
     int val_noeud;
     int num_declaration;//fonction assossiation de noms
     struct noeud * gauche;
     struct noeud * droite;
-};
-typedef struct noeud arbre;
-arbre * concat_pere_fils(arbre *_pere, arbre *_fils);
-arbre * concat_pere_frere(arbre *_pere, arbre *_frere);
+}noeud;
+typedef struct noeud * arbre;
+arbre * concat_pere_fils(arbre _pere, arbre _fils);
+arbre * concat_pere_frere(arbre _pere, arbre _frere);
 arbre * creer_noeud(int _nature, int _val_noeud);
 arbre* arbre_vide();
-void afficher_arbre(arbre * _arbre, int indent);
+void afficher_arbre(arbre _arbre, int indent);
 

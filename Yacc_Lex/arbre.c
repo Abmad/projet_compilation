@@ -4,21 +4,24 @@
 /*
  *Fonction de création d'un noeud
  */
-arbre * creer_noeud(int _nature, int _val_noeud)
+arbre  creer_noeud(int _nature, int _val_noeud)
 {
-    arbre *new_noeud = malloc(sizeof(new_noeud));
-    new_noeud->val_noeud = _val_noeud;
-    new_noeud->nature = _nature;
-    new_noeud->gauche = NULL;
-    new_noeud->droite = NULL;
     
-    return new_noeud;
+    arbre new_noeud = malloc(sizeof(new_noeud));
+    if(new_noeud){
+        new_noeud->val_noeud = _val_noeud;
+        new_noeud->nature = _nature;
+        new_noeud->gauche = NULL;
+        new_noeud->droite = NULL;
+        return new_noeud;
+    }
+    return arbre_vide();
 }
 
 /*
  *Fonction de création d'un arbre vide
  */
-arbre* arbre_vide()
+arbre arbre_vide()
 {
     return NULL;
 }
@@ -26,7 +29,7 @@ arbre* arbre_vide()
 /*
  *Fonction d'ajout d'un noeud fils à un noeud pere
  */
-arbre * concat_pere_fils(arbre *_pere, arbre *_fils)
+arbre concat_pere_fils(arbre _pere, arbre _fils)
 {
     if(_pere != NULL && _fils != NULL)
         _pere->gauche = _fils;
@@ -36,7 +39,7 @@ arbre * concat_pere_fils(arbre *_pere, arbre *_fils)
 /*
  *Fonction d'ajout d'un noeud frere à un noeud pere
  */
-arbre * concat_pere_frere(arbre *_pere, arbre *_frere)
+arbre concat_pere_frere(arbre _pere, arbre _frere)
 {
     if(_pere != NULL && _frere != NULL)
         _pere -> droite = _frere;
@@ -46,7 +49,7 @@ arbre * concat_pere_frere(arbre *_pere, arbre *_frere)
 /*
  *Fonction d'affichage d'un arbre
  */
-void afficher_arbre(arbre * _arbre, int indent)
+void afficher_arbre(arbre _arbre, int indent)
 {
     char * type = malloc(sizeof(char));
     if(type){
@@ -105,6 +108,19 @@ void afficher_arbre(arbre * _arbre, int indent)
                 break;
             case DIV:
                 type = "DIV";
+                break;
+            case OPAFF: type = "OPAFF";
+                break;
+            case FAIRE: type = FAIRE;
+                break;
+            case TANT_QUE: type = "TANT_QUE";
+                break;
+            case SI: type = "SI";
+                break;
+            case SINON: type = "SINON";
+                break;
+            case IDF:
+                type = "IDF";
                 break;
         }
     }else{
