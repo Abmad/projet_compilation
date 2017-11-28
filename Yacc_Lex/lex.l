@@ -9,67 +9,67 @@ int nbLignes = 0;
 
 %%
 
-PROG {return (PROG);}
-, {return (VIRGULE);}
-: {return (DEUX_POINTS);}
-\. {return (POINT);}
-\[ {return (CROCHET_OUVRANT);}
-\] {return (CROCHET_FERMANT);}
-\{ {return (ACCOLADE_OUVRANTE);}
-\} {return (ACCOLADE_FERMANTE);}
-\( {return (PARENTHESE_OUVRANTE);}
-\) {return (PARENTHESE_FERMANTE);}
-= {return (OPAFF);}
-; {return (POINT_VIRGULE);}
+PROG {printf(yytext);return (PROG);}
+, {printf(yytext);return (VIRGULE);}
+: {printf(yytext);return (DEUX_POINTS);}
+\. {printf(yytext);return (POINT);}
+\[ {printf(yytext);return (CROCHET_OUVRANT);}
+\] {printf(yytext);return (CROCHET_FERMANT);}
+\{ {printf(yytext);return (ACCOLADE_OUVRANTE);}
+\} {printf(yytext);return (ACCOLADE_FERMANTE);}
+\( {printf(yytext);return (PARENTHESE_OUVRANTE);}
+\) {printf(yytext);return (PARENTHESE_FERMANTE);}
+= {printf(yytext);return (OPAFF);}
+; {printf(yytext);return (POINT_VIRGULE);}
 
-\+ {return (PLUS);}
-- {return (MOINS);}
-\* {return (MULT);}
-\/ {return (DIV);}
+\+ {printf(yytext);return (PLUS);}
+- {printf(yytext);return (MOINS);}
+\* {printf(yytext);return (MULT);}
+\/ {printf(yytext);return (DIV);}
 
-\< {return (PLUS_PETIT);}
-\> {return (PLUS_GRAND);}
-\<= {return (PLUS_PETIT_EGAL);}
-\>= {return (PLUS_GRAND_EGAL);}
-== {return (EGAL);}
-!= {return (DIFFERENT);}
-&& {return (ET);}
-\|\| {return (OU);}
+\< {printf(yytext);return (PLUS_PETIT);}
+\> {printf(yytext);return (PLUS_GRAND);}
+\<= {printf(yytext);return (PLUS_PETIT_EGAL);}
+\>= {printf(yytext);return (PLUS_GRAND_EGAL);}
+== {printf(yytext);return (EGAL);}
+!= {printf(yytext);return (DIFFERENT);}
+&& {printf(yytext);return (ET);}
+\|\| {printf(yytext);return (OU);}
 
-true|false {yylval.type2=add_lexeme_char(yytext);return (CSTE_BOOL);}
+true|false {yylval.type2=add_lexeme_char(yytext);printf(yytext);return (CSTE_BOOL);}
 
-Main {return (DEBUT);}
-EndMain {return (FIN);}
+Main {printf(yytext);return (DEBUT);}
+EndMain {printf(yytext);return (FIN);}
 
-var {return (VARIABLE);}
-type {return (TYPE);}
+var {printf(yytext);return (VARIABLE);}
+type {printf(yytext);return (TYPE);}
 
-int {yylval.type2=add_lexeme_char(yytext);return (ENTIER);}
-float {yylval.type2=add_lexeme_char(yytext);return (REEL);}
-bool {yylval.type2=add_lexeme_char(yytext);return (BOOLEEN);}
-char {yylval.type2=add_lexeme_char(yytext);return (CARACTERE);}
-string {yylval.type2=add_lexeme_char(yytext);return (CHAINE);}
+int {yylval.type2=add_lexeme_char(yytext);printf(yytext);return (ENTIER);}
+float {yylval.type2=add_lexeme_char(yytext);printf(yytext);return (REEL);}
+bool {yylval.type2=add_lexeme_char(yytext);printf(yytext);return (BOOLEEN);}
+char {yylval.type2=add_lexeme_char(yytext);printf(yytext);return (CARACTERE);}
+string {yylval.type2=add_lexeme_char(yytext);printf(yytext);return (CHAINE);}
 
-tab {return (TABLEAU);}
-of {return (DE);}
-Struct {return (STRUCT);}
-EndStruct {return (FSTRUCT);}
-procedure {return (PROCEDURE);}
-function {return (FONCTION);}
-return {return (RETOURNE);}
+tab {printf(yytext);return (TABLEAU);}
+of {printf(yytext);return (DE);}
+Struct {printf(yytext);return (STRUCT);}
+EndStruct {printf(yytext);return (FSTRUCT);}
+procedure {printf(yytext);return (PROCEDURE);}
+function {printf(yytext);return (FONCTION);}
+printf(yytext);return {printf(yytext);return (RETOURNE);}
 
-if {return (SI);}
-then {return (ALORS);}
-else {return (SINON);}
+if {printf(yytext);return (SI);}
+then {printf(yytext);return (ALORS);}
+else {printf(yytext);return (SINON);}
 
-while {return (TANT_QUE);}
-do {return (FAIRE);}
+while {printf(yytext);return (TANT_QUE);}
+do {printf(yytext);return (FAIRE);}
 
-\"[a-zA-Z0-9 ]*\" {yylval.type2=add_lexeme_char(yytext);return (CSTE_STRING);}
-\'[a-zA-Z0-9 ]\' {yylval.type2=add_lexeme_char(yytext);return (CSTE_CHAR);}
-[a-zA-Z][a-zA-Z0-9]* {yylval.type2=add_lexeme_char(yytext);return (IDF);}
-[1-9][0-9]* {yylval.type2=atoi(yytext);return (CSTE_ENTIERE);}
-[0-9]+\.[0-9]+ {yylval.type2=add_lexeme_char(yytext);return (CSTE_REEL);}
+\"[a-zA-Z0-9 ]*\" {yylval.type2=add_lexeme_char(yytext);printf(yytext);return (CSTE_STRING);}
+\'[a-zA-Z0-9 ]\' {yylval.type2=add_lexeme_char(yytext);printf(yytext);return (CSTE_CHAR);}
+[a-zA-Z][a-zA-Z0-9]* {yylval.type2=add_lexeme_char(yytext);printf(yytext);return (IDF);}
+[1-9][0-9]* {yylval.type2=atoi(yytext);printf(yytext);return (CSTE_ENTIERE);}
+[0-9]+\.[0-9]+ {yylval.type2=add_lexeme_char(yytext);printf(yytext);return (CSTE_REEL);}
 
 \n {nbLignes++;}
 
