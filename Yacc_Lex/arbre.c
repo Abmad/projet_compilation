@@ -126,7 +126,7 @@ void afficher_arbre(arbre _arbre, int indent)
     }else{
         type = "ERROR MALLOC";
     }
-    printf( "%*s%s:%s\n", indent * 2, "", type, (*_arbre).val_noeud);
+    printf( "%*s%s:%d\n", indent * 2, "", type, (*_arbre).val_noeud);
     if(_arbre->gauche){
         afficher_arbre(_arbre->gauche, indent + 1);
     }

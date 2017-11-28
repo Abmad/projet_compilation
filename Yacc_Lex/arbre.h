@@ -7,7 +7,6 @@
 //
 #include<stdio.h>
 #include<stdlib.h>
-
 #define NOEUD_PRINCIPAL 0
 #define CSTE_ENTIERE 1
 #define CSTE_REEL 2
