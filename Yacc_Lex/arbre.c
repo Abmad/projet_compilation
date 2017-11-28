@@ -6,16 +6,12 @@
  */
 arbre  creer_noeud(int _nature, int _val_noeud)
 {
-    
-    arbre new_noeud = malloc(sizeof(new_noeud));
-    if(new_noeud){
+    arbre new_noeud = malloc(sizeof(arbre)*1000);
         new_noeud->val_noeud = _val_noeud;
         new_noeud->nature = _nature;
         new_noeud->gauche = NULL;
         new_noeud->droite = NULL;
         return new_noeud;
-    }
-    return arbre_vide();
 }
 
 /*
@@ -51,7 +47,9 @@ arbre concat_pere_frere(arbre _pere, arbre _frere)
  */
 void afficher_arbre(arbre _arbre, int indent)
 {
-    char * type = malloc(sizeof(char));
+
+
+ char * type =malloc(sizeof(char)*1000);
     if(type){
         switch((*_arbre).nature)
         {

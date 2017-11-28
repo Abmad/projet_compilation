@@ -219,4 +219,6 @@ int yyerror()
 {
 	printf("\nerreur de syntaxe %i\n", nbLignes);
 }
-int main(){ init_tab_lex(); yyparse(); }
+int main(){ //init_tab_lex(); 
+yyparse();
+ }

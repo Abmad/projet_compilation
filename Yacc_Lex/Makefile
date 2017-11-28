@@ -1,7 +1,7 @@
 CC=gcc
 
 compilateur : y.tab.c lex.yy.o arbre.o tablexico.o
-	$(CC) y.tab.c lex.yy.o arbre.o tablexico.o -ly -ll -o compilateur
+	$(CC) y.tab.c lex.yy.o arbre.o tablexico.o  -ll -o compilateur
 
 y.tab.c y.tab.h : gram.y
 	yacc -v -d gram.y

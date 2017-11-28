@@ -37,6 +37,7 @@ int add_lexeme_char(char* lex){//Créé par Dan Robert Tsoumbou Moutimba
     }
     else if(table_lexico[cpt].longueur==strlen(lex) && table_lexico[cpt].exp_lexeme_char==lex){
         //lexème déjà présent dans la table, aucune action n'est effectuée.
+	return 9999;
     }
     else{
         cpt = cpt +1;
