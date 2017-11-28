@@ -1,4 +1,0 @@
-tablexico.c: In function ‘add_lexeme_char’:
-tablexico.c:32:16: warning: assignment from incompatible pointer type [-Wincompatible-pointer-types]
-         l.suiv = &(table_lexico[cpt+1]);
-                ^

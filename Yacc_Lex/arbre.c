@@ -128,9 +128,9 @@ void afficher_arbre(arbre _arbre, int l)
     }
    
     afficher_arbre(_arbre->gauche,l+1);
-    for(i=0;i<l;++i)>
+    for(i=0;i<l;++i)
         printf(" ");
-    printf("%s \n",type,_arbre->val_noeud);
+    printf("%s : %d\n",type,_arbre->val_noeud);
     afficher_arbre(_arbre->droite,l+1);
     /*printf( "%*s%s:%d\n", indent * 2, "", type, (*_arbre).val_noeud);
     if(_arbre->gauche){
