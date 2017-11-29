@@ -6,8 +6,6 @@
 
 typedef struct {
     char* exp_lexeme_char;//expression du lexème
-    int exp_lexeme_int;
-    double exp_lexeme_double;
     int longueur;//nombre de caractères du lexème
     struct lexeme * suiv;//lexème suivant
     int hash_code;
