@@ -1,4 +1,5 @@
 //
+	
 //  main.c
 //  Compilation
 //
@@ -290,38 +291,40 @@ void afficher_table_region(){
     for(i=0;i< SIZE_TABLE_REG ;i++){
         if(table_region[i].nis == -1 && table_region[i].taille == -1)
             break;
-        printf("%i",table_region[i].nis);
-        printf("%i",table_region[i].taille);
+        printf("NIS: %d ",table_region[i].nis);
+        printf(" TAILLE: %d ",table_region[i].taille);
         afficher_arbre(table_region[i].arbre, 0);
     }
 }
 void afficher_pile_reg(pile_region *pile){
-    printf("Num Region: %d\n",(*pile)->num_region);
-    if((*pile)->previous != NULL)
-        afficher_pile_reg(pile);
-    
+	while(*pile!=NULL)
+	printf("Num Region: %d\n",region_depiler(pile));    
+
 }
 
 
 int main(int argc, const char * argv[]) {
     // insert code here...
     init_table_region();
-    pile_region * pile;
-//    arbre a1 = creer_noeud(C_CSTE_REEL,12);
-//    arbre a2 = creer_noeud(C_CSTE_ENTIERE,12);
-//    arbre a3 = creer_noeud(C_PLUS,-999);
-//    arbre a4 = creer_noeud(C_CSTE_ENTIERE,10);
-//    arbre a5 = creer_noeud(C_CSTE_ENTIERE,15);
-//    arbre a6 = creer_noeud(C_MOINS,-998);
-//    arbre op1 = concat_pere_fils(a3,concat_pere_frere(a1,a2));
-//    arbre op2 = concat_pere_fils(a6,concat_pere_frere(a4,a5));
-//    arbre main= concat_pere_frere(op1, op2);
+    pile_region * pile = malloc(sizeof(struct region));
+    arbre a1 = creer_noeud(C_CSTE_REEL,12);
+    arbre a2 = creer_noeud(C_CSTE_ENTIERE,12);
+    arbre a3 = creer_noeud(C_PLUS,-999);
+    arbre a4 = creer_noeud(C_CSTE_ENTIERE,10);
+    arbre a5 = creer_noeud(C_CSTE_ENTIERE,15);
+    arbre a6 = creer_noeud(C_MOINS,-998);
+    arbre op1 = concat_pere_fils(a3,concat_pere_frere(a1,a2));
+    arbre op2 = concat_pere_fils(a6,concat_pere_frere(a4,a5));
+    arbre main= concat_pere_frere(op1, op2);
     
     region_empiler(pile);
     region_empiler(pile);
-    afficher_pile_reg(pile);
-    //add_val_regtable(-1,1,op1);
-    //add_val_regtable(-1,2,op2);
+    //afficher_pile_reg(pile);
+
+//void ajout_val_table_reg(int taille, int nis, arbre arbre);
+    ajout_val_table_reg(-1,region_depiler(pile),op1);
+    ajout_val_table_reg(-1,region_depiler(pile),op2);
+    afficher_table_region();	
     //printf("%d\n",(a2).val_noeud);
     //afficher_arbre(main,0);
     printf("Hello, World!\n");
