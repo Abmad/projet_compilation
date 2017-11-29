@@ -2,6 +2,7 @@
 #include<stdio.h>
 #include "./Arbre/arbre.h"
 #include "./Table_lexico/tablexico.h"
+#include "./Table_regions/table_regions.h"
 extern int nbLignes;
 extern char* yytext;
 extern int yylex() ;

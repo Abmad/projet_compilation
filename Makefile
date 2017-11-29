@@ -22,4 +22,4 @@ table_regions.o : ./Table_regions/table_regions.c ./Table_regions/table_regions.
 	$(CC) -c ./Table_regions/table_regions.c
 
 clean:
-	rm -rf Arbre/*.o Table_lexico/*.o y.* lex.yy.*
+	rm -rf Arbre/*.o Table_lexico/*.o Table_regions/*.o y.* lex.yy.*
