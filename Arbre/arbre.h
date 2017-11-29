@@ -5,6 +5,9 @@
 //  Created by Abdelmoghit MADIH on 11/17/17.
 //  Copyright © 2017 Abdelmoghit MADIH. All rights reserved.
 //
+#ifndef arbre_h
+#define arbre_h
+
 #include<stdio.h>
 #include<stdlib.h>
 
@@ -51,5 +54,5 @@ arbre  concat_pere_frere(arbre _pere, arbre _frere);
 arbre  creer_noeud(int _nature, int _val_noeud);
 arbre arbre_vide();
 void afficher_arbre(arbre _arbre, int indent);
-
+#endif /* arbre_h */
 
