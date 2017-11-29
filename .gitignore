@@ -1,1 +1,7 @@
 .DS_Store
+lex.yy.c
+lex.yy.o
+y.tab.c
+y.tab.o
+y.output
+compilateur
