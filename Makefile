@@ -1,7 +1,7 @@
 CC=gcc
 
-compilateur : y.tab.c lex.yy.o ./Arbre/arbre.o ./Table_lexico/tablexico.o
-	$(CC) y.tab.c lex.yy.o ./Arbre/arbre.o ./Table_lexico/tablexico.o  -ll -o compilateur
+compilateur : y.tab.c lex.yy.o ./Arbre/arbre.o ./Table_lexico/tablexico.o ./Table_regions/table_regions.o
+	$(CC) y.tab.c lex.yy.o ./Arbre/arbre.o ./Table_lexico/tablexico.o ./Table_regions/table_regions.o  -ll -o compilateur
 
 y.tab.c y.tab.h : ./Yacc_Lex/gram.y
 	yacc -v -d Yacc_Lex/gram.y
@@ -17,5 +17,9 @@ arbre.o : ./Arbre/arbre.c ./Arbre/arbre.h
 
 tablexico.o : ./Table_lexico/tablexico.c ./Table_lexico/tablexico.h
 	$(CC) -c ./Table_lexico/tablexico.c
+
+table_regions.o : ./Table_regions/table_regions.c ./Table_regions/table_regions.h
+	$(CC) -c ./Table_regions/table_regions.c
+
 clean:
 	rm -rf Arbre/*.o Table_lexico/*.o y.* lex.yy.*

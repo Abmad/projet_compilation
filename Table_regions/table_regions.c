@@ -7,7 +7,7 @@
 //
 #include <stdio.h>
 #include <stdlib.h>
-#include "table_region.h"
+#include "table_regions.h"
 
 void init_table_region(){
     int i;
