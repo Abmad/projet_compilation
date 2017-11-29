@@ -44,7 +44,7 @@ arbre concat_pere_frere(arbre _pere, arbre _frere)
   //  printf("frere valnoeud %d nature %d \n",_frere->val_noeud,_frere->nature);
     if(_pere != NULL && _frere != NULL)
 //      printf("frere valnoeud %d nature %d \n",_frere->val_noeud,_frere->nature);
-             afficher_arbre(_pere,0);
+//             afficher_arbre(_pere,0);
 	_pere -> droite = _frere;
     return _pere;
 }

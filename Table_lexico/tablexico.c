@@ -51,7 +51,7 @@ void affiche_table_lexico(int j){//Créé par Dan Robert Tsoumbou Moutimba
     assert(j<LONGUEUR);
     int i=0;
     for(i=0;i<j;i++){
-        printf("CASE: %d, %s, %d, %f\n",table_lexico[i].hash_code, table_lexico[i].exp_lexeme_char);
+        printf("CASE: %d, %s, \n",table_lexico[i].hash_code, table_lexico[i].exp_lexeme_char);
     }
 }
 void init_tab_lex(){
