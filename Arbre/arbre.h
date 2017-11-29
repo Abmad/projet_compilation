@@ -32,6 +32,8 @@
 #define C_SI 21
 #define C_SINON 22
 #define C_IDF 23
+#define C_LIST 24
+#define C_RETOURNE 25
 /*
  * Structure d'un noeud
  */
