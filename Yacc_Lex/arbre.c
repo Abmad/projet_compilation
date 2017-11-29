@@ -11,6 +11,7 @@ arbre  creer_noeud(int _nature, int _val_noeud)
         new_noeud->nature = _nature;
         new_noeud->gauche = NULL;
         new_noeud->droite = NULL;
+//	printf("valnoeud:%d nature:%d\n",_val_noeud,_nature);
         return new_noeud;
 }
 
@@ -27,6 +28,9 @@ arbre arbre_vide()
  */
 arbre concat_pere_fils(arbre _pere, arbre _fils)
 {
+//    printf("fils valnoeud:%d nature:%d \n",_fils->val_noeud,_fils->nature);
+           //  afficher_arbre(_fils,0);
+    
     if(_pere != NULL && _fils != NULL)
         _pere->gauche = _fils;
     return _pere;
@@ -37,15 +41,18 @@ arbre concat_pere_fils(arbre _pere, arbre _fils)
  */
 arbre concat_pere_frere(arbre _pere, arbre _frere)
 {
+  //  printf("frere valnoeud %d nature %d \n",_frere->val_noeud,_frere->nature);
     if(_pere != NULL && _frere != NULL)
-        _pere -> droite = _frere;
+//      printf("frere valnoeud %d nature %d \n",_frere->val_noeud,_frere->nature);
+             afficher_arbre(_pere,0);
+	_pere -> droite = _frere;
     return _pere;
 }
 
 /*
  *Fonction d'affichage d'un arbre
  */
-void afficher_arbre(arbre _arbre, int l)
+void afficher_arbre(arbre _arbre, int indent)
 {
 
     int i;
@@ -126,20 +133,15 @@ void afficher_arbre(arbre _arbre, int l)
     }else{
         type = "ERROR MALLOC";
     }
-   
-    afficher_arbre(_arbre->gauche,l+1);
-    for(i=0;i<l;++i)
-        printf(" ");
-    printf("%s : %d\n",type,_arbre->val_noeud);
-    afficher_arbre(_arbre->droite,l+1);
-    /*printf( "%*s%s:%d\n", indent * 2, "", type, (*_arbre).val_noeud);
-    if(_arbre->gauche){
+if(indent==0)printf("\n");   
+    printf( "|%*s%s:%d\n", indent * 2, "", type, (*_arbre).val_noeud);
+    if(_arbre->gauche != NULL){
         afficher_arbre(_arbre->gauche, indent + 1);
     }
-    if(_arbre->droite){
+    if(_arbre->droite != NULL){
         afficher_arbre(_arbre->droite, indent);
     }
-     */
+    
 }
 
 

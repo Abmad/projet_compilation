@@ -35,7 +35,7 @@ var r : char;
 var t : string[10]
 
 Main
-a = 2*2;
+a = 2*(2*5+6-9*5/8+6/8*(8+8.5));
 return a
 EndMain
 }

@@ -6,6 +6,7 @@ extern int nbLignes;
 extern char* yytext;
 extern int yylex() ;
 int yyerror() ;
+arbre type1;
 %}
 
 %union{
@@ -221,5 +222,6 @@ int yyerror()
 }
 int main(){ //init_tab_lex(); 
 yyparse();
+afficher_arbre(type1,0);
 //affiche_table_lexico(7);
  }
