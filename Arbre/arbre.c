@@ -33,7 +33,7 @@ arbre arbre_vide()
  */
 arbre concat_pere_fils(arbre _pere, arbre _fils)
 {
-    //  afficher_arbre(_fils,0);
+//    afficher_arbre(_fils,0);
     if(_pere != NULL && _fils != NULL)
         _pere->gauche = _fils;
     return _pere;
@@ -132,6 +132,12 @@ void afficher_arbre(arbre _arbre, int indent)
             case C_IDF:
                 type = "IDF";
                 break;
+	    case C_RETOURNE:
+		type = "RETOURNE";
+		break;
+	    case C_LIST:
+		type = "LIST_INSTRUCTION";
+		break;
         }
     }else{
         exit-1;
