@@ -1,25 +1,37 @@
-
+//
+//  table_region.h
+//  Compilation
+//
+//  Created by Abdelmoghit MADIH on 11/17/17.
+//  Copyright © 2017 Abdelmoghit MADIH. All rights reserved.
+//
 #include <stdio.h>
-#include "arbre.h"
+#include "../Arbre/arbre.h"
 
 #define SIZE_TABLE_REG 1000
+/* table des regions */
 typedef struct tableRegion{
     int taille;
     int nis;
-    noeud arbre;
+    arbre arbre;
 }tableRegion;
-
-typedef struct region{
+tableRegion table_region[SIZE_TABLE_REG];
+int num_regions = 0;
+/* pile des regions */
+struct region{
     int num_region;
     struct region *previous;
-} region;
-tableRegion tab[SIZE_TABLE_REG];
+};
+typedef struct region* pile_region;
+
 int cpt = 0;
-//il faut ajouter l'allocation dynamique
-void add_val_regtable(int taille, int nis, noeud arbre);
-void region_push(region **p_region, int num_region);
-int region_pop(region **p_region);
+void init_table_region();
+void ajout_val_table_reg(int taille, int nis, arbre arbre);
+void region_empiler(pile_region *p_region);
+int region_deipler(pile_region *p_region);
 void afficher_table_region();
+void afficher_pile_reg(pile_region *pile);
 //tableRegion get_val_regtable();
+
 
 

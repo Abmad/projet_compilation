@@ -238,6 +238,7 @@ void region_empiler(pile_region *p_region);
 int region_deipler(pile_region *p_region);
 void afficher_table_region();
 void afficher_pile_reg(pile_region *pile);
+
 void init_table_region(){
     int i;
     for(i=0;i< SIZE_TABLE_REG ;i++){

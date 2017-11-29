@@ -1,32 +1,46 @@
+//
+//  table_region.c
+//  Compilation
+//
+//  Created by Abdelmoghit MADIH on 11/17/17.
+//  Copyright © 2017 Abdelmoghit MADIH. All rights reserved.
+//
 #include <stdio.h>
 #include <stdlib.h>
+#include "table_region.h"
 
-#include "TableRegions.h"
-
-
-
-void add_val_regtable(int taille, int nis, noeud arbre){
-    tab[cpt].taille = taille;
-    tab[cpt].nis = nis;
-    tab[cpt].arbre = arbre;
+void init_table_region(){
+    int i;
+    for(i=0;i< SIZE_TABLE_REG ;i++){
+        table_region[i].nis = -1;
+        table_region[i].taille = -1;
+        table_region[i].arbre = NULL;
+    }
+}
+void ajout_val_table_reg(int taille, int nis, arbre arbre){
+    
+    table_region[cpt].taille = taille;
+    table_region[cpt].nis = nis;
+    table_region[cpt].arbre = arbre;
     cpt++;
 }
 
-void region_push(region **p_region, int num_region)
+void region_empiler(pile_region *p_region)
 {
-    region *new_region = malloc(sizeof *new_region);
+    pile_region new_region = malloc(sizeof(struct region));
     if (new_region)
     {
-        new_region->num_region = num_region;
+        new_region->num_region = num_regions;
         new_region->previous = *p_region;
         *p_region = new_region;
+        num_regions++;
     }
 }
 
-int region_pop(region **p_region){
+int region_depiler(pile_region *p_region){
     int ret = -1;
     if(*p_region){
-        region *temporaire = (*p_region)->previous;
+        pile_region temporaire = (*p_region)->previous;
         ret = (*p_region)->num_region;
         free(*p_region), *p_region = NULL;
         *p_region = temporaire;
@@ -34,7 +48,7 @@ int region_pop(region **p_region){
     return ret;
 }
 
-int region_head(region **region){
+int region_top(pile_region *region){
     int ret =-1;
     
     if(region){
@@ -46,9 +60,16 @@ int region_head(region **region){
 void afficher_table_region(){
     int i;
     for(i=0;i< SIZE_TABLE_REG ;i++){
-        printf("%i",tab[i].nis);
-        printf("%i",tab[i].taille);
-       
+        if(table_region[i].nis == -1 && table_region[i].taille == -1)
+            break;
+        printf("NIS: %d ",table_region[i].nis);
+        printf(" TAILLE: %d ",table_region[i].taille);
+        afficher_arbre(table_region[i].arbre, 0);
     }
+}
+void afficher_pile_reg(pile_region *pile){
+    while(*pile!=NULL)
+        printf("Num Region: %d\n",region_depiler(pile));
+    
 }
 
