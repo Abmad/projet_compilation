@@ -37,7 +37,6 @@ int add_lexeme_char(char* lex){//Créé par Dan Robert Tsoumbou Moutimba
     }
     else if(table_lexico[cpt].longueur==strlen(lex) && table_lexico[cpt].exp_lexeme_char==lex){
         //lexème déjà présent dans la table, aucune action n'est effectuée.
-	return 9999;
     }
     else{
         cpt = cpt +1;
@@ -53,7 +52,7 @@ void affiche_table_lexico(int j){//Créé par Dan Robert Tsoumbou Moutimba
     assert(j<LONGUEUR);
     int i=0;
     for(i=0;i<j;i++){
-        printf("CASE: %d, %s, %d, %f\n",table_lexico[i].hash_code, table_lexico[i].exp_lexeme_char, table_lexico[i].exp_lexeme_int, table_lexico[i].exp_lexeme_double);
+        printf("%d, %s, %d, %f\n",table_lexico[i].hash_code, table_lexico[i].exp_lexeme_char, table_lexico[i].exp_lexeme_int, table_lexico[i].exp_lexeme_double);
     }
 }
 void init_tab_lex(){

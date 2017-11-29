@@ -6,13 +6,16 @@
  */
 arbre  creer_noeud(int _nature, int _val_noeud)
 {
-    arbre new_noeud = malloc(sizeof(arbre)*1000);
+    
+    arbre new_noeud = malloc(sizeof(new_noeud));
+    if(new_noeud){
         new_noeud->val_noeud = _val_noeud;
         new_noeud->nature = _nature;
         new_noeud->gauche = NULL;
         new_noeud->droite = NULL;
-//	printf("valnoeud:%d nature:%d\n",_val_noeud,_nature);
         return new_noeud;
+    }
+    return arbre_vide();
 }
 
 /*
@@ -28,9 +31,6 @@ arbre arbre_vide()
  */
 arbre concat_pere_fils(arbre _pere, arbre _fils)
 {
-//    printf("fils valnoeud:%d nature:%d \n",_fils->val_noeud,_fils->nature);
-           //  afficher_arbre(_fils,0);
-    
     if(_pere != NULL && _fils != NULL)
         _pere->gauche = _fils;
     return _pere;
@@ -41,11 +41,8 @@ arbre concat_pere_fils(arbre _pere, arbre _fils)
  */
 arbre concat_pere_frere(arbre _pere, arbre _frere)
 {
-  //  printf("frere valnoeud %d nature %d \n",_frere->val_noeud,_frere->nature);
     if(_pere != NULL && _frere != NULL)
-//      printf("frere valnoeud %d nature %d \n",_frere->val_noeud,_frere->nature);
-             afficher_arbre(_pere,0);
-	_pere -> droite = _frere;
+        _pere -> droite = _frere;
     return _pere;
 }
 
@@ -54,11 +51,7 @@ arbre concat_pere_frere(arbre _pere, arbre _frere)
  */
 void afficher_arbre(arbre _arbre, int indent)
 {
-
-    int i;
-    if(_arbre == NULL) return ;
-    
- char * type =malloc(sizeof(char)*1000);
+    char * type = malloc(sizeof(char));
     if(type){
         switch((*_arbre).nature)
         {
@@ -126,22 +119,20 @@ void afficher_arbre(arbre _arbre, int indent)
                 break;
             case C_SINON: type = "SINON";
                 break;
-            case C_IDF:
+
                 type = "IDF";
                 break;
         }
     }else{
         type = "ERROR MALLOC";
     }
-if(indent==0)printf("\n");   
-    printf( "|%*s%s:%d\n", indent * 2, "", type, (*_arbre).val_noeud);
-    if(_arbre->gauche != NULL){
+    printf( "%*s%s:%d\n", indent * 2, "", type, (*_arbre).val_noeud);
+    if(_arbre->gauche){
         afficher_arbre(_arbre->gauche, indent + 1);
     }
-    if(_arbre->droite != NULL){
+    if(_arbre->droite){
         afficher_arbre(_arbre->droite, indent);
     }
-    
 }
 
 

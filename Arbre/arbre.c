@@ -1,122 +1,148 @@
-#include<stdio.h>
-#include<stdlib.h>
 #include "arbre.h"
+#include "../Table_lexico/tablexico.h"
 
 /*
  *Fonction de création d'un noeud
  */
-noeud creer_noeud(int _typeNoeud)
+arbre  creer_noeud(int _nature, int _val_noeud)
 {
-    noeud *new_noeud = malloc(sizeof(new_noeud));
-    new_noeud->noeud = _typeNoeud;
-    new_noeud->gauche = NULL;
-    new_noeud->droite = NULL;
-    
-    return *new_noeud;
+    arbre new_noeud = malloc(sizeof(arbre)*1000);
+        new_noeud->val_noeud = _val_noeud;
+        new_noeud->nature = _nature;
+        new_noeud->gauche = NULL;
+        new_noeud->droite = NULL;
+//	printf("valnoeud:%d nature:%d\n",_val_noeud,_nature);
+        return new_noeud;
 }
 
 /*
- *Fonction de création d'un arbre (noeud le plus haut)
+ *Fonction de création d'un arbre vide
  */
-noeud arbre_vide()
+arbre arbre_vide()
 {
-    noeud *newArbre = malloc(sizeof(newArbre));
-    newArbre->noeud = NOEUD_PRINCIPAL;
-    newArbre->gauche = NULL;
-    newArbre->droite = NULL;
-    
-    return *newArbre;
+    return NULL;
 }
 
 /*
  *Fonction d'ajout d'un noeud fils à un noeud pere
  */
-noeud concat_pere_fils(noeud *_pere, noeud *_fils)
+arbre concat_pere_fils(arbre _pere, arbre _fils)
 {
+//    printf("fils valnoeud:%d nature:%d \n",_fils->val_noeud,_fils->nature);
+           //  afficher_arbre(_fils,0);
+    
     if(_pere != NULL && _fils != NULL)
         _pere->gauche = _fils;
-    return *_pere;
+    return _pere;
 }
 
 /*
  *Fonction d'ajout d'un noeud frere à un noeud pere
  */
-noeud concat_pere_frere(noeud *_pere, noeud *_frere)
+arbre concat_pere_frere(arbre _pere, arbre _frere)
 {
+  //  printf("frere valnoeud %d nature %d \n",_frere->val_noeud,_frere->nature);
     if(_pere != NULL && _frere != NULL)
-        _pere -> droite = _frere;
-    return *_pere;
+//      printf("frere valnoeud %d nature %d \n",_frere->val_noeud,_frere->nature);
+             afficher_arbre(_pere,0);
+	_pere -> droite = _frere;
+    return _pere;
 }
 
 /*
-*Fonction d'affichage d'un arbre
-*/
-void afficher_arbre(noeud _arbre)
+ *Fonction d'affichage d'un arbre
+ */
+void afficher_arbre(arbre _arbre, int indent)
 {
-	int itFor;
-	char * type;
-	
-	switch(_arbre.noeud)
-	{
-	case "NOEUD_PRINCIPAL":
-	type = "NOEUD_PRINCIPAL";
-	break;
-	case "CSTE_ENTIERE":
-	type = "CSTE_ENTIERE";
-	break;
-	case "CSTE_REEL":
-	type = "CSTE_REEL";
-	break;
-	case "CSTE_STRING":
-	type = "CSTE_STRING";
-	break;
-	case "CSTE_CHAR":
-	type = "CSTE_CHAR";
-	break;
-	case "CSTE_BOOL":
-	type = "CSTE_BOOL";
-	break;
-	case "PLUS_PETIT":
-	type = "PLUS_PETIT";
-	break;
-	case "PLUS_GRAND":
-	type = "PLUS_GRAND";
-	break;
-	case "ET":
-	type = "ET";
-	break;
-	case "OU":
-	type = "OU";
-	break;
-	case "PLUS_PETIT_EGAL":
-	type = "PLUS_PETIT_EGAL";
-	break;
-	case "PLUS_GRAND_EGAL":
-	type = "PLUS_GRAND_EGAL";
-	break;
-	case "EGAL":
-	type = "EGAL";
-	break;
-	case "DIFFERENT":
-	type = "DIFFERENT";
-	break;
-	case "PLUS":
-	type = "PLUS";
-	break;
-	case "MOINS":
-	type = "MOINS";
-	break;
-	case "MULT":
-	type = "MULT";
-	break;
-	case "DIV":
-	type = "DIV";
-	break;
-	}
-	
-	printf("Nom type : %s\n",type);
-	
-	if(_arbre.gauche) afficher_arbre(_arbre.gauche);
-	if(_arbre.droite) afficher_arbre(_arbre.droite);
+
+    int i;
+    if(_arbre == NULL) return ;
+    
+ char * type =malloc(sizeof(char)*1000);
+    if(type){
+        switch((*_arbre).nature)
+        {
+            case C_NOEUD_PRINCIPAL:
+                type = "NOEUD_PRINCIPAL";
+                break;
+            case C_CSTE_ENTIERE:
+                type = "CSTE_ENTIERE";
+                break;
+            case C_CSTE_REEL:
+                type = "CSTE_REEL";
+                break;
+            case C_CSTE_STRING:
+                type = "CSTE_STRING";
+                break;
+            case C_CSTE_CHAR:
+                type = "CSTE_CHAR";
+                break;
+            case C_CSTE_BOOL:
+                type = "CSTE_BOOL";
+                break;
+            case C_PLUS_PETIT:
+                type = "PLUS_PETIT";
+                break;
+            case C_PLUS_GRAND:
+                type = "PLUS_GRAND";
+                break;
+            case C_ET:
+                type = "ET";
+                break;
+            case C_OU:
+                type = "OU";
+                break;
+            case C_PLUS_PETIT_EGAL:
+                type = "PLUS_PETIT_EGAL";
+                break;
+            case C_PLUS_GRAND_EGAL:
+                type = "PLUS_GRAND_EGAL";
+                break;
+            case C_EGAL:
+                type = "EGAL";
+                break;
+            case C_DIFFERENT:
+                type = "DIFFERENT";
+                break;
+            case C_PLUS:
+                type = "PLUS";
+                break;
+            case C_MOINS:
+                type = "MOINS";
+                break;
+            case C_MULT:
+                type = "MULT";
+                break;
+            case C_DIV:
+                type = "DIV";
+                break;
+            case C_OPAFF: type = "OPAFF";
+                break;
+            case C_FAIRE: type = "FAIRE";
+                break;
+            case C_TANT_QUE: type = "TANT_QUE";
+                break;
+            case C_SI: type = "SI";
+                break;
+            case C_SINON: type = "SINON";
+                break;
+            case C_IDF:
+                type = "IDF";
+                break;
+        }
+    }else{
+        type = "ERROR MALLOC";
+    }
+if(indent==0)printf("\n");   
+    printf( "|%*s%s:%d\n", indent * 2, "", type, (*_arbre).val_noeud);
+    if(_arbre->gauche != NULL){
+        afficher_arbre(_arbre->gauche, indent + 1);
+    }
+    if(_arbre->droite != NULL){
+        afficher_arbre(_arbre->droite, indent);
+    }
+    
 }
+
+
 

@@ -1,4 +1,6 @@
 %{
+#include "arbre.h"
+#include "tablexico.h"
 #include "y.tab.h"
 int numligne=1;
 %}
@@ -10,5 +12,5 @@ int numligne=1;
 \( {return(PO);}
 \) {return(PF);}
 \n {numligne++;}
-0|[1-9][0-9]* { return(CSTE_ENTIERE); }
+0|[1-9][0-9]* { yylval.typ2=atoi(yytext);return(CSTE_ENTIERE); }
 %%
