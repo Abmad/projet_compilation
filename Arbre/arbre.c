@@ -33,9 +33,7 @@ arbre arbre_vide()
  */
 arbre concat_pere_fils(arbre _pere, arbre _fils)
 {
-    //    printf("fils valnoeud:%d nature:%d \n",_fils->val_noeud,_fils->nature);
     //  afficher_arbre(_fils,0);
-    
     if(_pere != NULL && _fils != NULL)
         _pere->gauche = _fils;
     return _pere;
@@ -46,11 +44,10 @@ arbre concat_pere_fils(arbre _pere, arbre _fils)
  */
 arbre concat_pere_frere(arbre _pere, arbre _frere)
 {
-    //  printf("frere valnoeud %d nature %d \n",_frere->val_noeud,_frere->nature);
     if(_pere != NULL && _frere != NULL)
-        //      printf("frere valnoeud %d nature %d \n",_frere->val_noeud,_frere->nature);
-        afficher_arbre(_pere,0);
+       // afficher_arbre(_pere,0);
     _pere -> droite = _frere;
+
     return _pere;
 }
 
