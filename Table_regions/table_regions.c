@@ -19,10 +19,10 @@ void init_table_region(){
 }
 void ajout_val_table_reg(int taille, int nis, arbre arbre){
     
-    table_region[cpt].taille = taille;
-    table_region[cpt].nis = nis;
-    table_region[cpt].arbre = arbre;
-    cpt++;
+    table_region[table_index].taille = taille;
+    table_region[table_index].nis = nis;
+    table_region[table_index].arbre = arbre;
+    table_index++;
 }
 
 void region_empiler(pile_region *p_region)

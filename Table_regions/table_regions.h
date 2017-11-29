@@ -27,7 +27,7 @@ struct region{
 };
 typedef struct region* pile_region;
 
-int cpt = 0;
+int table_index = 0;
 void init_table_region();
 void ajout_val_table_reg(int taille, int nis, arbre arbre);
 void region_empiler(pile_region *p_region);
