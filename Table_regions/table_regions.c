@@ -13,6 +13,7 @@ void init_table_regions(){
     table_index = 0;
     num_regions = 0;
     p_region = malloc(sizeof(struct region));
+    if(p_region == NULL)exit-1;
     int i;
     for(i=0;i< SIZE_TABLE_REG ;i++){
         table_region[i].nis = -1;
@@ -31,30 +32,31 @@ void ajout_val_table_reg(int taille, int nis, arbre arbre){
 void region_empiler()
 {
     pile_region new_region = malloc(sizeof(struct region));
-    if (new_region)
+    if (new_region != NULL)
     {
         new_region->num_region = num_regions;
         new_region->previous = *p_region;
         *p_region = new_region;
         num_regions++;
-    }
+    }else
+    exit-1;
 }
 
 int region_depiler(){
     int ret = -1;
-    if(*p_region){
+    if(*p_region != NULL){
         pile_region temporaire = (*p_region)->previous;
         ret = (*p_region)->num_region;
         free(*p_region), *p_region = NULL;
         *p_region = temporaire;
+        num_regions--;
     }
     return ret;
 }
 
 int get_curr_region(){
     int ret =-1;
-    
-    if(p_region != NULL){
+    if(*p_region != NULL){
         ret = (*p_region)->num_region;
     }
     

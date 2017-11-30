@@ -112,7 +112,7 @@ declaration_variable  : VARIABLE IDF DEUX_POINTS nom_type
 declaration_procedure : PROCEDURE IDF liste_parametres ACCOLADE_OUVRANTE {region_empiler();} corps {region_depiler();} ACCOLADE_FERMANTE
                       ;
 
-declaration_fonction  : FONCTION IDF liste_parametres RETOURNE type_simple ACCOLADE_OUVRANTE corps {region_depiler();} ACCOLADE_FERMANTE
+declaration_fonction  : FONCTION IDF liste_parametres RETOURNE type_simple ACCOLADE_OUVRANTE {region_empiler();} corps {region_depiler();} ACCOLADE_FERMANTE
                       ;
 
 liste_parametres      : PARENTHESE_OUVRANTE liste_param PARENTHESE_FERMANTE
@@ -222,6 +222,7 @@ int yyerror()
 	printf("\nerreur de syntaxe %i\n", nbLignes);
 }
 int main(){ //init_tab_lex(); 
+printf("\n");
 init_table_regions();
 if(yyparse()==0){
 
