@@ -51,7 +51,7 @@ struct noeud
 typedef struct noeud * arbre;
 arbre  concat_pere_fils(arbre _pere, arbre _fils);
 arbre  concat_pere_frere(arbre _pere, arbre _frere);
-arbre  creer_noeud(int _nature, int _val_noeud);
+arbre  creer_noeud(int _nature, int _val_noeud,int num_declaration);
 arbre arbre_vide();
 void afficher_arbre(arbre _arbre, int indent);
 #endif /* arbre_h */

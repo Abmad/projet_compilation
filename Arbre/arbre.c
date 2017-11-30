@@ -5,12 +5,13 @@
 /*
  *Fonction de création d'un noeud
  */
-arbre  creer_noeud(int _nature, int _val_noeud)
+arbre  creer_noeud(int _nature, int _val_noeud,int _num_declaration)
 {
     arbre new_noeud = malloc(sizeof(struct noeud));
     if (new_noeud!=NULL){
         new_noeud->val_noeud = _val_noeud;
         new_noeud->nature = _nature;
+        new_noeud->num_declaration = _num_declaration;
         new_noeud->gauche = NULL;
         new_noeud->droite = NULL;
         //	printf("valnoeud:%d nature:%d\n",_val_noeud,_nature);
@@ -143,7 +144,7 @@ void afficher_arbre(arbre _arbre, int indent)
         exit-1;
     }
     if(indent==0)printf("\n");
-    printf( "|%*s%s:%d\n", indent * 2, "", type, (*_arbre).val_noeud);
+    printf( "|%*s%s:%d:%d\n", indent * 2, "", type, (*_arbre).val_noeud,(*_arbre).num_declaration);
     if(_arbre->gauche != NULL){
         afficher_arbre(_arbre->gauche, indent + 1);
     }
