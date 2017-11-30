@@ -1,3 +1,11 @@
+
+
+#ifndef tablexico_h
+
+#define tablexico_h
+
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -13,7 +21,7 @@ typedef struct {
     int hash_code;
 } lexeme;
 
-#define longueur 250;
+#define longueur 250
 
 int cpt, cpt2, cpt3;
 
@@ -27,7 +35,8 @@ int add_lexeme_int(int lex);
 
 int add_lexeme_double(double lex);
 
-void affiche_table_lexico(int j);
+void affiche_table_lexico();
 
 void init_tab_lexico();
 
+#endif
