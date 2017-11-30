@@ -4,15 +4,14 @@
 #include<string.h>
 #include"table_declaration.h"
 
+champsdeclaration tabDeclaration[LNG_DECL];
+int suivantDebut = 500;
 
-suivantDebut = 500;
-
-int add_champs(int _index, int _type, int _suivant, int _region, int _description, int _execution)
+int add_champs(int _index, int _type, int _region, int _description, int _execution)
 {	
 	if(tabDeclaration[_index].type == -1)
 	{
 		tabDeclaration[_index].type = _type;
-		tabDeclaration[_index].suivant = _suivant;
 		tabDeclaration[_index].region = _region;
 		tabDeclaration[_index].description = _description;
 		tabDeclaration[_index].execution = _execution;
@@ -23,12 +22,12 @@ int add_champs(int _index, int _type, int _suivant, int _region, int _descriptio
 		if(tabDeclaration[_index].suivant == -1)
 		{
 			tabDeclaration[_index].suivant = suivantDebut;
-			add_champs(suivantDebut, _type, -1, _region, _description, _execution);
+			add_champs(suivantDebut, _type, _region, _description, _execution);
 			suivantDebut++;
 		}
 		else
 		{
-			add_champs(tabDeclaration[_index].suivant, _type, -1, _region, _description, _execution);
+			add_champs(tabDeclaration[_index].suivant, _type, _region, _description, _execution);
 		}
 	}
 }
@@ -69,11 +68,11 @@ void init_decl()
 	memset(tabDeclaration, -1, (size_t)LNG_DECL * sizeof(champsdeclaration));
 	
 	//Ajout des 5 types de bases
-	add_champs(0,TYPE_INT,-1,-1,-1,1);
-	add_champs(1,TYPE_FLOAT,-1,-1,-1,1);
-	add_champs(2,TYPE_BOOL,-1,-1,-1,1);
-	add_champs(3,TYPE_CHAR,-1,-1,-1,1);
-	add_champs(4,TYPE_STRING,-1,-1,-1,1);
+	add_champs(0,TYPE_INT,-1,-1,1);
+	add_champs(1,TYPE_FLOAT,-1,-1,1);
+	add_champs(2,TYPE_BOOL,-1,-1,1);
+	add_champs(3,TYPE_CHAR,-1,-1,1);
+	add_champs(4,TYPE_STRING,-1,-1,1);
 }
 
 

@@ -15,9 +15,6 @@
 
 #define LNG_DECL 1000
 
-champsdeclaration tabDeclaration[LNG_DECL];
-int suivantDebut;
-
 /*
  * Structure d'un noeud
  */
@@ -35,7 +32,7 @@ typedef struct champs champsdeclaration;
 /*
  * Fonctions
  */
-int add_champs(int _index, int _type, int _suivant, int _region, int _description, int _execution);
+int add_champs(int _index, int _type, int _region, int _description, int _execution);
 void afficher_decl();
 void init_decl();
 
