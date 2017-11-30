@@ -10,5 +10,5 @@
 #define association_noms_h
 
 #include <stdio.h>
-
+int get_num_declaration(int numlexico);
 #endif /* association_noms_h */
