@@ -1,0 +1,52 @@
+
+                           
+0, TYPE_INT, -1, -1, -1, 1
+1, TYPE_FLOAT, -1, -1, -1, 1
+2, TYPE_BOOL, -1, -1, -1, 1
+3, TYPE_CHAR, -1, -1, -1, 1
+4, TYPE_STRING, 500, -1, -1, 1
+5, TYPE_VARIABLE, -1, 0, 501, 0
+6, TYPE_TABLEAU, 501, 0, 1, 0
+7, TYPE_STRUCT, -1, 0, 10, 0
+500, TYPE_VARIABLE, -1, 0, 0, 0
+501, TYPE_TABLEAU, -1, 0, 5, 0
+
+1, 3, -16726544, 1, 2, 3, -16726448, 1, -16726352, 2, 2, 8, 3, 0, 9, 3, 0, NIS: 0  TAILLE: 10 
+|LIST_INSTRUCTION:-1:-1
+|  OPAFF:-980:-1
+|    IDF:6:501
+|    MULT:-989:-1
+|      CSTE_ENTIERE:2:-1
+|      PLUS:-990:-1
+|        MOINS:-991:-1
+|          PLUS:-990:-1
+|            MULT:-989:-1
+|              CSTE_ENTIERE:2:-1
+|              CSTE_ENTIERE:5:-1
+|            CSTE_STRING:9:-1
+|          DIV:-988:-1
+|            MULT:-989:-1
+|              CSTE_ENTIERE:9:-1
+|              CSTE_ENTIERE:5:-1
+|            CSTE_ENTIERE:8:-1
+|        MULT:-989:-1
+|          DIV:-988:-1
+|            CSTE_ENTIERE:6:-1
+|            CSTE_ENTIERE:8:-1
+|          PLUS:-990:-1
+|            CSTE_ENTIERE:8:-1
+|            CSTE_REEL:10:-1
+|  OPAFF:-980:-1
+|    IDF:6:501
+|    CSTE_ENTIERE:11:-1
+HashCode: 0,Lexeme: int,Longueur: 3
+HashCode: 1,Lexeme: float,Longueur: 5
+HashCode: 2,Lexeme: bool,Longueur: 4
+HashCode: 3,Lexeme: char,Longueur: 4
+HashCode: 4,Lexeme: a,Longueur: 1
+HashCode: 5,Lexeme: z,Longueur: 1
+HashCode: 6,Lexeme: monTab,Longueur: 6
+HashCode: 7,Lexeme: maStruct,Longueur: 8
+HashCode: 8,Lexeme: monChamps,Longueur: 9
+HashCode: 9,Lexeme: "aaaa",Longueur: 6
+HashCode: 10,Lexeme: 8.5,Longueur: 3

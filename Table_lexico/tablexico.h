@@ -7,6 +7,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include <assert.h>
+#define LONGUEUR 500
 
 typedef struct {
     char* exp_lexeme_char;//expression du lexème
@@ -17,7 +18,7 @@ typedef struct {
     int hash_code;
 } lexeme;
 
-#define LONGUEUR 500
+
 
 int cpt, cpt2, cpt3;
 
@@ -35,4 +36,7 @@ void affiche_table_lexico();
 
 void init_tab_lexico();
 
+char * get_lexeme(numlex);
+
+int lexemeExists(char * lexeme);
 #endif

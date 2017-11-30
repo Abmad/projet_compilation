@@ -1,0 +1,46 @@
+
+       le num lexico: 9
+le lexeme est: 
+HashCode: 1,Lexeme: int,Longueur: 3
+HashCode: 2,Lexeme: float,Longueur: 5
+HashCode: 3,Lexeme: bool,Longueur: 4
+HashCode: 4,Lexeme: char,Longueur: 4
+HashCode: 5,Lexeme: a,Longueur: 1
+HashCode: 6,Lexeme: int,Longueur: 3
+HashCode: 7,Lexeme: b,Longueur: 1
+HashCode: 8,Lexeme: string,Longueur: 6
+HashCode: 9,Lexeme: a,Longueur: 1
+Erreur de declaration :  L'element <<  >> n'est pas declare a la ligne 6 .
+  le num lexico: 10
+le lexeme est: 
+HashCode: 1,Lexeme: int,Longueur: 3
+HashCode: 2,Lexeme: float,Longueur: 5
+HashCode: 3,Lexeme: bool,Longueur: 4
+HashCode: 4,Lexeme: char,Longueur: 4
+HashCode: 5,Lexeme: a,Longueur: 1
+HashCode: 6,Lexeme: int,Longueur: 3
+HashCode: 7,Lexeme: b,Longueur: 1
+HashCode: 8,Lexeme: string,Longueur: 6
+HashCode: 9,Lexeme: a,Longueur: 1
+HashCode: 10,Lexeme: b,Longueur: 1
+Erreur de declaration :  L'element <<  >> n'est pas declare a la ligne 7 .
+ 
+0, TYPE_INT, -1, -1, -1, 1
+1, TYPE_FLOAT, -1, -1, -1, 1
+2, TYPE_BOOL, -1, -1, -1, 1
+3, TYPE_CHAR, -1, -1, -1, 1
+4, TYPE_STRING, -1, -1, -1, 1
+5, TYPE_VARIABLE, -1, 0, 0, 0
+7, TYPE_VARIABLE, -1, 0, 5, 0
+
+HashCode: 1,Lexeme: int,Longueur: 3
+HashCode: 2,Lexeme: float,Longueur: 5
+HashCode: 3,Lexeme: bool,Longueur: 4
+HashCode: 4,Lexeme: char,Longueur: 4
+HashCode: 5,Lexeme: a,Longueur: 1
+HashCode: 6,Lexeme: int,Longueur: 3
+HashCode: 7,Lexeme: b,Longueur: 1
+HashCode: 8,Lexeme: string,Longueur: 6
+HashCode: 9,Lexeme: a,Longueur: 1
+HashCode: 10,Lexeme: b,Longueur: 1
+HashCode: 11,Lexeme: "aaa",Longueur: 5

@@ -5,6 +5,7 @@ var b : string[3]
 
 Main
 a = 1;
-b = "aaa"
+b = "aaa";
+c=x
 EndMain
 }

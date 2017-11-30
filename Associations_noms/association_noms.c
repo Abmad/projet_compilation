@@ -14,8 +14,6 @@
 extern int nbLignes;
 int get_num_declaration(int numlexico){
     int i ,top_region = 0, num_dec = 0;
-    printf("le num lexico: %d\n",numlexico);
-    printf("le lexeme est: %s\n",table_lexico[numlexico].exp_lexeme_char);
     if (numlexico <= 4)
         return numlexico;
     if(tabDeclaration[numlexico].type != -1){
@@ -36,9 +34,8 @@ int get_num_declaration(int numlexico){
             
         }
     }else{
-        printf("Erreur de declaration :  L'element << %s >> n'est pas declare a la ligne %d .\n",table_lexico[numlexico].exp_lexeme_char,nbLignes);
-        //exit(-1);
-return -55;
+        printf("Erreur de declaration :  L'element << %s >> n'est pas declare a la ligne %d .\n",get_lexeme(numlexico),nbLignes);
+        exit(-1);
     }
     
     return num_dec;

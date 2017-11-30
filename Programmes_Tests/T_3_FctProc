@@ -4,8 +4,8 @@ PROG
 procedure maProc()
 {
 var a : int;
-var z : float = "aaaaaaaaaa"
-
+var z : float = "aaaaaaaaaa";
+var r : int = 0
 Main
 a = 10;
 z = z + "zzz"
