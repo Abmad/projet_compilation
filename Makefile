@@ -21,5 +21,8 @@ tablexico.o : ./Table_lexico/tablexico.c ./Table_lexico/tablexico.h
 table_regions.o : ./Table_regions/table_regions.c ./Table_regions/table_regions.h
 	$(CC) -c ./Table_regions/table_regions.c
 
+associations_nom.o : ./Table_regions/table_regions.c ./Table_regions/table_regions.h
+	$(CC) -c ./Table_regions/table_regions.c
+
 clean:
 	rm -rf Arbre/*.o Table_lexico/*.o Table_regions/*.o y.* lex.yy.*

@@ -221,7 +221,7 @@ int yyerror()
 {
 	printf("\nerreur de syntaxe %i\n", nbLignes);
 }
-int main(){ //init_tab_lex(); 
+int main(){ 
 printf("\n");
 init_tab_lexico();
 init_table_regions();
@@ -229,7 +229,7 @@ init_table_regions();
 if(yyparse()==0){
 
 //afficher_table_region();
-affiche_table_lexico();
+//affiche_table_lexico();
 
 }
 

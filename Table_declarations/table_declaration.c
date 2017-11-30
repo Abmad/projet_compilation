@@ -6,7 +6,6 @@
 
 #define LNG_DECL 1000
 
-champsdeclaration tabDeclaration[LNG_DECL];
 int suivantDebut = 500;
 
 

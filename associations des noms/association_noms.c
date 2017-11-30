@@ -7,16 +7,9 @@
 //
 #include <stdlib.h>
 #include "association_noms.h"
-#include "table_declaration.h"
+#include "../Table_declarations/table_declaration.h"
+#include "../Table_lexico/tablexico.h"
 
-typedef struct {
-    char* exp_lexeme_char;//expression du lexème
-    int longueur;//nombre de caractères du lexème
-    struct lexeme * suiv;//lexème suivant
-    int hash_code;
-} lexeme;
-
-lexeme tab_lexico[500];
 
 int nb_lignes = 0;
 //extern int nb_lignes;
@@ -43,7 +36,7 @@ int get_num_declaration(int numlexico){
             
         }
     }else{
-        printf("Erreur de declaration :  L'element << %s >> n'est pas declare a la ligne %d .\n", tab_lexico[numlexico].exp_lexeme_char,nb_lignes);
+        printf("Erreur de declaration :  L'element << %s >> n'est pas declare a la ligne %d .\n",table_lexico[numlexico].exp_lexeme_char,nb_lignes);
         exit(-1);
     }
     

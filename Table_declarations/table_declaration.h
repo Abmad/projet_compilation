@@ -12,6 +12,8 @@
 #define TYPE_FONCTION 7
 #define TYPE_PROCEDURE 8
 #define TYPE_VARIABLE 9
+#define LNG_DECL 1000
+
 
 /*
  * Structure d'un noeud
@@ -25,7 +27,8 @@ struct champs
     int execution;
 };
 typedef struct champs champsdeclaration;
-
+int suivantDebut = 500;
+champsdeclaration tabDeclaration[LNG_DECL];
 
 /*
  * Fonctions
