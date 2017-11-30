@@ -35,7 +35,7 @@ int curr_region = 0;
 programme             : PROG ACCOLADE_OUVRANTE corps ACCOLADE_FERMANTE 
                       ;
 
-corps                 : {region_empiler();} liste_declarations liste_instructions {curr_region = region_depiler();ajout_val_table_reg(10,curr_region,$3);}
+corps                 : {region_empiler();} liste_declarations liste_instructions {curr_region = region_depiler();ajout_val_table_reg(10,curr_region,$3);/*afficher_arbre($$,0);*/}
                       ;
 
 liste_declarations    : liste_declaration_var liste_declaration_type liste_declaration_proc liste_declaration_fct
@@ -62,7 +62,7 @@ liste_declaration_fct :
                       | declaration_fonction POINT_VIRGULE liste_declaration_fct
                       ;
 
-liste_instructions    : DEBUT  suite_liste_inst FIN {$$=$2;/*afficher_arbre($$,0);*/}
+liste_instructions    : DEBUT  suite_liste_inst FIN {$$=$2;}
                       ;
 
 suite_liste_inst      : {$$=arbre_vide();}
