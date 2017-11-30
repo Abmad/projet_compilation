@@ -32,7 +32,7 @@ int curr_region = 0;
 
 
 %%
-programme             : PROG ACCOLADE_OUVRANTE {region_empiler();} corps {region_depiler();} ACCOLADE_FERMANTE 
+programme             : PROG ACCOLADE_OUVRANTE {region_empiler();curr_region=get_curr_region();ajout_val_table_reg(10,curr_region,$$);} corps {region_depiler();} ACCOLADE_FERMANTE 
                       ;
 
 corps                 : liste_declarations liste_instructions 
@@ -62,7 +62,7 @@ liste_declaration_fct :
                       | declaration_fonction POINT_VIRGULE liste_declaration_fct
                       ;
 
-liste_instructions    : DEBUT  suite_liste_inst FIN {$$=$2;/*afficher_arbre($$,0);*/curr_region=get_curr_region();ajout_val_table_reg(10,curr_region,$$);}
+liste_instructions    : DEBUT  suite_liste_inst FIN {$$=$2;/*afficher_arbre($$,0);*/}
                       ;
 
 suite_liste_inst      : {$$=arbre_vide();}
@@ -109,10 +109,10 @@ declaration_variable  : VARIABLE IDF DEUX_POINTS nom_type
                       | VARIABLE IDF DEUX_POINTS nom_type OPAFF expression
      		      ;
 
-declaration_procedure : PROCEDURE IDF liste_parametres ACCOLADE_OUVRANTE {region_empiler();} corps {region_depiler();} ACCOLADE_FERMANTE
+declaration_procedure : PROCEDURE IDF liste_parametres ACCOLADE_OUVRANTE corps ACCOLADE_FERMANTE
                       ;
 
-declaration_fonction  : FONCTION IDF liste_parametres RETOURNE type_simple ACCOLADE_OUVRANTE {region_empiler();} corps {region_depiler();} ACCOLADE_FERMANTE
+declaration_fonction  : FONCTION IDF liste_parametres RETOURNE type_simple ACCOLADE_OUVRANTE corps ACCOLADE_FERMANTE
                       ;
 
 liste_parametres      : PARENTHESE_OUVRANTE liste_param PARENTHESE_FERMANTE
@@ -152,13 +152,13 @@ liste_args            : un_arg {$$=$1;}
 un_arg                : expression {$$=$1;}
                       ;
 
-condition             : SI PARENTHESE_OUVRANTE expression PARENTHESE_FERMANTE ALORS ACCOLADE_OUVRANTE {region_empiler();} liste_instructions {region_depiler();} ACCOLADE_FERMANTE SINON ACCOLADE_OUVRANTE {region_empiler();} liste_instructions {region_depiler();} ACCOLADE_FERMANTE {$$= concat_pere_frere (concat_pere_fils(creer_noeud(C_SI,-979),concat_pere_frere($3,$8)),concat_pere_fils(creer_noeud(C_SINON,-976),$14));}
+condition             : SI PARENTHESE_OUVRANTE expression PARENTHESE_FERMANTE ALORS ACCOLADE_OUVRANTE liste_instructions ACCOLADE_FERMANTE SINON ACCOLADE_OUVRANTE liste_instructions ACCOLADE_FERMANTE {$$= concat_pere_frere (concat_pere_fils(creer_noeud(C_SI,-979),concat_pere_frere($3,$7)),concat_pere_fils(creer_noeud(C_SINON,-976),$11));}
                       ;
 
-tant_que              : TANT_QUE PARENTHESE_OUVRANTE expression PARENTHESE_FERMANTE FAIRE ACCOLADE_OUVRANTE {region_empiler();} liste_instructions {region_depiler();} ACCOLADE_FERMANTE {$$=concat_pere_fils(creer_noeud(C_TANT_QUE,-987),concat_pere_frere($3,$8));}
+tant_que              : TANT_QUE PARENTHESE_OUVRANTE expression PARENTHESE_FERMANTE FAIRE ACCOLADE_OUVRANTE liste_instructions ACCOLADE_FERMANTE {$$=concat_pere_fils(creer_noeud(C_TANT_QUE,-987),concat_pere_frere($3,$7));}
                       ;
 
-repeter_tant_que      : FAIRE ACCOLADE_OUVRANTE {region_empiler();} liste_instructions {region_depiler();} ACCOLADE_FERMANTE TANT_QUE PARENTHESE_OUVRANTE expression PARENTHESE_FERMANTE  {$$=concat_pere_fils(creer_noeud(C_FAIRE,-976),concat_pere_frere($4,$9));}
+repeter_tant_que      : FAIRE ACCOLADE_OUVRANTE liste_instructions ACCOLADE_FERMANTE TANT_QUE PARENTHESE_OUVRANTE expression PARENTHESE_FERMANTE  {$$=concat_pere_fils(creer_noeud(C_FAIRE,-976),concat_pere_frere($3,$7));}
                       ;
 
 affectation           : variable OPAFF expression {$$=concat_pere_fils(creer_noeud(C_OPAFF,-980),concat_pere_frere($1,$3));}
