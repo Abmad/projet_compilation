@@ -7,7 +7,6 @@ extern int nbLignes;
 extern char* yytext;
 extern int yylex() ;
 int yyerror() ;
-arbre type1;
 %}
 
 %union{
@@ -222,7 +221,8 @@ int yyerror()
 	printf("\nerreur de syntaxe %i\n", nbLignes);
 }
 int main(){ //init_tab_lex(); 
+init_table_regions();
 yyparse();
-afficher_arbre(type1,0);
+
 //affiche_table_lexico(7);
  }

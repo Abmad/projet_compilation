@@ -9,7 +9,7 @@
 #include <stdlib.h>
 #include "table_regions.h"
 
-void init_table_region(){
+void init_table_regions(){
     table_index = 0;
     num_regions = 0;
     int i;
