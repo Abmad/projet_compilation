@@ -35,7 +35,7 @@ int curr_region = 0;
 programme             : PROG ACCOLADE_OUVRANTE corps ACCOLADE_FERMANTE 
                       ;
 
-corps                 : {region_empiler();} liste_declarations liste_instructions {curr_region = region_depiler();ajout_val_table_reg(10,curr_region,$3);/*afficher_arbre($$,0);*/}
+corps                 : {region_empiler();} liste_declarations liste_instructions {curr_region = region_depiler();ajout_val_table_reg(10,curr_region,$3);afficher_arbre($$,0);}
                       ;
 
 liste_declarations    : liste_declaration_var liste_declaration_type liste_declaration_proc liste_declaration_fct
@@ -223,12 +223,15 @@ int yyerror()
 }
 int main(){ //init_tab_lex(); 
 printf("\n");
+init_tab_lexico();
 init_table_regions();
+
 if(yyparse()==0){
 
-afficher_table_region();
+//afficher_table_region();
+affiche_table_lexico();
 
 }
 
-//affiche_table_lexico(7);
+
  }

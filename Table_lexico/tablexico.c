@@ -25,7 +25,8 @@ int add_lexeme_char(char* lex){//Créé par Dan Robert Tsoumbou Moutimba
     assert(cpt<LONGUEUR);
         if(table_lexico[cpt].longueur==0 && table_lexico[cpt].exp_lexeme_char!=lex){
             lexeme l;
-            l.exp_lexeme_char = lex;
+	    l.exp_lexeme_char = malloc(sizeof(char));
+            strcpy(l.exp_lexeme_char,lex);
             l.exp_lexeme_int = 0;
             l.exp_lexeme_double = 0;
             l.longueur = strlen(lex);
@@ -122,10 +123,8 @@ void affiche_table_lexico(){//Créé par Dan Robert Tsoumbou Moutimba
     for(i=0;i<LONGUEUR;i++){
             if(table_lexico[i].hash_code==-1) {return;}
             else {
-                printf("%d, %s, %d, %f\n",table_lexico[i].hash_code,
-                    table_lexico[i].exp_lexeme_char,
-                    table_lexico[i].exp_lexeme_int,
-                    table_lexico[i].exp_lexeme_double);
+                printf("HashCode: %d,Lexeme: %s,Longueur: %d\n",table_lexico[i].hash_code,
+                    table_lexico[i].exp_lexeme_char,table_lexico[i].longueur);
             }
     }
 }
