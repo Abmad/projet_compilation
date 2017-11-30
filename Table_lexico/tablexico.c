@@ -1,6 +1,6 @@
 #include "tablexico.h"
 
-lexeme table_lexico[longueur];
+lexeme table_lexico[LONGUEUR];
 
 int longueur_int(int valeur){ //Calcule la longueur d'un entier
     int retour = 0;
@@ -22,7 +22,7 @@ int longueur_int(int valeur){ //Calcule la longueur d'un entier
 
 //ajoute un lexème dans la table lexicographique
 int add_lexeme_char(char* lex){//Créé par Dan Robert Tsoumbou Moutimba
-    assert(cpt<longueur);
+    assert(cpt<LONGUEUR);
         if(table_lexico[cpt].longueur==0 && table_lexico[cpt].exp_lexeme_char!=lex){
             lexeme l;
             l.exp_lexeme_char = lex;
@@ -46,7 +46,7 @@ int add_lexeme_char(char* lex){//Créé par Dan Robert Tsoumbou Moutimba
 }
 
 int add_lexeme_int(int lex){//Créé par Dan Robert Tsoumbou Moutimba
-    assert(cpt2<longueur);
+    assert(cpt2<LONGUEUR);
         if(table_lexico[cpt2].longueur==0 && table_lexico[cpt2].exp_lexeme_int!=lex){
             lexeme l;
             l.exp_lexeme_int = lex;
@@ -70,7 +70,7 @@ int add_lexeme_int(int lex){//Créé par Dan Robert Tsoumbou Moutimba
 }
 
 int add_lexeme_double(double lex){//Créé par Dan Robert Tsoumbou Moutimba
-    assert(cpt3<longueur);
+    assert(cpt3<LONGUEUR);
         if(table_lexico[cpt3].longueur==0 && table_lexico[cpt3].exp_lexeme_int!=lex){
             lexeme l;
             l.exp_lexeme_double = lex;
@@ -99,7 +99,7 @@ void init_tab_lexico(){
     add_lexeme_char("bool");
     add_lexeme_char("char");
     int i=4;
-    for(i=4;i<longueur;i++){
+    for(i=4;i<LONGUEUR;i++){
         table_lexico[i].exp_lexeme_char = malloc(sizeof(char));
         if(table_lexico[i].exp_lexeme_char==NULL){
             exit(-1);
@@ -119,7 +119,7 @@ void init_tab_lexico(){
 void affiche_table_lexico(){//Créé par Dan Robert Tsoumbou Moutimba
 
     int i=0;
-    for(i=0;i<longueur;i++){
+    for(i=0;i<LONGUEUR;i++){
             if(table_lexico[i].hash_code==-1) {return;}
             else {
                 printf("%d, %s, %d, %f\n",table_lexico[i].hash_code,

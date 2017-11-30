@@ -35,7 +35,7 @@ int region_depiler();
 void afficher_table_region();
 void afficher_pile_reg();
 int get_curr_region();
-//tableRegion get_val_regtable();
+
 #endif /* table_regions_h */
 
 

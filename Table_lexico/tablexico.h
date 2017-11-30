@@ -1,10 +1,6 @@
-
-
 #ifndef tablexico_h
 
 #define tablexico_h
-
-
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -21,11 +17,11 @@ typedef struct {
     int hash_code;
 } lexeme;
 
-#define longueur 250
+#define LONGUEUR 250
 
 int cpt, cpt2, cpt3;
 
-lexeme table_lexico[longueur];
+lexeme table_lexico[LONGUEUR];
 
 int longueur_int(int valeur);
 
