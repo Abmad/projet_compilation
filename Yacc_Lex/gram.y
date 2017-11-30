@@ -32,10 +32,10 @@ int curr_region = 0;
 
 
 %%
-programme             : PROG ACCOLADE_OUVRANTE {region_empiler();curr_region=get_curr_region();ajout_val_table_reg(10,curr_region,$$);} corps {region_depiler();} ACCOLADE_FERMANTE 
+programme             : PROG ACCOLADE_OUVRANTE {region_empiler();} corps {curr_region = region_depiler();ajout_val_table_reg(10,curr_region,$4);} ACCOLADE_FERMANTE 
                       ;
 
-corps                 : liste_declarations liste_instructions 
+corps                 : liste_declarations liste_instructions {$$=$2;}
                       ;
 
 liste_declarations    : liste_declaration_var liste_declaration_type liste_declaration_proc liste_declaration_fct
