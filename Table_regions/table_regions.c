@@ -50,7 +50,7 @@ int region_depiler(pile_region *p_region){
     return ret;
 }
 
-int region_top(pile_region *region){
+int get_curr_region(pile_region *region){
     int ret =-1;
     
     if(region){
