@@ -1,7 +1,7 @@
 CC=gcc
 
-compilateur : y.tab.c lex.yy.o ./Arbre/arbre.o ./Table_lexico/tablexico.o ./Table_regions/table_regions.o .Table_representation/representation_entetes_sous_programmes.o .Table_declarations/table_declaration.o ./Associations_noms/association_noms.o
-	$(CC) y.tab.c lex.yy.o ./Arbre/arbre.o ./Table_lexico/tablexico.o ./Table_regions/table_regions.o .Table_representation/representation_entetes_sous_programmes.o .Table_declarations/table_declaration.o ./Associations_noms/association_noms.o -ll -o compilateur
+compilateur : y.tab.c lex.yy.o ./Arbre/arbre.o ./Table_lexico/tablexico.o ./Table_regions/table_regions.o ./Table_representation/representation_entetes_sous_programmes.o ./Table_declarations/table_declaration.o ./Associations_noms/association_noms.o
+	$(CC) y.tab.c lex.yy.o ./Arbre/arbre.o ./Table_lexico/tablexico.o ./Table_regions/table_regions.o ./Table_representation/representation_entetes_sous_programmes.o ./Table_declarations/table_declaration.o ./Associations_noms/association_noms.o -ll -o compilateur
 
 y.tab.c y.tab.h : ./Yacc_Lex/gram.y
 	yacc -v -d Yacc_Lex/gram.y
@@ -21,11 +21,11 @@ tablexico.o : ./Table_lexico/tablexico.c ./Table_lexico/tablexico.h
 table_regions.o : ./Table_regions/table_regions.c ./Table_regions/table_regions.h
 	$(CC) -c ./Table_regions/table_regions.c
 
-table_representation.o : .Table_representation/representation_entetes_sous_programmes.c .Table_representation/representation_entetes_sous_programmes.h
-	$(CC) -c .Table_representation/representation_entetes_sous_programmes.c
+table_representation.o : ./Table_representation/representation_entetes_sous_programmes.c ./Table_representation/representation_entetes_sous_programmes.h
+	$(CC) -c ./Table_representation/representation_entetes_sous_programmes.c
 
-table_declaration.o : .Table_declarations/table_declaration.c .Table_declarations/table_declaration.h
-	$(CC) -c .Table_declarations/table_declaration.c
+table_declaration.o : ./Table_declarations/table_declaration.c ./Table_declarations/table_declaration.h
+	$(CC) -c ./Table_declarations/table_declaration.c
 
 associations_nom.o : ./Associations_noms/association_noms.c ./Associations_noms/association_noms.h
 	$(CC) -c ./Associations_noms/association_noms.c

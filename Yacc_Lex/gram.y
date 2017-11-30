@@ -38,7 +38,7 @@ int indice_repr;
 %token<type2> IDF
 
 %type<type1> liste_instructions suite_liste_inst instruction resultat_retourne appel liste_arguments liste_args un_arg condition tant_que repeter_tant_que affectation variable variable_suite variable_fin expression expression_calcul expression_suite expression_fin liste_expression constante expression_logique corps
-
+%type<type2> nom_type POINT type_simple
 
 
 %%
