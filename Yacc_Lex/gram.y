@@ -8,6 +8,7 @@ extern char* yytext;
 extern int yylex() ;
 int yyerror() ;
 int curr_region = 0;
+FILE *f;
 %}
 
 %union{
@@ -35,7 +36,7 @@ int curr_region = 0;
 programme             : PROG ACCOLADE_OUVRANTE corps ACCOLADE_FERMANTE 
                       ;
 
-corps                 : {region_empiler();} liste_declarations liste_instructions {curr_region = region_depiler();ajout_val_table_reg(10,curr_region,$3);afficher_arbre($$,0);}
+corps                 : {region_empiler();} liste_declarations liste_instructions {curr_region = region_depiler();ajout_val_table_reg(10,curr_region,$3);}{afficher_arbre($3,0);}{enregistrer_arbre($3,0,f);;}
                       ;
 
 liste_declarations    : liste_declaration_var liste_declaration_type liste_declaration_proc liste_declaration_fct
@@ -225,13 +226,13 @@ int main(){
 printf("\n");
 init_tab_lexico();
 init_table_regions();
-
+f = openfile();
 if(yyparse()==0){
 
-//afficher_table_region();
-//affiche_table_lexico();
+afficher_table_region();
+affiche_table_lexico();
 
 }
-
+closefile(f);
 
  }
