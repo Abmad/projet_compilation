@@ -26,15 +26,15 @@ struct region{
     struct region *previous;
 };
 typedef struct region* pile_region;
-
+pile_region *p_region;
 int table_index;
 void init_table_regions();
 void ajout_val_table_reg(int taille, int nis, arbre arbre);
-void region_empiler(pile_region *p_region);
-int region_deipler(pile_region *p_region);
+void region_empiler();
+int region_deipler();
 void afficher_table_region();
-void afficher_pile_reg(pile_region *pile);
-int get_curr_region(pile_region *pile);
+void afficher_pile_reg();
+int get_curr_region();
 //tableRegion get_val_regtable();
 #endif /* table_regions_h */
 

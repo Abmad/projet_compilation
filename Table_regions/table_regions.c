@@ -12,6 +12,7 @@
 void init_table_regions(){
     table_index = 0;
     num_regions = 0;
+    p_region = malloc(sizeof(struct region));
     int i;
     for(i=0;i< SIZE_TABLE_REG ;i++){
         table_region[i].nis = -1;
@@ -27,7 +28,7 @@ void ajout_val_table_reg(int taille, int nis, arbre arbre){
     table_index++;
 }
 
-void region_empiler(pile_region *p_region)
+void region_empiler()
 {
     pile_region new_region = malloc(sizeof(struct region));
     if (new_region)
@@ -39,7 +40,7 @@ void region_empiler(pile_region *p_region)
     }
 }
 
-int region_depiler(pile_region *p_region){
+int region_depiler(){
     int ret = -1;
     if(*p_region){
         pile_region temporaire = (*p_region)->previous;
@@ -50,11 +51,11 @@ int region_depiler(pile_region *p_region){
     return ret;
 }
 
-int get_curr_region(pile_region *region){
+int get_curr_region(){
     int ret =-1;
     
-    if(region){
-        ret = (*region)->num_region;
+    if(p_region != NULL){
+        ret = (*p_region)->num_region;
     }
     
     return ret;
@@ -69,9 +70,9 @@ void afficher_table_region(){
         afficher_arbre(table_region[i].arbre, 0);
     }
 }
-void afficher_pile_reg(pile_region *pile){
-    while(*pile!=NULL)
-        printf("Num Region: %d\n",region_depiler(pile));
+void afficher_pile_reg(){
+    while(*p_region!=NULL)
+        printf("Num Region: %d\n",region_depiler());
     
 }
 

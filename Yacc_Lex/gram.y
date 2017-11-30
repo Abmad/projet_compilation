@@ -31,7 +31,7 @@ int yyerror() ;
 
 
 %%
-programme             : PROG ACCOLADE_OUVRANTE corps ACCOLADE_FERMANTE 
+programme             : PROG ACCOLADE_OUVRANTE corps ACCOLADE_FERMANTE {region_empiler();}
                       ;
 
 corps                 : liste_declarations liste_instructions 
