@@ -4,10 +4,8 @@
 #include<string.h>
 #include"table_declaration.h"
 
-#define LNG_DECL 1000
 
-int suivantDebut = 500;
-
+suivantDebut = 500;
 
 int add_champs(int _index, int _type, int _suivant, int _region, int _description, int _execution)
 {	
@@ -22,9 +20,16 @@ int add_champs(int _index, int _type, int _suivant, int _region, int _descriptio
 	}
 	else
 	{
-		tabDeclaration[_index].suivant = suivantDebut;
-		add_champs(suivantDebut, _type, -1, _region, _description, _execution);
-		suivantDebut++;
+		if(tabDeclaration[_index].suivant == -1)
+		{
+			tabDeclaration[_index].suivant = suivantDebut;
+			add_champs(suivantDebut, _type, -1, _region, _description, _execution);
+			suivantDebut++;
+		}
+		else
+		{
+			add_champs(tabDeclaration[_index].suivant, _type, -1, _region, _description, _execution);
+		}
 	}
 }
 
