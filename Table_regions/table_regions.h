@@ -31,7 +31,7 @@ int table_index;
 void init_table_regions();
 void ajout_val_table_reg(int taille, int nis, arbre arbre);
 void region_empiler();
-int region_deipler();
+int region_depiler();
 void afficher_table_region();
 void afficher_pile_reg();
 int get_curr_region();

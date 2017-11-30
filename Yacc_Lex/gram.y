@@ -222,7 +222,11 @@ int yyerror()
 }
 int main(){ //init_tab_lex(); 
 init_table_regions();
-yyparse();
+if(yyparse()==0){
+
+afficher_table_region();
+
+}
 
 //affiche_table_lexico(7);
  }
