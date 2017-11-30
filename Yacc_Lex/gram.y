@@ -62,7 +62,7 @@ liste_declaration_fct :
                       | declaration_fonction POINT_VIRGULE liste_declaration_fct
                       ;
 
-liste_instructions    : DEBUT { suite_liste_inst FIN {$$=$2;/*afficher_arbre($$,0);*/curr_region=get_curr_region();ajout_val_table_reg(10,curr_region,$$);}
+liste_instructions    : DEBUT  suite_liste_inst FIN {$$=$2;/*afficher_arbre($$,0);*/curr_region=get_curr_region();ajout_val_table_reg(10,curr_region,$$);}
                       ;
 
 suite_liste_inst      : {$$=arbre_vide();}
