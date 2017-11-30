@@ -1,0 +1,112 @@
+PROG
+{
+var a : int;
+var z : float;
+var e : bool;
+var r : char;
+var t : string[10];
+
+type monTab : tab[1..10] of int;
+type monTab : tab[1..10,2..3] of int;
+
+type maStruct : Struct
+monChamps : int;
+monChamps : int;
+EndStruct;
+
+procedure maProc()
+{
+var a : int = 'a';
+var z : float = "aaaaaaaaaa";
+var e : bool;
+var r : char;
+var t : string[10]
+
+Main
+do
+{
+Main
+while(azerty+2) do
+{
+Main
+if(a) then
+{
+Main
+a = 1;
+b = a
+EndMain
+}
+else
+{
+Main
+a = 1;
+b = a
+EndMain
+};
+a = 1;
+b = a
+EndMain
+};
+
+a = 1;
+b = a
+EndMain
+}while(a)
+
+EndMain
+};
+
+function mafonc() return int
+{
+var a : int;
+var z : float;
+var e : bool;
+var r : char;
+var t : string[10]
+
+Main
+a = 2*(2*5+6-9*5/8+6/8*(8+8.5));
+return a
+EndMain
+}
+
+Main
+a = 1+1;
+b = a;
+
+if(a) then
+{
+Main
+a = 1;
+b = a
+EndMain
+}
+else
+{
+Main
+a = 1;
+b = a
+EndMain
+};
+
+while(azerty+2) do
+{
+Main
+a = 1;
+b = a
+EndMain
+};
+
+do
+{
+Main
+a = 1;
+b = a
+EndMain
+}while(a);
+
+maProc();
+maProc(1)
+
+EndMain
+}
