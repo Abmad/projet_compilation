@@ -10,6 +10,8 @@
 #include "table_regions.h"
 
 void init_table_region(){
+    table_index = 0;
+    num_regions = 0;
     int i;
     for(i=0;i< SIZE_TABLE_REG ;i++){
         table_region[i].nis = -1;
