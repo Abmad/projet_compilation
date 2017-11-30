@@ -54,5 +54,8 @@ arbre  concat_pere_frere(arbre _pere, arbre _frere);
 arbre  creer_noeud(int _nature, int _val_noeud,int num_declaration);
 arbre arbre_vide();
 void afficher_arbre(arbre _arbre, int indent);
+FILE * openfile();
+void closefile(FILE *f);
+void enregistrer_arbre(arbre _arbre,int indent,FILE *f );
 #endif /* arbre_h */
 
