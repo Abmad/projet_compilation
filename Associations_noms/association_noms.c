@@ -11,11 +11,10 @@
 #include "../Table_lexico/tablexico.h"
 
 
-int nb_lignes = 0;
-//extern int nb_lignes;
+extern int nbLignes;
 int get_num_declaration(int numlexico){
     int i ,top_region = 0, num_dec = 0;
-    
+    printf("le num lexico: %d\n",numlexico);    
     if (numlexico <= 4)
         return numlexico;
     if(tabDeclaration[numlexico].type != -1){
@@ -36,8 +35,9 @@ int get_num_declaration(int numlexico){
             
         }
     }else{
-        printf("Erreur de declaration :  L'element << %s >> n'est pas declare a la ligne %d .\n",table_lexico[numlexico].exp_lexeme_char,nb_lignes);
-        exit(-1);
+        printf("Erreur de declaration :  L'element << %s >> n'est pas declare a la ligne %d .\n",table_lexico[numlexico].exp_lexeme_char,nbLignes);
+        //exit(-1);
+return -55;
     }
     
     return num_dec;

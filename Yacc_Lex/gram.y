@@ -45,7 +45,7 @@ int indice_repr;
 programme             : PROG ACCOLADE_OUVRANTE corps ACCOLADE_FERMANTE{printf("\n");afficher_decl();printf("\n");afficherRepr();}
                       ;
 
-corps                 : {region_empiler();} liste_declarations liste_instructions {curr_region = region_depiler();ajout_val_table_reg(10,curr_region,$3);}{afficher_arbre($3,0);}{enregistrer_arbre($3,0,f);;}
+corps                 : {region_empiler();} liste_declarations liste_instructions {curr_region = region_depiler();ajout_val_table_reg(10,curr_region,$3);}{/*afficher_arbre($3,0);*/}{/*enregistrer_arbre($3,0,f);;*/}
                       ;
 
 liste_declarations    : liste_declaration_var liste_declaration_type liste_declaration_proc liste_declaration_fct
@@ -240,7 +240,7 @@ init_table_regions();
 f = openfile();
 if(yyparse()==0){
 
-afficher_table_region();
+//afficher_table_region();
 affiche_table_lexico();
 
 }
