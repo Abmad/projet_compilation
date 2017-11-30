@@ -3,8 +3,8 @@
 #include "./Arbre/arbre.h"
 #include "./Table_lexico/tablexico.h"
 #include "./Table_regions/table_regions.h"
-#include "./TableDeclarations/table_declaration.h"
-#include "./TableRepresentation/representation_entetes_sous_programmes.h"
+#include "./Table_declarations/table_declaration.h"
+#include "./Table_representation/representation_entetes_sous_programmes.h"
 #include "./Associations_noms/association_noms.h"
 extern int nbLignes;
 extern char* yytext;
