@@ -7,6 +7,7 @@ extern int nbLignes;
 extern char* yytext;
 extern int yylex() ;
 int yyerror() ;
+int curr_region = 0;
 %}
 
 %union{
@@ -31,7 +32,7 @@ int yyerror() ;
 
 
 %%
-programme             : PROG ACCOLADE_OUVRANTE corps ACCOLADE_FERMANTE {region_empiler();}
+programme             : PROG ACCOLADE_OUVRANTE {region_empiler();} corps {region_depiler();} ACCOLADE_FERMANTE 
                       ;
 
 corps                 : liste_declarations liste_instructions 
@@ -61,7 +62,7 @@ liste_declaration_fct :
                       | declaration_fonction POINT_VIRGULE liste_declaration_fct
                       ;
 
-liste_instructions    : DEBUT suite_liste_inst FIN {$$=$2;afficher_arbre($$,0);}
+liste_instructions    : DEBUT { suite_liste_inst FIN {$$=$2;/*afficher_arbre($$,0);*/curr_region=get_curr_region();ajout_val_table_reg(10,curr_region,$$);}
                       ;
 
 suite_liste_inst      : {$$=arbre_vide();}
@@ -108,10 +109,10 @@ declaration_variable  : VARIABLE IDF DEUX_POINTS nom_type
                       | VARIABLE IDF DEUX_POINTS nom_type OPAFF expression
      		      ;
 
-declaration_procedure : PROCEDURE IDF liste_parametres ACCOLADE_OUVRANTE corps ACCOLADE_FERMANTE
+declaration_procedure : PROCEDURE IDF liste_parametres ACCOLADE_OUVRANTE {region_empiler();} corps {region_depiler();} ACCOLADE_FERMANTE
                       ;
 
-declaration_fonction  : FONCTION IDF liste_parametres RETOURNE type_simple ACCOLADE_OUVRANTE corps ACCOLADE_FERMANTE
+declaration_fonction  : FONCTION IDF liste_parametres RETOURNE type_simple ACCOLADE_OUVRANTE corps {region_depiler();} ACCOLADE_FERMANTE
                       ;
 
 liste_parametres      : PARENTHESE_OUVRANTE liste_param PARENTHESE_FERMANTE
