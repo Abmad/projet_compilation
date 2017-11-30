@@ -152,13 +152,13 @@ liste_args            : un_arg {$$=$1;}
 un_arg                : expression {$$=$1;}
                       ;
 
-condition             : SI PARENTHESE_OUVRANTE expression PARENTHESE_FERMANTE ALORS ACCOLADE_OUVRANTE liste_instructions ACCOLADE_FERMANTE SINON ACCOLADE_OUVRANTE liste_instructions ACCOLADE_FERMANTE {$$= concat_pere_frere (concat_pere_fils(creer_noeud(C_SI,-979),concat_pere_frere($3,$7)),concat_pere_fils(creer_noeud(C_SINON,-976),$11));}
+condition             : SI PARENTHESE_OUVRANTE expression PARENTHESE_FERMANTE ALORS ACCOLADE_OUVRANTE {region_empiler();} liste_instructions {region_depiler();} ACCOLADE_FERMANTE SINON ACCOLADE_OUVRANTE liste_instructions ACCOLADE_FERMANTE {$$= concat_pere_frere (concat_pere_fils(creer_noeud(C_SI,-979),concat_pere_frere($3,$7)),concat_pere_fils(creer_noeud(C_SINON,-976),$11));}
                       ;
 
-tant_que              : TANT_QUE PARENTHESE_OUVRANTE expression PARENTHESE_FERMANTE FAIRE ACCOLADE_OUVRANTE liste_instructions ACCOLADE_FERMANTE {$$=concat_pere_fils(creer_noeud(C_TANT_QUE,-987),concat_pere_frere($3,$7));}
+tant_que              : TANT_QUE PARENTHESE_OUVRANTE expression PARENTHESE_FERMANTE FAIRE ACCOLADE_OUVRANTE {region_empiler();} liste_instructions {region_depiler();} ACCOLADE_FERMANTE {$$=concat_pere_fils(creer_noeud(C_TANT_QUE,-987),concat_pere_frere($3,$7));}
                       ;
 
-repeter_tant_que      : FAIRE ACCOLADE_OUVRANTE liste_instructions ACCOLADE_FERMANTE TANT_QUE PARENTHESE_OUVRANTE expression PARENTHESE_FERMANTE  {$$=concat_pere_fils(creer_noeud(C_FAIRE,-976),concat_pere_frere($3,$7));}
+repeter_tant_que      : FAIRE ACCOLADE_OUVRANTE {region_empiler();} liste_instructions {region_depiler();} ACCOLADE_FERMANTE TANT_QUE PARENTHESE_OUVRANTE expression PARENTHESE_FERMANTE  {$$=concat_pere_fils(creer_noeud(C_FAIRE,-976),concat_pere_frere($3,$7));}
                       ;
 
 affectation           : variable OPAFF expression {$$=concat_pere_fils(creer_noeud(C_OPAFF,-980),concat_pere_frere($1,$3));}
