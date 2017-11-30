@@ -4,7 +4,7 @@
 #include<string.h>
 #include"table_declaration.h"
 
-champsdeclaration tabDeclaration[LNG_DECL];
+
 int suivantDebut = 500;
 
 int add_champs(int _index, int _type, int _region, int _description, int _execution)

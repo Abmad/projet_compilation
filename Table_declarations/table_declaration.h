@@ -27,7 +27,7 @@ struct champs
     int execution;
 };
 typedef struct champs champsdeclaration;
-
+champsdeclaration tabDeclaration[LNG_DECL];
 
 /*
  * Fonctions
