@@ -25,7 +25,7 @@ int indice_repr;
    int type2;
 }
 %token POINT_VIRGULE DEUX_POINTS CROCHET_OUVRANT CROCHET_FERMANT VIRGULE POINT PARENTHESE_OUVRANTE PARENTHESE_FERMANTE ACCOLADE_OUVRANTE ACCOLADE_FERMANTE
-%token<type2> CSTE_ENTIERE CSTE_REEL CSTE_STRING CSTE_CHAR CSTE_BOOL
+%token CSTE_ENTIERE CSTE_REEL CSTE_STRING CSTE_CHAR CSTE_BOOL
 %token<type2> ENTIER REEL BOOLEEN CARACTERE CHAINE
 %token PLUS_PETIT PLUS_GRAND ET OU PLUS_PETIT_EGAL PLUS_GRAND_EGAL EGAL DIFFERENT
 %token PLUS MOINS MULT DIV
@@ -35,10 +35,10 @@ int indice_repr;
 %token PROCEDURE FONCTION RETOURNE
 %token OPAFF
 %token PROG DEBUT FIN
-%token<type2> IDF
+%token IDF
 
 %type<type1> liste_instructions suite_liste_inst instruction resultat_retourne appel liste_arguments liste_args un_arg condition tant_que repeter_tant_que affectation variable variable_suite variable_fin expression expression_calcul expression_suite expression_fin liste_expression constante expression_logique corps
-%type<type2> nom_type POINT type_simple
+%type<type2> IDF CSTE_ENTIERE CSTE_REEL CSTE_STRING CSTE_CHAR CSTE_BOOL nom_type type_simple
 
 
 %%
@@ -83,8 +83,8 @@ suite_liste_inst      : {$$=arbre_vide();}
 declaration_type      : TYPE IDF{idf = $2;} DEUX_POINTS suite_declaration_type
                       ;
 
-suite_declaration_type : STRUCT{nbr_champs_struct = 0; reserveElem();} liste_champs{indice_repr = ajoutNbr(nbr_champs_struct); num_declaration = add_champs(idf,TYPE_STRUCT,0,indice_repr,0); } FSTRUCT
-                       | TABLEAU{nbr_champs_tab = 0; reserveElem();reserveElem();} dimension{ajoutNbr(nbr_champs_tab);} DE nom_type{indice_repr = ajoutNbr($6); num_declaration = add_champs(idf,TYPE_TABLEAU,0,indice_repr,0); }
+suite_declaration_type : STRUCT{nbr_champs_struct = 0; reserveElem();} liste_champs{indice_repr = ajoutNbr(nbr_champs_struct); num_declaration = add_champs(idf,TYPE_STRUCT,get_curr_region(),indice_repr,0); } FSTRUCT
+                       | TABLEAU{nbr_champs_tab = 0; reserveElem();reserveElem();} dimension{ajoutNbr(nbr_champs_tab);} DE nom_type{indice_repr = ajoutNbr($6); num_declaration = add_champs(idf,TYPE_TABLEAU,get_curr_region(),indice_repr,0); }
                        ;
 
 dimension             : CROCHET_OUVRANT liste_dimensions CROCHET_FERMANT
@@ -94,7 +94,7 @@ liste_dimensions      : une_dimension {nbr_champs_tab++;}
                       | liste_dimensions VIRGULE une_dimension {nbr_champs_tab++;}
                       ;
 
-une_dimension         : expression POINT POINT expression{addElement($1);addElement($3);}
+une_dimension         : CSTE_ENTIERE POINT POINT CSTE_ENTIERE{addElement($1);addElement($4);}
                       ;
 
 liste_champs          : un_champ {nbr_champs_struct++;}
@@ -115,14 +115,14 @@ type_simple           : ENTIER
                       | CHAINE CROCHET_OUVRANT CSTE_ENTIERE CROCHET_FERMANT
                       ;
 
-declaration_variable  : VARIABLE IDF DEUX_POINTS nom_type{ num_declaration = add_champs($2,TYPE_VARIABLE,0,num_declaration,0); }
-                      | VARIABLE IDF DEUX_POINTS nom_type{ num_declaration = add_champs($2,TYPE_VARIABLE,0,num_declaration,0); } OPAFF expression
+declaration_variable  : VARIABLE IDF DEUX_POINTS nom_type{ num_declaration = add_champs($2,TYPE_VARIABLE,get_curr_region(),$4,0); }
+                      | VARIABLE IDF DEUX_POINTS nom_type{ num_declaration = add_champs($2,TYPE_VARIABLE,get_curr_region(),$4,0); } OPAFF expression
      		      ;
 
-declaration_procedure : PROCEDURE{nbr_param = 0; reserveElem();} IDF liste_parametres{indice_repr = ajoutNbr(nbr_param); num_declaration = add_champs($3,TYPE_PROCEDURE,0,indice_repr,0); } ACCOLADE_OUVRANTE corps ACCOLADE_FERMANTE
+declaration_procedure : PROCEDURE{nbr_param = 0; reserveElem();} IDF liste_parametres{indice_repr = ajoutNbr(nbr_param); num_declaration = add_champs($3,TYPE_PROCEDURE,get_curr_region(),indice_repr,0); } ACCOLADE_OUVRANTE corps ACCOLADE_FERMANTE
                       ;
 
-declaration_fonction  : FONCTION{nbr_param = 0; reserveElem();reserveElem();} IDF liste_parametres RETOURNE type_simple{indice_repr = ajoutNbr(0); ajoutNbr(nbr_param); num_declaration = add_champs($3,TYPE_FONCTION,0,indice_repr,0); }  ACCOLADE_OUVRANTE corps ACCOLADE_FERMANTE
+declaration_fonction  : FONCTION{nbr_param = 0; reserveElem();reserveElem();} IDF liste_parametres RETOURNE type_simple{indice_repr = ajoutNbr(0); ajoutNbr(nbr_param); num_declaration = add_champs($3,TYPE_FONCTION,get_curr_region(),$6,0); }  ACCOLADE_OUVRANTE corps ACCOLADE_FERMANTE
                       ;
 
 liste_parametres      : PARENTHESE_OUVRANTE liste_param PARENTHESE_FERMANTE
@@ -133,7 +133,7 @@ liste_param           :
                       | liste_param POINT_VIRGULE un_param{nbr_param++;}
                       ;
 
-un_param              : IDF DEUX_POINTS type_simple{ num_declaration = add_champs($1,TYPE_VARIABLE,0,$3,1); addElement($1);addElement($3);}
+un_param              : IDF DEUX_POINTS type_simple{ num_declaration = add_champs($1,TYPE_VARIABLE,get_curr_region(),$3,1); addElement($1);addElement($3);}
                       ;
 
 instruction           : affectation {$$=$1;}
