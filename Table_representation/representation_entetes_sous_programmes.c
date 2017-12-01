@@ -4,10 +4,11 @@
 //et des entêtes de sous-programmes
 
 //ajoute un entier à la table
-void addElement(int _elem)//Crée par Dan Robert Tsoumbou Moutimba
+int addElement(int _elem)//Crée par Dan Robert Tsoumbou Moutimba
 {
     tabRepr[indiceSuivant]=_elem;
     indiceSuivant++;
+	return indiceSuivant-1;
 }
 
 /*Retourne un élément du tableau si il existe*/

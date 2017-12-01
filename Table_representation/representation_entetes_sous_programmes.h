@@ -8,7 +8,7 @@
 int tabRepr[LNG_REPRESENTATION];
 int indiceSuivant;
 
-void addElement(int _elem);
+int addElement(int _elem);
 int getElement(int _num);
 void initRepr();
 void afficherRepr();
