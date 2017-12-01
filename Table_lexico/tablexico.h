@@ -36,7 +36,7 @@ void affiche_table_lexico();
 
 void init_tab_lexico();
 
-char * get_lexeme(numlex);
+char * get_lexeme(int numlex);
 
 int lexemeExists(char * lexeme);
 #endif

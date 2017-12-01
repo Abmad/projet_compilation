@@ -94,8 +94,9 @@ void init_tab_lexico(){
     add_lexeme_char("float");
     add_lexeme_char("bool");
     add_lexeme_char("char");
-    int i=4;
-    for(i=4;i<LONGUEUR;i++){
+    add_lexeme_char("string");
+    int i;
+    for(i=5;i<LONGUEUR;i++){
         table_lexico[i].exp_lexeme_char = malloc(sizeof(char));
         if(table_lexico[i].exp_lexeme_char==NULL){
             exit(-1);
@@ -124,7 +125,7 @@ void affiche_table_lexico(){//Créé par Dan Robert Tsoumbou Moutimba
     }
 }
 
-char * get_lexeme(numlex){//Abdelmoghit MADIH
+char * get_lexeme(int numlex){//Abdelmoghit MADIH
 
 if(table_lexico[numlex].exp_lexeme_char == NULL || table_lexico[numlex].hash_code == -1)return "NULL";
 return  table_lexico[numlex].exp_lexeme_char;
