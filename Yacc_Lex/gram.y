@@ -240,7 +240,7 @@ init_table_regions();
 f = openfile();
 if(yyparse()==0){
 
-afficher_table_region();
+//afficher_table_region();
 affiche_table_lexico();
 
 }
