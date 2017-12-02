@@ -233,13 +233,17 @@ int yyerror()
 }
 int main(){ 
 printf("\n");
+init_errors_table();
 init_tab_lexico();
 init_decl();
 initRepr();
 init_table_regions();
 f = openfile();
 if(yyparse()==0){
-
+if(cpt_errors > 0){
+afficher_erreurs();
+exit(-1);
+}
 //afficher_table_region();
 affiche_table_lexico();
 

@@ -10,7 +10,9 @@
 #include "../Table_declarations/table_declaration.h"
 #include "../Table_lexico/tablexico.h"
 #include "../Table_regions/table_regions.h"
-
+void init_errors_table(){
+cpt_errors = 0;
+}
 extern int nbLignes;
 int get_num_declaration(int numlexico){
     int i ,top_region = 0, num_dec = 0,check_region = -1;
@@ -20,7 +22,11 @@ int get_num_declaration(int numlexico){
         if(tabDeclaration[numlexico].suivant == -1){
             if(tabDeclaration[numlexico].region == get_curr_region())
             return numlexico;
-            
+            else{
+	ajouter_error(nbLignes,get_lexeme(numlexico),ERR_REGION);
+       return -1;
+}
+		
         }else{
             i = tabDeclaration[numlexico].suivant;
             top_region = tabDeclaration[i].region;
@@ -37,29 +43,33 @@ int get_num_declaration(int numlexico){
             
         }
     }else{
-        printf("Erreur de declaration :  L'element << %s >> a la ligne %d n'est pas declare.\n",get_lexeme(numlexico),nbLignes);
-       return -1
+	ajouter_error(nbLignes,get_lexeme(numlexico),ERR_NON_DECLARED);
+       return -1;
     }
     if(check_region == -1){
-        printf("Erreur de declaration :  L'element << %s >> a la ligne %d n'est pas declare.\n",get_lexeme(numlexico),nbLignes);
+	ajouter_error(nbLignes,get_lexeme(numlexico),ERR_REGION);
         return -1;
     }
         
     return num_dec;
 }
 
-void ajouter_error(int _ligne,char * _lexeme){
+void ajouter_error(int _ligne,char * _lexeme,int _ertype){
     error erreur = malloc(sizeof(struct error));
-    erreur.ligne = _ligne;
-    erreur.lexeme = _lexeme;
+    erreur->ligne = _ligne;
+    erreur->lexeme = _lexeme;
+    erreur->type = _ertype;
     tab_errors[cpt_errors] = erreur;
-    cpt_errors++
+    cpt_errors++;
 }
 void afficher_erreurs(){
-   
+int i;   
     for(i=0;i<cpt_errors;i++){
-        printf("Erreur de declaration :  L'element << %s >> a la ligne %d n'est pas declare.\n",tab_errors[i].lexeme,ntab_errors[i].ligne);
-    }
+      if(tab_errors[i]->type == ERR_REGION)
+        printf("\nErreur de declaration :  L'element << %s >> a la ligne %d n'est pas declare dans cette region.\n",tab_errors[i]->lexeme,tab_errors[i]->ligne);
+else if(tab_errors[i]->type == ERR_NON_DECLARED)
+        printf("\nErreur de declaration :  L'element << %s >> a la ligne %d n'est pas declare.\n",tab_errors[i]->lexeme,tab_errors[i]->ligne);
+}
 }
 
 
