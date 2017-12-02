@@ -10,5 +10,16 @@
 #define association_noms_h
 
 #include <stdio.h>
+#define MAX_TAB_ERRORS 500
+typedef struct error{
+    int ligne;
+    char * lexeme;
+    
+}error;
+
+error tab_errors[MAX_TAB_ERRORS];
+int cpt_errors = 0;
+void ajouter_error(int ligne,char * lexeme);
+void afficher_erreurs();
 int get_num_declaration(int numlexico);
 #endif /* association_noms_h */

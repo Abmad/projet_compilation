@@ -38,12 +38,28 @@ int get_num_declaration(int numlexico){
         }
     }else{
         printf("Erreur de declaration :  L'element << %s >> a la ligne %d n'est pas declare.\n",get_lexeme(numlexico),nbLignes);
-        exit(-1);
+       return -1
     }
-    if(check_region == -1)
+    if(check_region == -1){
         printf("Erreur de declaration :  L'element << %s >> a la ligne %d n'est pas declare.\n",get_lexeme(numlexico),nbLignes);
-    exit(-1);
+        return -1;
+    }
         
     return num_dec;
 }
+
+void ajouter_error(int _ligne,char * _lexeme){
+    error erreur = malloc(sizeof(struct error));
+    erreur.ligne = _ligne;
+    erreur.lexeme = _lexeme;
+    tab_errors[cpt_errors] = erreur;
+    cpt_errors++
+}
+void afficher_erreurs(){
+   
+    for(i=0;i<cpt_errors;i++){
+        printf("Erreur de declaration :  L'element << %s >> a la ligne %d n'est pas declare.\n",tab_errors[i].lexeme,ntab_errors[i].ligne);
+    }
+}
+
 
