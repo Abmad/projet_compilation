@@ -9,7 +9,7 @@
 #include "association_noms.h"
 #include "../Table_declarations/table_declaration.h"
 #include "../Table_lexico/tablexico.h"
-#invlude "../table_regions.h"
+#include "../Table_regions/table_regions.h"
 
 extern int nbLignes;
 int get_num_declaration(int numlexico){
