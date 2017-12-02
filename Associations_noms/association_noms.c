@@ -9,21 +9,24 @@
 #include "association_noms.h"
 #include "../Table_declarations/table_declaration.h"
 #include "../Table_lexico/tablexico.h"
-
+#invlude "../table_regions.h"
 
 extern int nbLignes;
 int get_num_declaration(int numlexico){
-    int i ,top_region = 0, num_dec = 0;
+    int i ,top_region = 0, num_dec = 0,check_region = -1;
     if (numlexico <= 4)
         return numlexico;
     if(tabDeclaration[numlexico].type != -1){
         if(tabDeclaration[numlexico].suivant == -1){
+            if(tabDeclaration[numlexico].region == get_curr_region())
             return numlexico;
             
         }else{
             i = tabDeclaration[numlexico].suivant;
             top_region = tabDeclaration[i].region;
             do{
+                if(tabDeclaration[i].region<=get_curr_region())
+                    check_region = 1;
                 if(top_region < tabDeclaration[tabDeclaration[i].suivant].region)
                     top_region = tabDeclaration[tabDeclaration[i].suivant].region;
                 else
@@ -34,10 +37,13 @@ int get_num_declaration(int numlexico){
             
         }
     }else{
-        printf("Erreur de declaration :  L'element << %s >> n'est pas declare a la ligne %d .\n",get_lexeme(numlexico),nbLignes);
+        printf("Erreur de declaration :  L'element << %s >> a la ligne %d n'est pas declare.\n",get_lexeme(numlexico),nbLignes);
         exit(-1);
     }
-    
+    if(check_region == -1)
+        printf("Erreur de declaration :  L'element << %s >> a la ligne %d n'est pas declare.\n",get_lexeme(numlexico),nbLignes);
+    exit(-1);
+        
     return num_dec;
 }
 
