@@ -1,7 +1,7 @@
 CC=gcc
 
-compilateur : y.tab.c lex.yy.o ./Arbre/arbre.o ./Table_lexico/tablexico.o ./Table_regions/table_regions.o ./Table_representation/representation_entetes_sous_programmes.o ./Table_declarations/table_declaration.o ./Associations_noms/association_noms.o
-	$(CC) y.tab.c lex.yy.o ./Arbre/arbre.o ./Table_lexico/tablexico.o ./Table_regions/table_regions.o ./Table_representation/representation_entetes_sous_programmes.o ./Table_declarations/table_declaration.o ./Associations_noms/association_noms.o -ll -o compilateur
+compilateur : y.tab.c lex.yy.o ./Arbre/arbre.o ./Table_lexico/tablexico.o ./Table_regions/table_regions.o ./Table_representation/representation_entetes_sous_programmes.o ./Table_declarations/table_declaration.o ./Associations_noms/association_noms.o ./Controle_sem/controle_sem.o
+	$(CC) y.tab.c lex.yy.o ./Arbre/arbre.o ./Table_lexico/tablexico.o ./Table_regions/table_regions.o ./Table_representation/representation_entetes_sous_programmes.o ./Table_declarations/table_declaration.o ./Associations_noms/association_noms.o ./Controle_sem/controle_sem.o -ll -o compilateur
 
 y.tab.c y.tab.h : ./Yacc_Lex/gram.y
 	yacc -v -d Yacc_Lex/gram.y
@@ -30,5 +30,7 @@ table_declaration.o : ./Table_declarations/table_declaration.c ./Table_declarati
 associations_nom.o : ./Associations_noms/association_noms.c ./Associations_noms/association_noms.h
 	$(CC) -c ./Associations_noms/association_noms.c
 
+controle_sem.o : ./Controle_sem/controle_sem.c ./Controle_sem/controle_sem.h
+	$(CC) -c ./Controle_sem/controle_sem.c
 clean:
-	rm -rf Arbre/*.o Table_lexico/*.o Table_regions/*.o Table_representation/*.o Table_declarations/*.o y.* lex.yy.* arbre.txt
+	rm -rf Controle_sem/*.o Arbre/*.o Table_lexico/*.o Table_regions/*.o Table_representation/*.o Table_declarations/*.o y.* lex.yy.* arbre.txt
