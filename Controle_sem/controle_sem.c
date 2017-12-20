@@ -30,6 +30,7 @@ void arbre_to_tab(arbre _arbre){
 
 void verification_type(arbre dec1,int dec2,int isDec){
 count_tab_exp = 0;
+if(tabDeclaration[dec2].type == -1)return;
 arbre_to_tab(dec1);
 if(count_tab_exp == 1){
   if(tab_exp[0].nature >=C_CSTE_ENTIERE && tab_exp[0].nature <= C_CSTE_BOOL){
@@ -51,8 +52,16 @@ if(count_tab_exp == 1){
 
   }
 }else{
-afficher_tab_exp();
+int i;
+printf("==lexeme %s: tabdec: %d  numLignes:%d \n",get_lexeme(get_numlex(dec2)),tabDeclaration[dec2].description,nbLignes);
+//afficher_tab_exp();
 
+for(i=0;i<cpt_tab_exp;i++){
+//printf("nature:%s  numlex %d \n",get_nom_type(tab_exp[i].nature),tab_exp[i].numlex);
+if(tab_exp[i].numlex>=0 && tab_exp[i].nature != -1)
+printf(" lex: %s nature: %d nbLignes:%d \n", get_lexeme(tab_exp[i].numlex),tab_exp[i].nature,nbLignes);else if (tab_exp[i].numlex <= 0)
+printf("lex: %d nature %s nbLigne %d \n",tab_exp[i].numlex,get_nom_type(tab_exp[i].nature),nbLignes);
+}
 }
 //afficher_arbre(dec1,0);
 
@@ -67,10 +76,11 @@ cpt_error_sem++;
 }
 void afficher_tab_exp(){
 int i;
-for(i=0;i<cpt_tab_exp;i++)
+for(i=0;i<cpt_tab_exp;i++){
 //printf("nature:%s  numlex %d \n",get_nom_type(tab_exp[i].nature),tab_exp[i].numlex);
-if(tab_exp[i].numlex>=0)
-printf(" lex: %s nature: %s \n", get_lexeme(tab_exp[i].numlex),get_nom_type(tab_exp[i].nature));
+if(tab_exp[i].numlex>=0 && tab_exp[i].nature != -1)
+printf(" lex: %s nature: %d nbLignes:%d \n", get_lexeme(tab_exp[i].numlex),tab_exp[i].nature,nbLignes);
+}
 }
 
 char * get_nom_type(int nature){
@@ -125,6 +135,13 @@ char * get_nom_type(int nature){
             case C_MOINS:
                 type = "moin";
                 break;
+
+            case C_DIV:
+                type = "div";
+                break;
+            case C_MULT:
+                type = "multiplication";
+                break;
 	    default:
                 type = "null";
 		break;
@@ -145,4 +162,15 @@ cpt_error_sem = 0;
 memset(tab_exp, -1, (size_t)250 * sizeof(exp));
 
 memset(tab_error_sem, -1, (size_t)500 * sizeof(char));
+}
+int get_numlex(int num_dec){
+int i;
+	   for(i=4;i<LNG_DECL;i++){
+	    if(tabDeclaration[i].type != -1){
+		if(tabDeclaration[i].suivant == num_dec){
+		num_dec = i;i=4;
+	    }
+	    }
+	}
+return num_dec;
 }

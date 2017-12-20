@@ -6,7 +6,6 @@
 #include "./Table_declarations/table_declaration.h"
 #include "./Table_representation/representation_entetes_sous_programmes.h"
 #include "./Associations_noms/association_noms.h"
-#include "./Controle_sem/controle_sem.h"
 extern int nbLignes;
 extern char* yytext;
 extern int yylex() ;
@@ -19,7 +18,6 @@ int nbr_champs_struct;
 int nbr_champs_tab;
 int nbr_param;
 int indice_repr;
-int num_dec_var;
 %}
 
 %union{
@@ -118,7 +116,7 @@ type_simple           : ENTIER
                       ;
 
 declaration_variable  : VARIABLE IDF DEUX_POINTS nom_type{ num_declaration = add_champs($2,TYPE_VARIABLE,get_curr_region(),$4,0); }
-                      | VARIABLE IDF DEUX_POINTS nom_type{ num_declaration = add_champs($2,TYPE_VARIABLE,get_curr_region(),$4,0); } OPAFF expression {verification_type($7,num_declaration,1);}
+                      | VARIABLE IDF DEUX_POINTS nom_type{ num_declaration = add_champs($2,TYPE_VARIABLE,get_curr_region(),$4,0); } OPAFF expression
      		      ;
 
 declaration_procedure : PROCEDURE{nbr_param = 0; reserveElem();} IDF liste_parametres{indice_repr = ajoutNbr(nbr_param); num_declaration = add_champs($3,TYPE_PROCEDURE,get_curr_region(),indice_repr,0); } ACCOLADE_OUVRANTE corps ACCOLADE_FERMANTE
@@ -173,11 +171,11 @@ tant_que              : TANT_QUE PARENTHESE_OUVRANTE expression PARENTHESE_FERMA
 repeter_tant_que      : FAIRE ACCOLADE_OUVRANTE liste_instructions ACCOLADE_FERMANTE TANT_QUE PARENTHESE_OUVRANTE expression PARENTHESE_FERMANTE  {$$=concat_pere_fils(creer_noeud(C_FAIRE,-976,-1),concat_pere_frere($3,$7));}
                       ;
 
-affectation           : variable OPAFF expression {$$=concat_pere_fils(creer_noeud(C_OPAFF,-980,-1),concat_pere_frere($1,$3));}{verification_type($3,num_dec_var,0);}
+affectation           : variable OPAFF expression {$$=concat_pere_fils(creer_noeud(C_OPAFF,-980,-1),concat_pere_frere($1,$3));}
                       ;
 
-variable              : IDF {num_dec_var = get_num_declaration($1); $$= creer_noeud(C_IDF,$1,num_dec_var);}
-	 	      | IDF variable_suite {num_dec_var = get_num_declaration($1);$$=concat_pere_frere(creer_noeud(C_IDF,$1,num_dec_var),$2);}
+variable              : IDF {$$= creer_noeud(C_IDF,$1,get_num_declaration($1));}
+	 	      | IDF variable_suite {$$=concat_pere_frere(creer_noeud(C_IDF,$1,get_num_declaration($1)),$2);}
 		      ;
 
 variable_suite        : CROCHET_OUVRANT liste_expression CROCHET_FERMANT variable_fin {$$=concat_pere_frere($2,$4);}
@@ -240,12 +238,10 @@ init_tab_lexico();
 init_decl();
 initRepr();
 init_table_regions();
-init_sem();
 f = openfile();
 if(yyparse()==0){
 if(cpt_errors > 0){
 afficher_erreurs();
-afficher_erreur_sem();
 exit(-1);
 }
 //afficher_table_region();

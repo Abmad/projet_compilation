@@ -1,61 +1,170 @@
 
-                                      lex: bool nature: entier 
- lex: t nature: entier 
- lex: e nature: entier 
- lex: r nature: entier 
- lex: t nature: entier 
- lex: string nature: entier 
- lex: z nature: entier 
- lex: a nature: entier 
- lex: r nature: entier 
- lex: t nature: entier 
- lex: 5.3 nature: reel 
- lex: a nature: entier 
-    lex: fct nature: null 
- lex: aa nature: null 
- lex: aaa nature: null 
- lex: bool nature: entier 
- lex: t nature: entier 
- lex: e nature: entier 
- lex: r nature: entier 
- lex: t nature: entier 
- lex: string nature: entier 
- lex: z nature: entier 
- lex: a nature: entier 
- lex: r nature: entier 
- lex: t nature: entier 
- lex: 5.3 nature: reel 
- lex: a nature: entier 
-          lex: fct nature: null 
- lex: aa nature: null 
- lex: aaa nature: null 
- lex: bool nature: entier 
- lex: a nature: null 
- lex: "azerty" nature: string 
- lex: t nature: entier 
- lex: string nature: entier 
- lex: z nature: entier 
- lex: a nature: entier 
- lex: r nature: entier 
- lex: t nature: entier 
- lex: 5.3 nature: reel 
- lex: a nature: entier 
-   lex: tableau nature: null 
- lex: fct nature: null 
- lex: a nature: null 
- lex: aa nature: null 
- lex: aaa nature: null 
- lex: bool nature: entier 
- lex: a nature: null 
- lex: "azerty" nature: string 
- lex: t nature: entier 
- lex: string nature: entier 
- lex: z nature: entier 
- lex: a nature: entier 
- lex: r nature: entier 
- lex: t nature: entier 
- lex: 5.3 nature: reel 
- lex: a nature: entier 
+                                     ==lexeme a: tabdec: 0  numLignes:24 
+lex: -990 nature plus nbLigne 24 
+lex: -991 nature moin nbLigne 24 
+lex: -990 nature plus nbLigne 24 
+lex: -991 nature moin nbLigne 24 
+ lex: 2 nature: 0 nbLignes:24 
+lex: -989 nature multiplication nbLigne 24 
+ lex: 9 nature: 0 nbLignes:24 
+ lex: 7 nature: 0 nbLignes:24 
+ lex: 8 nature: 0 nbLignes:24 
+lex: -989 nature multiplication nbLigne 24 
+ lex: 9 nature: 0 nbLignes:24 
+ lex: 4 nature: 0 nbLignes:24 
+lex: -989 nature multiplication nbLigne 24 
+lex: -988 nature div nbLigne 24 
+ lex: 6 nature: 0 nbLignes:24 
+ lex: 5 nature: 0 nbLignes:24 
+lex: -990 nature plus nbLigne 24 
+lex: -991 nature moin nbLigne 24 
+ lex: 8 nature: 0 nbLignes:24 
+ lex: 9 nature: 0 nbLignes:24 
+lex: -988 nature div nbLigne 24 
+ lex: 5.3 nature: 1 nbLignes:24 
+ lex: 5 nature: 0 nbLignes:24 
+lex: -1 nature null nbLigne 24 
+lex: -1 nature null nbLigne 24 
+lex: -1 nature null nbLigne 24 
+lex: -1 nature null nbLigne 24 
+lex: -1 nature null nbLigne 24 
+lex: -1 nature null nbLigne 24 
+lex: -1 nature null nbLigne 24 
+lex: -1 nature null nbLigne 24 
+lex: -1 nature null nbLigne 24 
+lex: -1 nature null nbLigne 24 
+   ==lexeme string: tabdec: 0  numLignes:25 
+ lex: fct nature: 23 nbLignes:25 
+ lex: aa nature: 23 nbLignes:25 
+ lex: aaa nature: 23 nbLignes:25 
+lex: -991 nature moin nbLigne 25 
+ lex: 2 nature: 0 nbLignes:25 
+lex: -989 nature multiplication nbLigne 25 
+ lex: 9 nature: 0 nbLignes:25 
+ lex: 7 nature: 0 nbLignes:25 
+ lex: 8 nature: 0 nbLignes:25 
+lex: -989 nature multiplication nbLigne 25 
+ lex: 9 nature: 0 nbLignes:25 
+ lex: 4 nature: 0 nbLignes:25 
+lex: -989 nature multiplication nbLigne 25 
+lex: -988 nature div nbLigne 25 
+ lex: 6 nature: 0 nbLignes:25 
+ lex: 5 nature: 0 nbLignes:25 
+lex: -990 nature plus nbLigne 25 
+lex: -991 nature moin nbLigne 25 
+ lex: 8 nature: 0 nbLignes:25 
+ lex: 9 nature: 0 nbLignes:25 
+lex: -988 nature div nbLigne 25 
+ lex: 5.3 nature: 1 nbLignes:25 
+ lex: 5 nature: 0 nbLignes:25 
+lex: -1 nature null nbLigne 25 
+lex: -1 nature null nbLigne 25 
+lex: -1 nature null nbLigne 25 
+lex: -1 nature null nbLigne 25 
+lex: -1 nature null nbLigne 25 
+lex: -1 nature null nbLigne 25 
+lex: -1 nature null nbLigne 25 
+lex: -1 nature null nbLigne 25 
+lex: -1 nature null nbLigne 25 
+lex: -1 nature null nbLigne 25 
+lex: -1 nature null nbLigne 25 
+lex: -1 nature null nbLigne 25 
+lex: -1 nature null nbLigne 25 
+         ==lexeme a: tabdec: 0  numLignes:26 
+lex: -990 nature plus nbLigne 26 
+lex: -990 nature plus nbLigne 26 
+ lex: fct nature: 23 nbLignes:26 
+ lex: aa nature: 23 nbLignes:26 
+ lex: aaa nature: 23 nbLignes:26 
+lex: -989 nature multiplication nbLigne 26 
+ lex: 2 nature: 0 nbLignes:26 
+ lex: a nature: 23 nbLignes:26 
+ lex: "azerty" nature: 4 nbLignes:26 
+lex: -989 nature multiplication nbLigne 26 
+ lex: 9 nature: 0 nbLignes:26 
+ lex: 4 nature: 0 nbLignes:26 
+lex: -989 nature multiplication nbLigne 26 
+lex: -988 nature div nbLigne 26 
+ lex: 6 nature: 0 nbLignes:26 
+ lex: 5 nature: 0 nbLignes:26 
+lex: -990 nature plus nbLigne 26 
+lex: -991 nature moin nbLigne 26 
+ lex: 8 nature: 0 nbLignes:26 
+ lex: 9 nature: 0 nbLignes:26 
+lex: -988 nature div nbLigne 26 
+ lex: 5.3 nature: 1 nbLignes:26 
+ lex: 5 nature: 0 nbLignes:26 
+lex: -1 nature null nbLigne 26 
+lex: -1 nature null nbLigne 26 
+lex: -1 nature null nbLigne 26 
+lex: -1 nature null nbLigne 26 
+lex: -1 nature null nbLigne 26 
+lex: -1 nature null nbLigne 26 
+lex: -1 nature null nbLigne 26 
+lex: -1 nature null nbLigne 26 
+lex: -1 nature null nbLigne 26 
+lex: -1 nature null nbLigne 26 
+lex: -1 nature null nbLigne 26 
+lex: -1 nature null nbLigne 26 
+lex: -1 nature null nbLigne 26 
+lex: -1 nature null nbLigne 26 
+lex: -1 nature null nbLigne 26 
+lex: -1 nature null nbLigne 26 
+lex: -1 nature null nbLigne 26 
+lex: -1 nature null nbLigne 26 
+lex: -1 nature null nbLigne 26 
+lex: -1 nature null nbLigne 26 
+lex: -1 nature null nbLigne 26 
+lex: -1 nature null nbLigne 26 
+  ==lexeme string: tabdec: 0  numLignes:27 
+ lex: tableau nature: 23 nbLignes:27 
+ lex: fct nature: 23 nbLignes:27 
+ lex: a nature: 23 nbLignes:27 
+ lex: aa nature: 23 nbLignes:27 
+ lex: aaa nature: 23 nbLignes:27 
+lex: -989 nature multiplication nbLigne 27 
+ lex: 2 nature: 0 nbLignes:27 
+ lex: a nature: 23 nbLignes:27 
+ lex: "azerty" nature: 4 nbLignes:27 
+lex: -989 nature multiplication nbLigne 27 
+ lex: 9 nature: 0 nbLignes:27 
+ lex: 4 nature: 0 nbLignes:27 
+lex: -989 nature multiplication nbLigne 27 
+lex: -988 nature div nbLigne 27 
+ lex: 6 nature: 0 nbLignes:27 
+ lex: 5 nature: 0 nbLignes:27 
+lex: -990 nature plus nbLigne 27 
+lex: -991 nature moin nbLigne 27 
+ lex: 8 nature: 0 nbLignes:27 
+ lex: 9 nature: 0 nbLignes:27 
+lex: -988 nature div nbLigne 27 
+ lex: 5.3 nature: 1 nbLignes:27 
+ lex: 5 nature: 0 nbLignes:27 
+lex: -1 nature null nbLigne 27 
+lex: -1 nature null nbLigne 27 
+lex: -1 nature null nbLigne 27 
+lex: -1 nature null nbLigne 27 
+lex: -1 nature null nbLigne 27 
+lex: -1 nature null nbLigne 27 
+lex: -1 nature null nbLigne 27 
+lex: -1 nature null nbLigne 27 
+lex: -1 nature null nbLigne 27 
+lex: -1 nature null nbLigne 27 
+lex: -1 nature null nbLigne 27 
+lex: -1 nature null nbLigne 27 
+lex: -1 nature null nbLigne 27 
+lex: -1 nature null nbLigne 27 
+lex: -1 nature null nbLigne 27 
+lex: -1 nature null nbLigne 27 
+lex: -1 nature null nbLigne 27 
+lex: -1 nature null nbLigne 27 
+lex: -1 nature null nbLigne 27 
+lex: -1 nature null nbLigne 27 
+lex: -1 nature null nbLigne 27 
+lex: -1 nature null nbLigne 27 
+lex: -1 nature null nbLigne 27 
+lex: -1 nature null nbLigne 27 
+lex: -1 nature null nbLigne 27 
     
 
 0, TYPE_INT, -1, -1, -1, 1

@@ -67,7 +67,7 @@ do {return (FAIRE);}
 \"[a-zA-Z0-9 ]*\" {yylval.type2=add_lexeme_char(yytext);return (CSTE_STRING);}
 \'[a-zA-Z0-9 ]\' {yylval.type2=add_lexeme_char(yytext);return (CSTE_CHAR);}
 [a-zA-Z][a-zA-Z0-9]* {yylval.type2=add_lexeme_char(yytext);return (IDF);}
-[1-9][0-9]* {yylval.type2=atoi(yytext);return (CSTE_ENTIERE);}
+[1-9][0-9]* {yylval.type2=add_lexeme_char(yytext);return (CSTE_ENTIERE);}
 [0-9]+\.[0-9]+ {yylval.type2=add_lexeme_char(yytext);return (CSTE_REEL);}
 
 \n {nbLignes++;}
