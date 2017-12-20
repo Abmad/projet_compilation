@@ -1,0 +1,56 @@
+
+            lexeme: float , nb: 5 
+   
+|PLUS:-990:-1
+|  MULT:-989:-1
+|    IDF:1:1
+|    CSTE_ENTIERE:2:-1
+|  CSTE_ENTIERE:2:-1
+ lexeme: float , nb: 10 
+ 
+|CSTE_ENTIERE:1:-1
+ lexeme: float , nb: 11 
+ 
+|CSTE_STRING:8:-1
+ lexeme: xx , nb: 11 
+ lexeme: y , nb: 11 
+
+|IDF:10:-1
+ lexeme: c , nb: 12 
+ lexeme: float , nb: 12 
+
+|IDF:1:1
+ lexeme: float , nb: 14 
+ lexeme: float , nb: 14 
+     lexeme: ax , nb: 16 
+ lexeme: f , nb: 16 
+
+|IDF:13:-1
+   lexeme: az , nb: 17 
+   lexeme: i , nb: 18 
+
+|IDF:15:-1
+
+0, TYPE_INT, -1, -1, -1, 1
+1, TYPE_FLOAT, -1, -1, -1, 1
+2, TYPE_BOOL, -1, -1, -1, 1
+3, TYPE_CHAR, -1, -1, -1, 1
+4, TYPE_STRING, -1, -1, -1, 1
+5, TYPE_VARIABLE, -1, 0, 3, 0
+6, TYPE_VARIABLE, -1, 0, 6, 0
+7, TYPE_VARIABLE, -1, 0, 3, 0
+
+
+Erreur de declaration :  L'element << xx >> a la ligne 11 n'est pas declare.
+
+Erreur de declaration :  L'element << y >> a la ligne 11 n'est pas declare.
+
+Erreur de declaration :  L'element << c >> a la ligne 12 n'est pas declare.
+
+Erreur de declaration :  L'element << ax >> a la ligne 16 n'est pas declare.
+
+Erreur de declaration :  L'element << f >> a la ligne 16 n'est pas declare.
+
+Erreur de declaration :  L'element << az >> a la ligne 17 n'est pas declare.
+
+Erreur de declaration :  L'element << i >> a la ligne 18 n'est pas declare.

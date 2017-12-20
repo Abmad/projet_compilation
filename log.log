@@ -1,0 +1,61 @@
+
+                numlexico: 1, lexeme: float, numLigne: 10 
+  numlexico: 1, lexeme: float, numLigne: 11 
+  numlexico: 1, lexeme: float, numLigne: 12 
+  numlexico: 1, lexeme: float, numLigne: 13 
+  numlexico: 1, lexeme: float, numLigne: 14 
+  numlexico: 1, lexeme: float, numLigne: 16 
+ numlexico: 14, lexeme: y, numLigne: 16 
+ numlexico: 1, lexeme: float, numLigne: 17 
+ numlexico: 15, lexeme: u, numLigne: 17 
+ numlexico: 1, lexeme: float, numLigne: 18 
+ numlexico: 16, lexeme: i, numLigne: 18 
+ numlexico: 1, lexeme: float, numLigne: 19 
+ numlexico: 17, lexeme: o, numLigne: 19 
+ numlexico: 1, lexeme: float, numLigne: 20 
+ numlexico: 18, lexeme: p, numLigne: 20 
+ numlexico: 1, lexeme: float, numLigne: 22 
+  numlexico: 1, lexeme: float, numLigne: 23 
+ numlexico: 21, lexeme: aa, numLigne: 23 
+ numlexico: 22, lexeme: aaa, numLigne: 23 
+numlexico: 20, lexeme: fct, numLigne: 23 
+ numlexico: 1, lexeme: float, numLigne: 24 
+ numlexico: 2, lexeme: bool, numLigne: 24 
+ numlexico: 3, lexeme: char, numLigne: 24 
+numlexico: 3, lexeme: char, numLigne: 24 
+     numlexico: 1, lexeme: float, numLigne: 24 
+  numlexico: 1, lexeme: float, numLigne: 25 
+ numlexico: 1, lexeme: float, numLigne: 25 
+numlexico: 3, lexeme: char, numLigne: 25 
+numlexico: 24, lexeme: tableau, numLigne: 25 
+ numlexico: 1, lexeme: float, numLigne: 26 
+ 
+0, TYPE_INT, -1, -1, -1, 1
+1, TYPE_FLOAT, -1, -1, -1, 1
+2, TYPE_BOOL, -1, -1, -1, 1
+3, TYPE_CHAR, -1, -1, -1, 1
+4, TYPE_STRING, -1, -1, -1, 1
+5, TYPE_VARIABLE, -1, 0, 3, 0
+6, TYPE_VARIABLE, -1, 0, 5, 0
+7, TYPE_VARIABLE, -1, 0, 4, 0
+8, TYPE_VARIABLE, -1, 0, 4, 0
+9, TYPE_VARIABLE, -1, 0, 6, 0
+
+
+Erreur de declaration :  L'element << y >> a la ligne 16 n'est pas declare.
+
+Erreur de declaration :  L'element << u >> a la ligne 17 n'est pas declare.
+
+Erreur de declaration :  L'element << i >> a la ligne 18 n'est pas declare.
+
+Erreur de declaration :  L'element << o >> a la ligne 19 n'est pas declare.
+
+Erreur de declaration :  L'element << p >> a la ligne 20 n'est pas declare.
+
+Erreur de declaration :  L'element << aa >> a la ligne 23 n'est pas declare.
+
+Erreur de declaration :  L'element << aaa >> a la ligne 23 n'est pas declare.
+
+Erreur de declaration :  L'element << fct >> a la ligne 23 n'est pas declare.
+
+Erreur de declaration :  L'element << tableau >> a la ligne 25 n'est pas declare.

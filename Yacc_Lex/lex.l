@@ -3,8 +3,7 @@
 #include "./Arbre/arbre.h"
 #include "./Table_lexico/tablexico.h"
 #include "y.tab.h"
-int nbLignes = 0;
-
+int nbLignes = 1;
 %}
 
 %%

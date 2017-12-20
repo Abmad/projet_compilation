@@ -37,6 +37,7 @@
 #define C_IDF 23
 #define C_LIST 24
 #define C_RETOURNE 25
+#define C_FUNC_PROC 26
 /*
  * Structure d'un noeud
  */

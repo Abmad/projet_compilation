@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
-
+#include "../Arbre/arbre.h"
 #define TYPE_INT 0
 #define TYPE_FLOAT 1
 #define TYPE_BOOL 2
@@ -9,8 +9,8 @@
 
 #define TYPE_STRUCT 5
 #define TYPE_TABLEAU 6
-#define TYPE_FONCTION 7
-#define TYPE_PROCEDURE 8
+#define TYPE_FONCTION C_FUNC_PROC
+#define TYPE_PROCEDURE C_FUNC_PROC
 #define TYPE_VARIABLE 9
 
 #define LNG_DECL 1000
