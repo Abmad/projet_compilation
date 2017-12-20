@@ -4,13 +4,13 @@ PROG
 var a : int;
 var z : float;
 var e : bool;
-var r : char;
+var r : char = e;
 var t : string[3]
 
 Main
 
 a = 1.1;
-z = 1.1;
+z = t;
 e = true;
 r = 'a';
 t = "aaa";

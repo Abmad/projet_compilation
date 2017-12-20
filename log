@@ -1,171 +1,14 @@
 
-                                     ==lexeme a: tabdec: 0  numLignes:24 
-lex: -990 nature plus nbLigne 24 
-lex: -991 nature moin nbLigne 24 
-lex: -990 nature plus nbLigne 24 
-lex: -991 nature moin nbLigne 24 
- lex: 2 nature: 0 nbLignes:24 
-lex: -989 nature multiplication nbLigne 24 
- lex: 9 nature: 0 nbLignes:24 
- lex: 7 nature: 0 nbLignes:24 
- lex: 8 nature: 0 nbLignes:24 
-lex: -989 nature multiplication nbLigne 24 
- lex: 9 nature: 0 nbLignes:24 
- lex: 4 nature: 0 nbLignes:24 
-lex: -989 nature multiplication nbLigne 24 
-lex: -988 nature div nbLigne 24 
- lex: 6 nature: 0 nbLignes:24 
- lex: 5 nature: 0 nbLignes:24 
-lex: -990 nature plus nbLigne 24 
-lex: -991 nature moin nbLigne 24 
- lex: 8 nature: 0 nbLignes:24 
- lex: 9 nature: 0 nbLignes:24 
-lex: -988 nature div nbLigne 24 
- lex: 5.3 nature: 1 nbLignes:24 
- lex: 5 nature: 0 nbLignes:24 
-lex: -1 nature null nbLigne 24 
-lex: -1 nature null nbLigne 24 
-lex: -1 nature null nbLigne 24 
-lex: -1 nature null nbLigne 24 
-lex: -1 nature null nbLigne 24 
-lex: -1 nature null nbLigne 24 
-lex: -1 nature null nbLigne 24 
-lex: -1 nature null nbLigne 24 
-lex: -1 nature null nbLigne 24 
-lex: -1 nature null nbLigne 24 
-   ==lexeme string: tabdec: 0  numLignes:25 
- lex: fct nature: 23 nbLignes:25 
- lex: aa nature: 23 nbLignes:25 
- lex: aaa nature: 23 nbLignes:25 
-lex: -991 nature moin nbLigne 25 
- lex: 2 nature: 0 nbLignes:25 
-lex: -989 nature multiplication nbLigne 25 
- lex: 9 nature: 0 nbLignes:25 
- lex: 7 nature: 0 nbLignes:25 
- lex: 8 nature: 0 nbLignes:25 
-lex: -989 nature multiplication nbLigne 25 
- lex: 9 nature: 0 nbLignes:25 
- lex: 4 nature: 0 nbLignes:25 
-lex: -989 nature multiplication nbLigne 25 
-lex: -988 nature div nbLigne 25 
- lex: 6 nature: 0 nbLignes:25 
- lex: 5 nature: 0 nbLignes:25 
-lex: -990 nature plus nbLigne 25 
-lex: -991 nature moin nbLigne 25 
- lex: 8 nature: 0 nbLignes:25 
- lex: 9 nature: 0 nbLignes:25 
-lex: -988 nature div nbLigne 25 
- lex: 5.3 nature: 1 nbLignes:25 
- lex: 5 nature: 0 nbLignes:25 
-lex: -1 nature null nbLigne 25 
-lex: -1 nature null nbLigne 25 
-lex: -1 nature null nbLigne 25 
-lex: -1 nature null nbLigne 25 
-lex: -1 nature null nbLigne 25 
-lex: -1 nature null nbLigne 25 
-lex: -1 nature null nbLigne 25 
-lex: -1 nature null nbLigne 25 
-lex: -1 nature null nbLigne 25 
-lex: -1 nature null nbLigne 25 
-lex: -1 nature null nbLigne 25 
-lex: -1 nature null nbLigne 25 
-lex: -1 nature null nbLigne 25 
-         ==lexeme a: tabdec: 0  numLignes:26 
-lex: -990 nature plus nbLigne 26 
-lex: -990 nature plus nbLigne 26 
- lex: fct nature: 23 nbLignes:26 
- lex: aa nature: 23 nbLignes:26 
- lex: aaa nature: 23 nbLignes:26 
-lex: -989 nature multiplication nbLigne 26 
- lex: 2 nature: 0 nbLignes:26 
- lex: a nature: 23 nbLignes:26 
- lex: "azerty" nature: 4 nbLignes:26 
-lex: -989 nature multiplication nbLigne 26 
- lex: 9 nature: 0 nbLignes:26 
- lex: 4 nature: 0 nbLignes:26 
-lex: -989 nature multiplication nbLigne 26 
-lex: -988 nature div nbLigne 26 
- lex: 6 nature: 0 nbLignes:26 
- lex: 5 nature: 0 nbLignes:26 
-lex: -990 nature plus nbLigne 26 
-lex: -991 nature moin nbLigne 26 
- lex: 8 nature: 0 nbLignes:26 
- lex: 9 nature: 0 nbLignes:26 
-lex: -988 nature div nbLigne 26 
- lex: 5.3 nature: 1 nbLignes:26 
- lex: 5 nature: 0 nbLignes:26 
-lex: -1 nature null nbLigne 26 
-lex: -1 nature null nbLigne 26 
-lex: -1 nature null nbLigne 26 
-lex: -1 nature null nbLigne 26 
-lex: -1 nature null nbLigne 26 
-lex: -1 nature null nbLigne 26 
-lex: -1 nature null nbLigne 26 
-lex: -1 nature null nbLigne 26 
-lex: -1 nature null nbLigne 26 
-lex: -1 nature null nbLigne 26 
-lex: -1 nature null nbLigne 26 
-lex: -1 nature null nbLigne 26 
-lex: -1 nature null nbLigne 26 
-lex: -1 nature null nbLigne 26 
-lex: -1 nature null nbLigne 26 
-lex: -1 nature null nbLigne 26 
-lex: -1 nature null nbLigne 26 
-lex: -1 nature null nbLigne 26 
-lex: -1 nature null nbLigne 26 
-lex: -1 nature null nbLigne 26 
-lex: -1 nature null nbLigne 26 
-lex: -1 nature null nbLigne 26 
-  ==lexeme string: tabdec: 0  numLignes:27 
- lex: tableau nature: 23 nbLignes:27 
- lex: fct nature: 23 nbLignes:27 
- lex: a nature: 23 nbLignes:27 
- lex: aa nature: 23 nbLignes:27 
- lex: aaa nature: 23 nbLignes:27 
-lex: -989 nature multiplication nbLigne 27 
- lex: 2 nature: 0 nbLignes:27 
- lex: a nature: 23 nbLignes:27 
- lex: "azerty" nature: 4 nbLignes:27 
-lex: -989 nature multiplication nbLigne 27 
- lex: 9 nature: 0 nbLignes:27 
- lex: 4 nature: 0 nbLignes:27 
-lex: -989 nature multiplication nbLigne 27 
-lex: -988 nature div nbLigne 27 
- lex: 6 nature: 0 nbLignes:27 
- lex: 5 nature: 0 nbLignes:27 
-lex: -990 nature plus nbLigne 27 
-lex: -991 nature moin nbLigne 27 
- lex: 8 nature: 0 nbLignes:27 
- lex: 9 nature: 0 nbLignes:27 
-lex: -988 nature div nbLigne 27 
- lex: 5.3 nature: 1 nbLignes:27 
- lex: 5 nature: 0 nbLignes:27 
-lex: -1 nature null nbLigne 27 
-lex: -1 nature null nbLigne 27 
-lex: -1 nature null nbLigne 27 
-lex: -1 nature null nbLigne 27 
-lex: -1 nature null nbLigne 27 
-lex: -1 nature null nbLigne 27 
-lex: -1 nature null nbLigne 27 
-lex: -1 nature null nbLigne 27 
-lex: -1 nature null nbLigne 27 
-lex: -1 nature null nbLigne 27 
-lex: -1 nature null nbLigne 27 
-lex: -1 nature null nbLigne 27 
-lex: -1 nature null nbLigne 27 
-lex: -1 nature null nbLigne 27 
-lex: -1 nature null nbLigne 27 
-lex: -1 nature null nbLigne 27 
-lex: -1 nature null nbLigne 27 
-lex: -1 nature null nbLigne 27 
-lex: -1 nature null nbLigne 27 
-lex: -1 nature null nbLigne 27 
-lex: -1 nature null nbLigne 27 
-lex: -1 nature null nbLigne 27 
-lex: -1 nature null nbLigne 27 
-lex: -1 nature null nbLigne 27 
-lex: -1 nature null nbLigne 27 
-    
+              numlex : 7type_dst =2 numLigne:7
+       numlex : 9type_dst =4 numLigne:13
+        numlex : 15type_dst =-1 numLigne:18
+  numlex : 16type_dst =-1 numLigne:19
+  numlex : 17type_dst =-1 numLigne:20
+  numlex : 18type_dst =-1 numLigne:21
+  numlex : 19type_dst =-1 numLigne:22
+                  numlex : 34type_dst =-1 numLigne:29
+  numlex : 6type_dst =1 numLigne:32
+
 
 0, TYPE_INT, -1, -1, -1, 1
 1, TYPE_FLOAT, -1, -1, -1, 1
@@ -178,34 +21,45 @@ lex: -1 nature null nbLigne 27
 8, TYPE_VARIABLE, -1, 0, 3, 0
 9, TYPE_VARIABLE, -1, 0, 4, 0
 
-
-Erreur de declaration :  L'element << y >> a la ligne 18 n'est pas declare.
-
-Erreur de declaration :  L'element << u >> a la ligne 19 n'est pas declare.
-
-Erreur de declaration :  L'element << i >> a la ligne 20 n'est pas declare.
-
-Erreur de declaration :  L'element << o >> a la ligne 21 n'est pas declare.
-
-Erreur de declaration :  L'element << p >> a la ligne 22 n'est pas declare.
-
-Erreur de declaration :  L'element << aa >> a la ligne 25 n'est pas declare.
-
-Erreur de declaration :  L'element << aaa >> a la ligne 25 n'est pas declare.
-
-Erreur de declaration :  L'element << fct >> a la ligne 25 n'est pas declare.
-
-Erreur de declaration :  L'element << aa >> a la ligne 26 n'est pas declare.
-
-Erreur de declaration :  L'element << aaa >> a la ligne 26 n'est pas declare.
-
-Erreur de declaration :  L'element << fct >> a la ligne 26 n'est pas declare.
-
-Erreur de declaration :  L'element << fct >> a la ligne 27 n'est pas declare.
-
-Erreur de declaration :  L'element << tableau >> a la ligne 27 n'est pas declare.
-
-Erreur de declaration :  L'element << blabla >> a la ligne 29 n'est pas declare.
-
-Erreur de declaration :  L'element << toto >> a la ligne 29 n'est pas declare.
 Erreur semantique ligne: 12, a est de type entier et 1.1 est de type reel 
+ 
+ 
+ 
+ 
+ 
+ 
+HashCode: 0,Lexeme: int,Longueur: 3
+HashCode: 1,Lexeme: float,Longueur: 5
+HashCode: 2,Lexeme: bool,Longueur: 4
+HashCode: 3,Lexeme: char,Longueur: 4
+HashCode: 4,Lexeme: string,Longueur: 6
+HashCode: 5,Lexeme: a,Longueur: 1
+HashCode: 6,Lexeme: z,Longueur: 1
+HashCode: 7,Lexeme: e,Longueur: 1
+HashCode: 8,Lexeme: r,Longueur: 1
+HashCode: 9,Lexeme: t,Longueur: 1
+HashCode: 10,Lexeme: 3,Longueur: 1
+HashCode: 11,Lexeme: 1.1,Longueur: 3
+HashCode: 12,Lexeme: true,Longueur: 4
+HashCode: 13,Lexeme: 'a',Longueur: 3
+HashCode: 14,Lexeme: "aaa",Longueur: 5
+HashCode: 15,Lexeme: y,Longueur: 1
+HashCode: 16,Lexeme: u,Longueur: 1
+HashCode: 17,Lexeme: i,Longueur: 1
+HashCode: 18,Lexeme: o,Longueur: 1
+HashCode: 19,Lexeme: p,Longueur: 1
+HashCode: 20,Lexeme: 2,Longueur: 1
+HashCode: 21,Lexeme: 9,Longueur: 1
+HashCode: 22,Lexeme: 7,Longueur: 1
+HashCode: 23,Lexeme: 8,Longueur: 1
+HashCode: 24,Lexeme: 4,Longueur: 1
+HashCode: 25,Lexeme: 6,Longueur: 1
+HashCode: 26,Lexeme: 5,Longueur: 1
+HashCode: 27,Lexeme: 5.3,Longueur: 3
+HashCode: 28,Lexeme: fct,Longueur: 3
+HashCode: 29,Lexeme: aa,Longueur: 2
+HashCode: 30,Lexeme: aaa,Longueur: 3
+HashCode: 31,Lexeme: "azerty",Longueur: 8
+HashCode: 32,Lexeme: tableau,Longueur: 7
+HashCode: 33,Lexeme: blabla,Longueur: 6
+HashCode: 34,Lexeme: toto,Longueur: 4

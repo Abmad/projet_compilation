@@ -16,5 +16,5 @@ void arbre_to_tab(arbre _arbre);
 void ajouter_tab_error(char * msg);
 void afficher_erreur_sem();
 char* get_nom_type(int nature);
-
+int get_type_idf(int numdec);
 #endif
