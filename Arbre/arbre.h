@@ -11,12 +11,12 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-#define C_NOEUD_PRINCIPAL 0
-#define C_CSTE_ENTIERE 1
-#define C_CSTE_REEL 2
-#define C_CSTE_STRING 3
-#define C_CSTE_CHAR 4
-#define C_CSTE_BOOL 5
+#define C_NOEUD_PRINCIPAL 100
+#define C_CSTE_ENTIERE 0
+#define C_CSTE_REEL 1
+#define C_CSTE_STRING 4
+#define C_CSTE_CHAR 3
+#define C_CSTE_BOOL 2
 #define C_PLUS_PETIT 6
 #define C_PLUS_GRAND 7
 #define C_ET 8

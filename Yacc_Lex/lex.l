@@ -38,7 +38,7 @@ PROG {return (PROG);}
 true|false {yylval.type2=add_lexeme_char(yytext);return (CSTE_BOOL);}
 
 Main {return (DEBUT);}
-EndMain {return (FIN);}
+\nEndMain {return (FIN);}
 
 var {return (VARIABLE);}
 type {return (TYPE);}

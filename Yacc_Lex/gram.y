@@ -47,7 +47,7 @@ int num_dec_var;
 programme             : PROG ACCOLADE_OUVRANTE corps ACCOLADE_FERMANTE{printf("\n");afficher_decl();printf("\n");afficherRepr();}
                       ;
 
-corps                 : {region_empiler();} liste_declarations liste_instructions {curr_region = region_depiler();ajout_val_table_reg(10,curr_region,$3);}{afficher_arbre($3,0);}{/*enregistrer_arbre($3,0,f);;*/}
+corps                 : {region_empiler();} liste_declarations liste_instructions {curr_region = region_depiler();ajout_val_table_reg(10,curr_region,$3);}{/*afficher_arbre($3,0);*/}{enregistrer_arbre($3,0,f);}
                       ;
 
 liste_declarations    : liste_declaration_var liste_declaration_type liste_declaration_proc liste_declaration_fct
@@ -118,7 +118,7 @@ type_simple           : ENTIER
                       ;
 
 declaration_variable  : VARIABLE IDF DEUX_POINTS nom_type{ num_declaration = add_champs($2,TYPE_VARIABLE,get_curr_region(),$4,0); }
-                      | VARIABLE IDF DEUX_POINTS nom_type{ num_declaration = add_champs($2,TYPE_VARIABLE,get_curr_region(),$4,0); } OPAFF expression {verification_type($7,num_declaration,1);}{/*afficher_tab_exp();*/}
+                      | VARIABLE IDF DEUX_POINTS nom_type{ num_declaration = add_champs($2,TYPE_VARIABLE,get_curr_region(),$4,0); } OPAFF expression
      		      ;
 
 declaration_procedure : PROCEDURE{nbr_param = 0; reserveElem();} IDF liste_parametres{indice_repr = ajoutNbr(nbr_param); num_declaration = add_champs($3,TYPE_PROCEDURE,get_curr_region(),indice_repr,0); } ACCOLADE_OUVRANTE corps ACCOLADE_FERMANTE
@@ -150,7 +150,7 @@ resultat_retourne     : {$$=arbre_vide();}
                       | expression {$$=$1;}
                       ;
 
-appel                 : IDF liste_arguments {$$= concat_pere_fils(creer_noeud(C_FUNC_PROC,$1,get_num_declaration($1,nbLignes)),$2);}
+appel                 : IDF liste_arguments {$$= concat_pere_fils(creer_noeud(C_IDF,$1,get_num_declaration($1)),$2);}
                       ;
 
 liste_arguments       : PARENTHESE_OUVRANTE PARENTHESE_FERMANTE {$$=arbre_vide();}
@@ -164,20 +164,20 @@ liste_args            : un_arg {$$=$1;}
 un_arg                : expression {$$=$1;}
                       ;
 
-condition             : SI PARENTHESE_OUVRANTE expression PARENTHESE_FERMANTE ALORS ACCOLADE_OUVRANTE liste_instructions ACCOLADE_FERMANTE {$$= concat_pere_fils(creer_noeud(C_SI,-979,-1),concat_pere_frere($3,$7));}
-                      |  SI PARENTHESE_OUVRANTE expression PARENTHESE_FERMANTE ALORS ACCOLADE_OUVRANTE liste_instructions ACCOLADE_FERMANTE SINON ACCOLADE_OUVRANTE liste_instructions ACCOLADE_FERMANTE {$$= concat_pere_frere (concat_pere_fils(creer_noeud(C_SI,-979,-1),concat_pere_frere($3,$7)),concat_pere_fils(creer_noeud(C_SINON,-976,-1),$11));}
+condition             : SI PARENTHESE_OUVRANTE expression PARENTHESE_FERMANTE ALORS ACCOLADE_OUVRANTE liste_instructions ACCOLADE_FERMANTE SINON ACCOLADE_OUVRANTE liste_instructions ACCOLADE_FERMANTE {$$= concat_pere_frere (concat_pere_fils(creer_noeud(C_SI,-979,-1),concat_pere_frere($3,$7)),concat_pere_fils(creer_noeud(C_SINON,-976,-1),$11));}
                       ;
+
 tant_que              : TANT_QUE PARENTHESE_OUVRANTE expression PARENTHESE_FERMANTE FAIRE ACCOLADE_OUVRANTE liste_instructions ACCOLADE_FERMANTE {$$=concat_pere_fils(creer_noeud(C_TANT_QUE,-987,0),concat_pere_frere($3,$7));}
                       ;
 
 repeter_tant_que      : FAIRE ACCOLADE_OUVRANTE liste_instructions ACCOLADE_FERMANTE TANT_QUE PARENTHESE_OUVRANTE expression PARENTHESE_FERMANTE  {$$=concat_pere_fils(creer_noeud(C_FAIRE,-976,-1),concat_pere_frere($3,$7));}
                       ;
 
-affectation           : variable OPAFF expression {$$=concat_pere_fils(creer_noeud(C_OPAFF,-980,-1),concat_pere_frere($1,$3));}{verification_type($3,num_dec_var,0);}{afficher_tab_exp();}
+affectation           : variable OPAFF expression {$$=concat_pere_fils(creer_noeud(C_OPAFF,-980,-1),concat_pere_frere($1,$3));}{verification_type($3,num_dec_var,0);}
                       ;
 
-variable              : IDF {num_dec_var = get_num_declaration($1,nbLignes); $$= creer_noeud(C_IDF,$1,num_dec_var); printf("num_lex: %d \n",$1); afficher_arbre($$,0);}
-	 	      | IDF variable_suite {num_dec_var=get_num_declaration($1,nbLignes);printf("num_dec: %d \n",num_dec_var); $$=concat_pere_frere(creer_noeud(C_IDF,$1,num_dec_var),$2);}
+variable              : IDF {num_dec_var = get_num_declaration($1); $$= creer_noeud(C_IDF,$1,num_dec_var);}
+	 	      | IDF variable_suite {num_dec_var = get_num_declaration($1);$$=concat_pere_frere(creer_noeud(C_IDF,$1,num_dec_var),$2);}
 		      ;
 
 variable_suite        : CROCHET_OUVRANT liste_expression CROCHET_FERMANT variable_fin {$$=concat_pere_frere($2,$4);}
@@ -240,11 +240,13 @@ init_tab_lexico();
 init_decl();
 initRepr();
 init_table_regions();
+init_sem();
 f = openfile();
 if(yyparse()==0){
 if(cpt_errors > 0){
-//afficher_erreurs();
-//exit(-1);
+afficher_erreurs();
+afficher_erreur_sem();
+exit(-1);
 }
 //afficher_table_region();
 affiche_table_lexico();

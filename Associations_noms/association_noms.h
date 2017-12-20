@@ -21,6 +21,6 @@ error tab_errors[MAX_TAB_ERRORS];
 int cpt_errors;
 void ajouter_error(char * lexeme,int nbLignes);
 void afficher_erreurs();
-int get_num_declaration(int numlexico,int nbLignes);
+int get_num_declaration(int numlexico);
 void init_errors_table();
 #endif /* association_noms_h */

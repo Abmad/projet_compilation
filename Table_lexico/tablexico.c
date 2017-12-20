@@ -22,7 +22,8 @@ int longueur_int(int valeur){ //Calcule la longueur d'un entier
 //ajoute un lexème dans la table lexicographique
 int add_lexeme_char(char* lex){//Créé par Dan Robert Tsoumbou Moutimba
     assert(cpt<LONGUEUR);
-        if( lexemeExists(lex) == -1){
+	int lexemeExist = lexemeExists(lex);
+        if( lexemeExist != -1)return lexemeExist;
             lexeme l;
 	    l.exp_lexeme_char = malloc(sizeof(char));
             strcpy(l.exp_lexeme_char,lex);
@@ -34,10 +35,6 @@ int add_lexeme_char(char* lex){//Créé par Dan Robert Tsoumbou Moutimba
             table_lexico[cpt] = l;
 	    cpt++;
             return l.hash_code;
-        }
-        else if(table_lexico[cpt].longueur==strlen(lex) && table_lexico[cpt].exp_lexeme_char==lex){
-            return table_lexico[cpt].hash_code;
-        }
 }
 
 int add_lexeme_int(int lex){//Créé par Dan Robert Tsoumbou Moutimba
@@ -126,9 +123,10 @@ void affiche_table_lexico(){//Créé par Dan Robert Tsoumbou Moutimba
 }
 
 char * get_lexeme(int numlex){//Abdelmoghit MADIH
-
-if(table_lexico[numlex].exp_lexeme_char == NULL || table_lexico[numlex].hash_code == -1)return "NULL";
-return  table_lexico[numlex].exp_lexeme_char;
+char * val_return = malloc(sizeof(char));
+if(table_lexico[numlex].hash_code == -1 || numlex < 0)return "NULL";
+strcpy(val_return,table_lexico[numlex].exp_lexeme_char);
+return  val_return;
 }
 int lexemeExists(char * lexeme){
 int i,check = -1;
@@ -136,7 +134,7 @@ for(i=0;i<LONGUEUR;i++){
 
 if(table_lexico[i].exp_lexeme_char != NULL && table_lexico[i].hash_code != -1){
 if(strcmp(table_lexico[i].exp_lexeme_char,lexeme) == 0){
-check=0;
+check=i;
 break;
 }
 }

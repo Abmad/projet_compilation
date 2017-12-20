@@ -1,208 +1,102 @@
 
-                num_lex: 1 
-
-|IDF:1:1
- dec2 1erreur syntax ligne 11
-Erreur semantique ligne: 11, float est de type -1 et float est de type 11
- num_lex: 1 
-
-|IDF:1:1
- dec2 1erreur syntax ligne 12
-Erreur semantique ligne: 12, float est de type -1 et 1.1 est de type 22
- num_lex: 1 
-
-|IDF:1:1
- dec2 1erreur syntax ligne 13
-Erreur semantique ligne: 13, float est de type -1 et true est de type 55
- num_lex: 1 
-
-|IDF:1:1
- dec2 1erreur syntax ligne 14
-Erreur semantique ligne: 14, float est de type -1 et 'a' est de type 44
- num_lex: 1 
-
-|IDF:1:1
- dec2 1erreur syntax ligne 15
-Erreur semantique ligne: 15, float est de type -1 et "aaa" est de type 33
- num_lex: 1 
-
-|IDF:1:1
- num_lex: 14 
-
-|IDF:14:-1
-dec2 -1erreur syntax ligne 17
-23
- num_lex: 1 
-
-|IDF:1:1
- num_lex: 15 
-
-|IDF:15:-1
-dec2 -1erreur syntax ligne 18
-23
- num_lex: 1 
-
-|IDF:1:1
- num_lex: 16 
-
-|IDF:16:-1
-dec2 -1erreur syntax ligne 19
-23
- num_lex: 1 
-
-|IDF:1:1
- num_lex: 17 
-
-|IDF:17:-1
-dec2 -1erreur syntax ligne 20
-23
- num_lex: 1 
-
-|IDF:1:1
- num_lex: 18 
-
-|IDF:18:-1
-dec2 -1erreur syntax ligne 21
-23
- num_lex: 1 
-
-|IDF:1:1
- dec2 114
-15
-14
-15
-1
-16
-1
-1
-1
-16
-1
-1
-16
-17
-1
-1
-14
-15
-1
-1
-17
-2
-1
- num_lex: 1 
-
-|IDF:1:1
- num_lex: 21 
-
-|IDF:21:-1
- num_lex: 22 
-
-|IDF:22:-1
-dec2 -126
-23
-23
- num_lex: 1 
-
-|IDF:1:1
- num_lex: 2 
-
-|IDF:2:2
- num_lex: 3 
-
-|IDF:3:3
-     num_lex: 1 
-
-|IDF:1:1
- dec2 114
-14
-26
-23
-23
-16
-1
-23
-3
- num_lex: 1 
-
-|IDF:1:1
- num_lex: 1 
-
-|IDF:1:1
-num_dec: -1 
-dec2 -123
-26
-23
- num_lex: 1 
-
-|IDF:1:1
- dec2 1erreur syntax ligne 29
-Erreur semantique ligne: 29, float est de type -1 et a est de type 33
-
-|LIST_INSTRUCTION:-1:-1
-|  IDF:1:1
-|  LIST_INSTRUCTION:-1:-1
-|    IDF:1:1
-|    LIST_INSTRUCTION:-1:-1
-|      IDF:1:1
-|      LIST_INSTRUCTION:-1:-1
-|        IDF:1:1
-|        LIST_INSTRUCTION:-1:-1
-|          IDF:1:1
-|          LIST_INSTRUCTION:-1:-1
-|            IDF:1:1
-|            LIST_INSTRUCTION:-1:-1
-|              IDF:1:1
-|              LIST_INSTRUCTION:-1:-1
-|                IDF:1:1
-|                LIST_INSTRUCTION:-1:-1
-|                  IDF:1:1
-|                  LIST_INSTRUCTION:-1:-1
-|                    IDF:1:1
-|                    LIST_INSTRUCTION:-1:-1
-|                      IDF:1:1
-|                      LIST_INSTRUCTION:-1:-1
-|                        IDF:1:1
-|                        LIST_INSTRUCTION:-1:-1
-|                          IDF:1:1
-|                          LIST_INSTRUCTION:-1:-1
-|                            IDF:1:1
-|                            IDF:1:1
-|                            CSTE_ENTIERE:1:-1
+                                      lex: bool nature: entier 
+ lex: t nature: entier 
+ lex: e nature: entier 
+ lex: r nature: entier 
+ lex: t nature: entier 
+ lex: string nature: entier 
+ lex: z nature: entier 
+ lex: a nature: entier 
+ lex: r nature: entier 
+ lex: t nature: entier 
+ lex: 5.3 nature: reel 
+ lex: a nature: entier 
+    lex: fct nature: null 
+ lex: aa nature: null 
+ lex: aaa nature: null 
+ lex: bool nature: entier 
+ lex: t nature: entier 
+ lex: e nature: entier 
+ lex: r nature: entier 
+ lex: t nature: entier 
+ lex: string nature: entier 
+ lex: z nature: entier 
+ lex: a nature: entier 
+ lex: r nature: entier 
+ lex: t nature: entier 
+ lex: 5.3 nature: reel 
+ lex: a nature: entier 
+          lex: fct nature: null 
+ lex: aa nature: null 
+ lex: aaa nature: null 
+ lex: bool nature: entier 
+ lex: a nature: null 
+ lex: "azerty" nature: string 
+ lex: t nature: entier 
+ lex: string nature: entier 
+ lex: z nature: entier 
+ lex: a nature: entier 
+ lex: r nature: entier 
+ lex: t nature: entier 
+ lex: 5.3 nature: reel 
+ lex: a nature: entier 
+   lex: tableau nature: null 
+ lex: fct nature: null 
+ lex: a nature: null 
+ lex: aa nature: null 
+ lex: aaa nature: null 
+ lex: bool nature: entier 
+ lex: a nature: null 
+ lex: "azerty" nature: string 
+ lex: t nature: entier 
+ lex: string nature: entier 
+ lex: z nature: entier 
+ lex: a nature: entier 
+ lex: r nature: entier 
+ lex: t nature: entier 
+ lex: 5.3 nature: reel 
+ lex: a nature: entier 
+    
 
 0, TYPE_INT, -1, -1, -1, 1
 1, TYPE_FLOAT, -1, -1, -1, 1
 2, TYPE_BOOL, -1, -1, -1, 1
 3, TYPE_CHAR, -1, -1, -1, 1
 4, TYPE_STRING, -1, -1, -1, 1
-5, TYPE_VARIABLE, -1, 0, 3, 0
-6, TYPE_VARIABLE, -1, 0, 5, 0
-7, TYPE_VARIABLE, -1, 0, 4, 0
-8, TYPE_VARIABLE, -1, 0, 4, 0
-9, TYPE_VARIABLE, -1, 0, 6, 0
+5, TYPE_VARIABLE, -1, 0, 0, 0
+6, TYPE_VARIABLE, -1, 0, 1, 0
+7, TYPE_VARIABLE, -1, 0, 2, 0
+8, TYPE_VARIABLE, -1, 0, 3, 0
+9, TYPE_VARIABLE, -1, 0, 4, 0
 
-HashCode: 0,Lexeme: int,Longueur: 3
-HashCode: 1,Lexeme: float,Longueur: 5
-HashCode: 2,Lexeme: bool,Longueur: 4
-HashCode: 3,Lexeme: char,Longueur: 4
-HashCode: 4,Lexeme: string,Longueur: 6
-HashCode: 5,Lexeme: a,Longueur: 1
-HashCode: 6,Lexeme: z,Longueur: 1
-HashCode: 7,Lexeme: e,Longueur: 1
-HashCode: 8,Lexeme: r,Longueur: 1
-HashCode: 9,Lexeme: t,Longueur: 1
-HashCode: 10,Lexeme: 1.1,Longueur: 3
-HashCode: 11,Lexeme: true,Longueur: 4
-HashCode: 12,Lexeme: 'a',Longueur: 3
-HashCode: 13,Lexeme: "aaa",Longueur: 5
-HashCode: 14,Lexeme: y,Longueur: 1
-HashCode: 15,Lexeme: u,Longueur: 1
-HashCode: 16,Lexeme: i,Longueur: 1
-HashCode: 17,Lexeme: o,Longueur: 1
-HashCode: 18,Lexeme: p,Longueur: 1
-HashCode: 19,Lexeme: 5.3,Longueur: 3
-HashCode: 20,Lexeme: fct,Longueur: 3
-HashCode: 21,Lexeme: aa,Longueur: 2
-HashCode: 22,Lexeme: aaa,Longueur: 3
-HashCode: 23,Lexeme: "azerty",Longueur: 8
-HashCode: 24,Lexeme: tableau,Longueur: 7
+
+Erreur de declaration :  L'element << y >> a la ligne 18 n'est pas declare.
+
+Erreur de declaration :  L'element << u >> a la ligne 19 n'est pas declare.
+
+Erreur de declaration :  L'element << i >> a la ligne 20 n'est pas declare.
+
+Erreur de declaration :  L'element << o >> a la ligne 21 n'est pas declare.
+
+Erreur de declaration :  L'element << p >> a la ligne 22 n'est pas declare.
+
+Erreur de declaration :  L'element << aa >> a la ligne 25 n'est pas declare.
+
+Erreur de declaration :  L'element << aaa >> a la ligne 25 n'est pas declare.
+
+Erreur de declaration :  L'element << fct >> a la ligne 25 n'est pas declare.
+
+Erreur de declaration :  L'element << aa >> a la ligne 26 n'est pas declare.
+
+Erreur de declaration :  L'element << aaa >> a la ligne 26 n'est pas declare.
+
+Erreur de declaration :  L'element << fct >> a la ligne 26 n'est pas declare.
+
+Erreur de declaration :  L'element << fct >> a la ligne 27 n'est pas declare.
+
+Erreur de declaration :  L'element << tableau >> a la ligne 27 n'est pas declare.
+
+Erreur de declaration :  L'element << blabla >> a la ligne 29 n'est pas declare.
+
+Erreur de declaration :  L'element << toto >> a la ligne 29 n'est pas declare.
+Erreur semantique ligne: 12, a est de type entier et 1.1 est de type reel 

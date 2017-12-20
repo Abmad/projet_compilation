@@ -13,8 +13,8 @@
 void init_errors_table(){
 cpt_errors = 0;
 }
-
-int get_num_declaration(int numlexico,int nbLignes){
+extern int nbLignes;
+int get_num_declaration(int numlexico){
     int i ,top_region = 0, num_dec = 0,check_region = -1;
  if (numlexico <= 4)
         return numlexico;

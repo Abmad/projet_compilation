@@ -1,5 +1,6 @@
 PROG
 {
+
 var a : int;
 var z : float;
 var e : bool;
@@ -8,7 +9,7 @@ var t : string[3]
 
 Main
 
-a = 1;
+a = 1.1;
 z = 1.1;
 e = true;
 r = 'a';
@@ -24,7 +25,10 @@ a = (2-9*7+8-9*4+6/5*(8-9+5.3/5));
 z = fct(aa, aaa);
 e = fct(aa, aaa) + 2 * a + "azerty";
 r = tableau[fct(a)];
-t = "aaa"
+t = "aaa";
+blabla=toto;
+a = z
+
 
 EndMain
 }
