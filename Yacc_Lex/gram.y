@@ -20,6 +20,14 @@ int nbr_champs_tab;
 int nbr_param;
 int indice_repr;
 int num_dec_var;
+
+int decalage_var = 0;
+int decalage_type = 0;
+
+
+int num_region_decl;
+int cpt_region = 0;
+int tab_region[100];
 %}
 
 %union{
@@ -44,7 +52,7 @@ int num_dec_var;
 
 
 %%
-programme             : PROG ACCOLADE_OUVRANTE corps ACCOLADE_FERMANTE{printf("\n");afficher_decl();printf("\n");afficherRepr();}
+programme             : PROG ACCOLADE_OUVRANTE{num_region_decl = 0;tab_region[cpt_region] = 0;} corps ACCOLADE_FERMANTE{printf("\n");afficher_decl();printf("\n");afficherRepr();}
                       ;
 
 corps                 : {region_empiler();} liste_declarations liste_instructions {curr_region = region_depiler();ajout_val_table_reg(curr_region,$3);}{/*afficher_arbre($3,0);*/}{enregistrer_arbre($3,0,f);}
@@ -74,19 +82,19 @@ liste_declaration_fct :
                       | declaration_fonction POINT_VIRGULE liste_declaration_fct
                       ;
 
-liste_instructions    : DEBUT  suite_liste_inst FIN {$$=$2;}
+liste_instructions    : DEBUT suite_liste_inst FIN {$$=$2;}
                       ;
 
 suite_liste_inst      : {$$=arbre_vide();}
                       | instruction {$$=$1;}
-                      | suite_liste_inst POINT_VIRGULE instruction {$$= concat_pere_fils(creer_noeud(C_LIST,-1,-1),concat_pere_frere($3,$1));}
+                      | suite_liste_inst POINT_VIRGULE instruction {$$= concat_pere_fils(creer_noeud(C_LIST,-1,1),concat_pere_frere($3,$1));}
                       ;
 
 declaration_type      : TYPE IDF{idf = $2;} DEUX_POINTS suite_declaration_type
                       ;
 
-suite_declaration_type : STRUCT{nbr_champs_struct = 0; reserveElem();} liste_champs{indice_repr = ajoutNbr(nbr_champs_struct); num_declaration = add_champs(idf,TYPE_STRUCT,get_curr_region(),indice_repr,0); } FSTRUCT
-                       | TABLEAU{nbr_champs_tab = 0; reserveElem();reserveElem();} dimension{ajoutNbr(nbr_champs_tab);} DE nom_type{indice_repr = ajoutNbr($6); num_declaration = add_champs(idf,TYPE_TABLEAU,get_curr_region(),indice_repr,0); }
+suite_declaration_type : STRUCT{nbr_champs_struct = 0; decalage_type=0; reserveElem();} liste_champs{indice_repr = ajoutNbr(nbr_champs_struct); num_declaration = add_champs(idf,TYPE_STRUCT,tab_region[cpt_region],indice_repr,decalage_type);} FSTRUCT
+                       | TABLEAU{nbr_champs_tab = 0; reserveElem();reserveElem();decalage_type = 1;} dimension{ajoutNbr(nbr_champs_tab);} DE nom_type{indice_repr = ajoutNbr($6); num_declaration = add_champs(idf,TYPE_TABLEAU,tab_region[cpt_region],indice_repr-1,decalage_type); }
                        ;
 
 dimension             : CROCHET_OUVRANT liste_dimensions CROCHET_FERMANT
@@ -96,35 +104,35 @@ liste_dimensions      : une_dimension {nbr_champs_tab++;}
                       | liste_dimensions VIRGULE une_dimension {nbr_champs_tab++;}
                       ;
 
-une_dimension         : CSTE_ENTIERE POINT POINT CSTE_ENTIERE{addElement($1);addElement($4);}
+une_dimension         : CSTE_ENTIERE POINT POINT CSTE_ENTIERE{addElement($1);addElement($4);decalage_type*=($4-$1+1);}
                       ;
 
 liste_champs          : un_champ {nbr_champs_struct++;}
                       | liste_champs un_champ {nbr_champs_struct++;}
                       ;
 
-un_champ              : IDF DEUX_POINTS nom_type POINT_VIRGULE {addElement($1);addElement($3);addElement(0);}
+un_champ              : IDF DEUX_POINTS nom_type POINT_VIRGULE {int taille=tabDeclaration[$3].execution;addElement($1);addElement($3);addElement(decalage_type); decalage_type+=taille;}
                       ;
 
-nom_type              : type_simple
-                      | IDF
+nom_type              : type_simple {$$ = $1;}
+                      | IDF {$$ = $1;}
                       ;
 
-type_simple           : ENTIER
-                      | REEL
-                      | BOOLEEN
-                      | CARACTERE
-                      | CHAINE CROCHET_OUVRANT CSTE_ENTIERE CROCHET_FERMANT
+type_simple           : ENTIER {$$ = 0;}
+                      | REEL {$$ = 1;}
+                      | BOOLEEN {$$ = 2;}
+                      | CARACTERE {$$ = 3;}
+                      | CHAINE CROCHET_OUVRANT CSTE_ENTIERE CROCHET_FERMANT {$$ = 4;}
                       ;
 
-declaration_variable  : VARIABLE IDF DEUX_POINTS nom_type{ num_declaration = add_champs($2,TYPE_VARIABLE,get_curr_region(),$4,0); }
-                      | VARIABLE IDF DEUX_POINTS nom_type{ num_declaration = add_champs($2,TYPE_VARIABLE,get_curr_region(),$4,0); } OPAFF expression {verification_type($7,num_declaration,1);}
+declaration_variable  : VARIABLE IDF DEUX_POINTS nom_type{ num_declaration = add_champs($2,TYPE_VARIABLE,tab_region[cpt_region],$4,decalage_var); decalage_var += getDecalage(num_declaration); printf("||%d||",num_declaration);}
+                      | VARIABLE IDF DEUX_POINTS nom_type{ num_declaration = add_champs($2,TYPE_VARIABLE,tab_region[cpt_region],$4,decalage_var); decalage_var += getDecalage(num_declaration); printf("||%d||",num_declaration);} OPAFF expression {verification_type($7,num_declaration,1);}
      		      ;
 
-declaration_procedure : PROCEDURE{nbr_param = 0; reserveElem();} IDF liste_parametres{indice_repr = ajoutNbr(nbr_param); num_declaration = add_champs($3,TYPE_PROCEDURE,get_curr_region(),indice_repr,0); } ACCOLADE_OUVRANTE corps ACCOLADE_FERMANTE
+declaration_procedure : PROCEDURE{nbr_param = 0; reserveElem();num_region_decl++;} IDF liste_parametres{indice_repr = ajoutNbr(nbr_param); num_declaration = add_champs($3,TYPE_PROCEDURE,tab_region[cpt_region],indice_repr,num_region_decl);tab_region[++cpt_region] = num_region_decl; } ACCOLADE_OUVRANTE corps ACCOLADE_FERMANTE{cpt_region--;}
                       ;
 
-declaration_fonction  : FONCTION{nbr_param = 0; reserveElem();reserveElem();} IDF liste_parametres RETOURNE type_simple{indice_repr = ajoutNbr(0); ajoutNbr(nbr_param); num_declaration = add_champs($3,TYPE_FONCTION,get_curr_region(),$6,0); }  ACCOLADE_OUVRANTE corps ACCOLADE_FERMANTE
+declaration_fonction  : FONCTION{nbr_param = 0; reserveElem();reserveElem();num_region_decl++;} IDF liste_parametres RETOURNE type_simple{indice_repr = ajoutNbr($6); ajoutNbr(nbr_param); num_declaration = add_champs($3,TYPE_FONCTION,tab_region[cpt_region],indice_repr,num_region_decl);tab_region[++cpt_region] = num_region_decl; }  ACCOLADE_OUVRANTE corps ACCOLADE_FERMANTE{cpt_region--;}
                       ;
 
 liste_parametres      : PARENTHESE_OUVRANTE liste_param PARENTHESE_FERMANTE
@@ -135,7 +143,7 @@ liste_param           :
                       | liste_param POINT_VIRGULE un_param{nbr_param++;}
                       ;
 
-un_param              : IDF DEUX_POINTS type_simple{ num_declaration = add_champs($1,TYPE_VARIABLE,get_curr_region(),$3,1); addElement($1);addElement($3);}
+un_param              : IDF DEUX_POINTS type_simple{ num_declaration = add_champs($1,TYPE_VARIABLE,tab_region[cpt_region],$3,1); addElement($1);addElement($3);}
                       ;
 
 instruction           : affectation {$$=$1;}
@@ -143,7 +151,7 @@ instruction           : affectation {$$=$1;}
                       | tant_que {$$=$1;}
                       | repeter_tant_que {$$=$1;}
                       | appel {$$=$1;}
-                      | RETOURNE resultat_retourne {$$=concat_pere_fils(creer_noeud(C_RETOURNE,-999,-1),$2);}
+                      | RETOURNE resultat_retourne {$$=concat_pere_fils(creer_noeud(C_RETOURNE,-999,1),$2);}
                       ;
 
 resultat_retourne     : {$$=arbre_vide();}

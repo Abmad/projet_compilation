@@ -8,7 +8,7 @@
 int suivantDebut = 500;
 
 int add_champs(int _index, int _type, int _region, int _description, int _execution)
-{	
+{
 	if(tabDeclaration[_index].type == -1)
 	{
 		tabDeclaration[_index].type = _type;
@@ -65,7 +65,7 @@ int main(int argc, char * argv[], char * envp[])
 void init_decl()
 {
 	//Set à -1 de tous les champs tu tableau de structures
-	memset(tabDeclaration, -1, (size_t)LNG_DECL * sizeof(champsdeclaration));
+	memset(tabDeclaration, -1, (int)LNG_DECL * sizeof(champsdeclaration));
 	
 	//Ajout des 5 types de bases
 	add_champs(0,TYPE_INT,-1,-1,1);
@@ -78,9 +78,27 @@ void init_decl()
 
 void afficher_decl()
 {
-	int it = 0;
+	int it, itFor;
 	char * type;
 	
+	printf_couleur_decl(TXT_VERT,"==============================\n");
+	printf(" > Table des declarations : \n");
+	printf_couleur_decl(TXT_VERT,"==============================\n");
+	printf_couleur_decl(BCK_BLEU,"+-----+---------------+-----+-----+-----+-----+\n");
+	printf_couleur_decl(BCK_BLEU,"|");
+	printf_couleur_decl(TXT_VERT,"INDEX");
+	printf_couleur_decl(BCK_BLEU,"|");
+	printf_couleur_decl(TXT_VERT,"TYPE           ");
+	printf_couleur_decl(BCK_BLEU,"|");
+	printf_couleur_decl(TXT_VERT,"SUIV ");
+	printf_couleur_decl(BCK_BLEU,"|");
+	printf_couleur_decl(TXT_VERT,"REG  ");
+	printf_couleur_decl(BCK_BLEU,"|");
+	printf_couleur_decl(TXT_VERT,"DESC ");
+	printf_couleur_decl(BCK_BLEU,"|");
+	printf_couleur_decl(TXT_VERT,"EXEC ");
+	printf_couleur_decl(BCK_BLEU,"|\n");
+	printf_couleur_decl(BCK_BLEU,"+-----+---------------+-----+-----+-----+-----+\n");
 	
 	for( it = 0; it < LNG_DECL; it++)
 	{
@@ -119,8 +137,79 @@ void afficher_decl()
 					type = "TYPE_VARIABLE";
 					break;
 			}
-		
-			printf("%d, %s, %d, %d, %d, %d\n", it, type, tabDeclaration[it].suivant, tabDeclaration[it].region, tabDeclaration[it].description, tabDeclaration[it].execution);
+			printf_couleur_decl(BCK_BLEU,"|");
+			if(it < 10) printf("  %d  ",it);
+			else if(it < 100) printf(" %d  ",it);
+			else printf(" %d ",it);
+			printf_couleur_decl(BCK_BLEU,"|");
+			printf("%s",type);
+			for(itFor = 0; itFor < 15-strlen(type);itFor++) printf(" ");
+			printf_couleur_decl(BCK_BLEU,"|");
+			
+			if(tabDeclaration[it].suivant == -1) printf("  -1 ");
+			else if(tabDeclaration[it].suivant < 10) printf("  %d  ",tabDeclaration[it].suivant);
+			else if(tabDeclaration[it].suivant < 100) printf(" %d  ",tabDeclaration[it].suivant);
+			else printf(" %d ",tabDeclaration[it].suivant);
+			printf_couleur_decl(BCK_BLEU,"|");
+			
+			if(tabDeclaration[it].region == -1) printf("  -1 ");
+			else if(tabDeclaration[it].region < 10) printf("  %d  ",tabDeclaration[it].region);
+			else if(tabDeclaration[it].region < 100) printf(" %d  ",tabDeclaration[it].region);
+			else printf(" %d ",tabDeclaration[it].region);
+			printf_couleur_decl(BCK_BLEU,"|");
+			
+			if(tabDeclaration[it].description == -1) printf("  -1 ");
+			else if(tabDeclaration[it].description < 10) printf("  %d  ",tabDeclaration[it].description);
+			else if(tabDeclaration[it].description < 100) printf(" %d  ",tabDeclaration[it].description);
+			else printf(" %d ",tabDeclaration[it].description);
+			printf_couleur_decl(BCK_BLEU,"|");
+			
+			if(tabDeclaration[it].execution == -1) printf("  -1 ");
+			else if(tabDeclaration[it].execution < 10) printf("  %d  ",tabDeclaration[it].execution);
+			else if(tabDeclaration[it].execution < 100) printf(" %d  ",tabDeclaration[it].execution);
+			else printf(" %d ",tabDeclaration[it].execution);
+			printf_couleur_decl(BCK_BLEU,"|\n");
+			
+			printf_couleur_decl(BCK_BLEU,"+-----+---------------+-----+-----+-----+-----+\n");
 		}
+	}
+	printf_couleur_decl(TXT_VERT,"==============================\n\n");
+}
+
+int getDecalage(int _index)
+{
+	int retour = 0;
+	switch(tabDeclaration[_index].type)
+	{
+		case 9: 
+			if(tabDeclaration[_index].description <= 4) retour = 1;
+	}
+	return retour;
+}
+
+
+
+
+
+void printf_couleur_decl(char *_couleur, char *_texte, ...)
+{
+	va_list liste;
+	char texte_local[2048];
+	
+	memset(texte_local, 0, sizeof(texte_local));
+	va_start(liste, _texte);
+	(void) vsprintf(texte_local, _texte, liste);
+	va_end(liste);
+	
+	if (strlen(texte_local) > 0 && texte_local[strlen(texte_local) - 1] == '\n')
+	{
+		/* On a un retour a la ligne*/
+		texte_local[strlen(texte_local) - 1] = 0;
+		printf("%s%s%s", _couleur, texte_local, TXT_NORMAL);
+		printf("\n");
+	}
+	else
+	{
+		printf("%s%s%s", _couleur, texte_local, TXT_NORMAL);
 	}
 }

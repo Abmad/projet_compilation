@@ -1,4 +1,5 @@
 #include "representation_entetes_sous_programmes.h"
+#include <stdarg.h>
 
 //table de représentation des types
 //et des entêtes de sous-programmes
@@ -23,41 +24,53 @@ void initRepr()
 {
 	/*Set à -1 de tous les champs du tableau*/
 	memset(tabRepr, -1, (size_t)LNG_REPRESENTATION * sizeof(int));
-	
 }
 
 /*Affichage Tableau*/
 void afficherRepr()
 {
 	int itFor;
+	printf_couleur(TXT_VERT,"==============================\n");
+	printf(" > Table de representation : \n");
+	printf_couleur(TXT_VERT,"==============================\n");
+	printf("	");
+	printf_couleur(BCK_BLEU,"+-----+-----+\n");
+	printf("	");
+	printf_couleur(BCK_BLEU,"|");
+	printf_couleur(TXT_VERT,"INDEX");
+	printf_couleur(BCK_BLEU,"|");
+	printf_couleur(TXT_VERT," VAL ");
+	printf_couleur(BCK_BLEU,"|\n");
 	for( itFor = 0; itFor < indiceSuivant; itFor++)
 	{
-		printf("%d, ",tabRepr[itFor]);
+		printf("	");
+		printf_couleur(BCK_BLEU,"+-----+-----+\n");
+		printf("	");
+		printf_couleur(BCK_BLEU,"|");
+		if(itFor < 10) printf("  %d  ",itFor);
+		else if(itFor < 100) printf(" %d  ",itFor);
+		else printf("%d",itFor);
+		
+		printf_couleur(BCK_BLEU,"|");
+		
+		if(tabRepr[itFor] < 10) printf("  %d  ",tabRepr[itFor]);
+		else if(tabRepr[itFor] < 100) printf(" %d  ",tabRepr[itFor]);
+		else printf("%d",tabRepr[itFor]);
+		printf_couleur(BCK_BLEU, "|");
+		printf_couleur(BCK_NOIR,"\n");
 	}
-
-/*
-	int itFor, itRepr;
-	
-	for( itFor = 0; itFor < indiceSuivant; itFor++)
-	{
-		printf("|");
-		for(itRepr = itFor; itRepr <= (itFor+tabRepr[itFor]*3); itRepr++)
-		{
-			printf("%d  ",tabRepr[itRepr]);
-		}
-		printf("|\n");
-		itFor = itRepr-1;
-	}
-	*/
+	printf("	");
+	printf_couleur(BCK_BLEU,"+-----+-----+\n");
+	printf_couleur(TXT_VERT,"==============================\n\n");
 }
 
-/*Reserve une place pour le nbr d'élements*/
+/*Reserve une place pour le nbr d'élements ou le type*/
 void reserveElem()
 {
 	indiceSuivant++;
 }
 
-/*Ajoute un élement à sa place réservée (uniquement pour les tailles)*/
+/*Ajoute un élement à sa place réservée (pour les tailles et les types)*/
 int ajoutNbr(int _elem)
 {
 	int indice = indiceSuivant-1;
@@ -74,36 +87,30 @@ int ajoutNbr(int _elem)
 	}
 }
 
-/*
-int main(int argc, char * argv[], char * envp[])
+
+
+
+
+
+void printf_couleur(char *_couleur, char *_texte, ...)
 {
-	//TEST
-	initRepr();
+	va_list liste;
+	char texte_local[2048];
 	
-	printf("Test ajouts\n");
+	memset(texte_local, 0, sizeof(texte_local));
+	va_start(liste, _texte);
+	(void) vsprintf(texte_local, _texte, liste);
+	va_end(liste);
 	
-	addElement(3);
-	addElement(0);
-	addElement(1);
-	addElement(2);
-	addElement(0);
-	addElement(1);
-	addElement(2);
-	addElement(0);
-	addElement(1);
-	addElement(2);
-	
-	addElement(2);
-	addElement(0);
-	addElement(1);
-	addElement(2);
-	addElement(0);
-	addElement(1);
-	addElement(2);
-	
-	printf("Test affichage du tableau\n");
-	afficherRepr();
-	
-	return 0;
+	if (strlen(texte_local) > 0 && texte_local[strlen(texte_local) - 1] == '\n')
+	{
+		/* On a un retour a la ligne*/
+		texte_local[strlen(texte_local) - 1] = 0;
+		printf("%s%s%s", _couleur, texte_local, TXT_NORMAL);
+		printf("\n");
+	}
+	else
+	{
+		printf("%s%s%s", _couleur, texte_local, TXT_NORMAL);
+	}
 }
-*/
