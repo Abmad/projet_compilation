@@ -8,7 +8,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "table_regions.h"
-
+#include "../Table_lexico/tablexico.h"
+#include "../Arbre/arbre.h"
 void init_table_regions(){
     table_index = 0;
     num_regions = 0;
@@ -21,8 +22,20 @@ void init_table_regions(){
         table_region[i].arbre = NULL;
     }
 }
-void ajout_val_table_reg(int taille, int nis, arbre arbre){
-    
+int taille = 0;
+void calcule_taille(arbre _arbre){
+    if((*_arbre).val_noeud >= 0)
+    taille += table_lexico[(*_arbre).val_noeud].longueur;
+    if(_arbre->gauche != NULL){
+        calcule_taille(_arbre->gauche);
+    }
+    if(_arbre->droite != NULL){
+        calcule_taille(_arbre->droite);
+    }
+}
+void ajout_val_table_reg(int nis, arbre arbre){
+    taille = 0;
+    calcule_taille(arbre);
     table_region[table_index].taille = taille;
     table_region[table_index].nis = nis;
     table_region[table_index].arbre = arbre;

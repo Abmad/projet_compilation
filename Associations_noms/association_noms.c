@@ -6,6 +6,7 @@
 //  Copyright © 2017 Abdelmoghit MADIH. All rights reserved.
 //
 #include <stdlib.h>
+#include <string.h>
 #include "association_noms.h"
 #include "../Table_declarations/table_declaration.h"
 #include "../Table_lexico/tablexico.h"
@@ -44,6 +45,14 @@ int get_num_declaration(int numlexico){
 }
 
 void ajouter_error(char * _lexeme,int nbLignes){
+   for(int i=0;i<cpt_errors;i++)
+	{
+//printf("param char: %s nblignes: %d\n",_lexeme,nbLignes);
+//printf("param char: %s nblignes: %d\n",tab_errors[i]->lexeme,tab_errors[i]->ligne);
+if((tab_errors[i])->ligne == nbLignes && strcmp((tab_errors[i])->lexeme,_lexeme) == 0)
+		return;
+
+}
     error erreur = malloc(sizeof(struct error));
     erreur->ligne = nbLignes;
     erreur->lexeme = _lexeme;

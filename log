@@ -1,14 +1,5 @@
 
-              numlex : 7type_dst =2 numLigne:7
-       numlex : 9type_dst =4 numLigne:13
-        numlex : 15type_dst =-1 numLigne:18
-  numlex : 16type_dst =-1 numLigne:19
-  numlex : 17type_dst =-1 numLigne:20
-  numlex : 18type_dst =-1 numLigne:21
-  numlex : 19type_dst =-1 numLigne:22
-                  numlex : 34type_dst =-1 numLigne:29
-  numlex : 6type_dst =1 numLigne:32
-
+                           
 
 0, TYPE_INT, -1, -1, -1, 1
 1, TYPE_FLOAT, -1, -1, -1, 1
@@ -17,17 +8,38 @@
 4, TYPE_STRING, -1, -1, -1, 1
 5, TYPE_VARIABLE, -1, 0, 0, 0
 6, TYPE_VARIABLE, -1, 0, 1, 0
-7, TYPE_VARIABLE, -1, 0, 2, 0
-8, TYPE_VARIABLE, -1, 0, 3, 0
-9, TYPE_VARIABLE, -1, 0, 4, 0
+7, TYPE_TABLEAU, 500, 0, 1, 0
+12, TYPE_STRUCT, -1, 0, 10, 0
+500, TYPE_TABLEAU, -1, 0, 5, 0
 
-Erreur semantique ligne: 12, a est de type entier et 1.1 est de type reel 
- 
- 
- 
- 
- 
- 
+1, 0, 8, 9, 2, 0, 8, 9, 10, 11, 2, 13, 0, 0, 13, 0, 0, NIS: 0  TAILLE: 32 
+|LIST_INSTRUCTION:-1:-1
+|  OPAFF:-980:-1
+|    IDF:7:500
+|    MULT:-989:-1
+|      CSTE_ENTIERE:10:-1
+|      PLUS:-990:-1
+|        MOINS:-991:-1
+|          PLUS:-990:-1
+|            MULT:-989:-1
+|              CSTE_ENTIERE:10:-1
+|              CSTE_ENTIERE:15:-1
+|            CSTE_STRING:16:-1
+|          DIV:-988:-1
+|            MULT:-989:-1
+|              CSTE_ENTIERE:17:-1
+|              CSTE_ENTIERE:15:-1
+|            CSTE_ENTIERE:18:-1
+|        MULT:-989:-1
+|          DIV:-988:-1
+|            CSTE_ENTIERE:19:-1
+|            CSTE_ENTIERE:18:-1
+|          PLUS:-990:-1
+|            CSTE_ENTIERE:18:-1
+|            CSTE_REEL:20:-1
+|  OPAFF:-980:-1
+|    IDF:7:500
+|    CSTE_ENTIERE:14:-1
 HashCode: 0,Lexeme: int,Longueur: 3
 HashCode: 1,Lexeme: float,Longueur: 5
 HashCode: 2,Lexeme: bool,Longueur: 4
@@ -35,31 +47,17 @@ HashCode: 3,Lexeme: char,Longueur: 4
 HashCode: 4,Lexeme: string,Longueur: 6
 HashCode: 5,Lexeme: a,Longueur: 1
 HashCode: 6,Lexeme: z,Longueur: 1
-HashCode: 7,Lexeme: e,Longueur: 1
-HashCode: 8,Lexeme: r,Longueur: 1
-HashCode: 9,Lexeme: t,Longueur: 1
-HashCode: 10,Lexeme: 3,Longueur: 1
-HashCode: 11,Lexeme: 1.1,Longueur: 3
-HashCode: 12,Lexeme: true,Longueur: 4
-HashCode: 13,Lexeme: 'a',Longueur: 3
-HashCode: 14,Lexeme: "aaa",Longueur: 5
-HashCode: 15,Lexeme: y,Longueur: 1
-HashCode: 16,Lexeme: u,Longueur: 1
-HashCode: 17,Lexeme: i,Longueur: 1
-HashCode: 18,Lexeme: o,Longueur: 1
-HashCode: 19,Lexeme: p,Longueur: 1
-HashCode: 20,Lexeme: 2,Longueur: 1
-HashCode: 21,Lexeme: 9,Longueur: 1
-HashCode: 22,Lexeme: 7,Longueur: 1
-HashCode: 23,Lexeme: 8,Longueur: 1
-HashCode: 24,Lexeme: 4,Longueur: 1
-HashCode: 25,Lexeme: 6,Longueur: 1
-HashCode: 26,Lexeme: 5,Longueur: 1
-HashCode: 27,Lexeme: 5.3,Longueur: 3
-HashCode: 28,Lexeme: fct,Longueur: 3
-HashCode: 29,Lexeme: aa,Longueur: 2
-HashCode: 30,Lexeme: aaa,Longueur: 3
-HashCode: 31,Lexeme: "azerty",Longueur: 8
-HashCode: 32,Lexeme: tableau,Longueur: 7
-HashCode: 33,Lexeme: blabla,Longueur: 6
-HashCode: 34,Lexeme: toto,Longueur: 4
+HashCode: 7,Lexeme: monTab,Longueur: 6
+HashCode: 8,Lexeme: 1,Longueur: 1
+HashCode: 9,Lexeme: 10,Longueur: 2
+HashCode: 10,Lexeme: 2,Longueur: 1
+HashCode: 11,Lexeme: 3,Longueur: 1
+HashCode: 12,Lexeme: maStruct,Longueur: 8
+HashCode: 13,Lexeme: monChamps,Longueur: 9
+HashCode: 14,Lexeme: 11,Longueur: 2
+HashCode: 15,Lexeme: 5,Longueur: 1
+HashCode: 16,Lexeme: "aaaa",Longueur: 6
+HashCode: 17,Lexeme: 9,Longueur: 1
+HashCode: 18,Lexeme: 8,Longueur: 1
+HashCode: 19,Lexeme: 6,Longueur: 1
+HashCode: 20,Lexeme: 8.5,Longueur: 3

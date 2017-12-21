@@ -17,4 +17,7 @@ void ajouter_tab_error(char * msg);
 void afficher_erreur_sem();
 char* get_nom_type(int nature);
 int get_type_idf(int numdec);
+int get_numlex_arbre(arbre a);
+void verifier_function(arbre _arbre);
+
 #endif

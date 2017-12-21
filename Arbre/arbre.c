@@ -139,6 +139,10 @@ void afficher_arbre(arbre _arbre, int indent)
 	    case C_LIST:
 		type = "LIST_INSTRUCTION";
 		break;
+	
+	    case C_FUNC_PROC:
+		type = "APPELE";
+		break;
         }
     }else{
         exit-1;
@@ -248,6 +252,10 @@ void enregistrer_arbre(arbre _arbre,int indent,FILE *f ){
                 break;
             case C_LIST:
                 type = "LIST_INSTRUCTION";
+                break;
+
+            case C_FUNC_PROC:
+                type = "APPELE";
                 break;
         }
     }else{

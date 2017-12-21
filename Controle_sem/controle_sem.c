@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "controle_sem.h"
 #include "../Table_declarations/table_declaration.h"
 #include "../Table_lexico/tablexico.h"
@@ -21,7 +22,7 @@ void arbre_to_tab(arbre _arbre){
    tab_exp[count_tab_exp].numlex = (*_arbre).val_noeud;
 	count_tab_exp++;
 	cpt_tab_exp++;
-    if(_arbre->gauche != NULL){
+    if((*_arbre).nature != C_FUNC_PROC &&_arbre->gauche != NULL){
         arbre_to_tab(_arbre->gauche);
     }
     if(_arbre->droite != NULL){
@@ -33,7 +34,7 @@ void verification_type(arbre dec1,int dec2,int isDec){
 count_tab_exp = 0;
 if(tabDeclaration[dec2].type == -1)return;
 arbre_to_tab(dec1);
-
+if(dec2<4)return;
 
 if(count_tab_exp == 1){
   if(tab_exp[0].nature >=C_CSTE_ENTIERE && tab_exp[0].nature <= C_CSTE_STRING){
@@ -56,7 +57,7 @@ if(count_tab_exp == 1){
     }   
 
   }else if(tab_exp[0].nature > C_CSTE_STRING){
-	printf("numlex : %d",tab_exp[0].numlex);
+
 	int numlex_dec = dec2;
 	   int i;
 	   for(i=4;i<LNG_DECL;i++){
@@ -66,32 +67,64 @@ if(count_tab_exp == 1){
 	    }
 	    }
 	}
+
+//	printf("cote droit:numdex: %d, type:%d cote gauche :numlex : %d",numlex_dec,tabDeclaration[dec2].description,tab_exp[0].numlex);
 int type_dst = get_type_idf(tab_exp[0].numlex);
 
-printf("type_dst =%d numLigne:%d\n",type_dst,nbLignes);
+//printf("type_dst =%d numLigne:%d\n",type_dst,nbLignes);
 //tabDeclaration[tab_exp[0].numlex]
 	if(type_dst!= tabDeclaration[dec2].description){
 	char * msg = malloc(sizeof(char));
 	if(tabDeclaration[tab_exp[0].numlex].type == TYPE_VARIABLE)
-	sprintf(msg,"Erreur semantique ligne: %d, %s est de type %s et %s est de type %s",nbLignes,get_lexeme(numlex_dec),get_nom_type(tabDeclaration[dec2].description),get_lexeme(tab_exp[0].numlex),get_nom_type(tab_exp[0].nature));
+	sprintf(msg,"Erreur semantique ligne: %d, %s est de type %s et %s est de type %s",nbLignes,get_lexeme(numlex_dec),get_nom_type(tabDeclaration[dec2].description),get_lexeme(tab_exp[0].numlex),get_nom_type(tabDeclaration[tab_exp[0].numlex].description));
 	ajouter_tab_error(msg);
 }
 
 }
 }else{
-/*int i;
-printf("==lexeme %s: tabdec: %d  numLignes:%d \n",get_lexeme(get_numlex(dec2)),tabDeclaration[dec2].description,nbLignes);
+int j;
+for(j=0;j<count_tab_exp;j++){
+  if(tab_exp[j].nature >=C_CSTE_ENTIERE && tab_exp[j].nature <= C_CSTE_STRING){
+
 //afficher_tab_exp();
+    if(tabDeclaration[dec2].description != tab_exp[j].nature)
+    {
+	int numlex_dec = dec2;
+	   int i;
+	   for(i=4;i<LNG_DECL;i++){
+	    if(tabDeclaration[i].type != -1){
+		if(tabDeclaration[i].suivant == numlex_dec){
+		numlex_dec = i;i=4;
+	    }
+	    }
+	}
+	char * msg = malloc(sizeof(char));
+	sprintf(msg,"Erreur semantique ligne: %d, %s est de type %s et %s est de type %s",nbLignes,get_lexeme(numlex_dec),get_nom_type(tabDeclaration[dec2].description),get_lexeme(tab_exp[j].numlex),get_nom_type(tab_exp[j].nature));
+	ajouter_tab_error(msg);
+    }   
 
-for(i=0;i<cpt_tab_exp;i++){
-//printf("nature:%s  numlex %d \n",get_nom_type(tab_exp[i].nature),tab_exp[i].numlex);
-if(tab_exp[i].numlex>=0 && tab_exp[i].nature != -1)
-printf(" lex: %s nature: %d nbLignes:%d \n", get_lexeme(tab_exp[i].numlex),tab_exp[i].nature,nbLignes);else if (tab_exp[i].numlex <= 0)
-printf("lex: %d nature %s nbLigne %d \n",tab_exp[i].numlex,get_nom_type(tab_exp[i].nature),nbLignes);
-}*/
+  }else if(tab_exp[j].nature > C_CSTE_STRING){
+
+	int numlex_dec = dec2;
+	   int i;
+	   for(i=4;i<LNG_DECL;i++){
+	    if(tabDeclaration[i].type != -1){
+		if(tabDeclaration[i].suivant == numlex_dec){
+		numlex_dec = i;i=4;
+	    }
+	    }
+	}
+
+int type_dst = get_type_idf(tab_exp[j].numlex);
+	if(type_dst!= tabDeclaration[dec2].description){
+	char * msg = malloc(sizeof(char));
+	if(tabDeclaration[tab_exp[j].numlex].type == TYPE_VARIABLE)
+	sprintf(msg,"Erreur semantique ligne: %d, %s est de type %s et %s est de type %s",nbLignes,get_lexeme(numlex_dec),get_nom_type(tabDeclaration[dec2].description),get_lexeme(tab_exp[j].numlex),get_nom_type(tabDeclaration[tab_exp[j].numlex].description));
+	ajouter_tab_error(msg);
 }
-//afficher_arbre(dec1,0);
-
+}
+}
+}
 }
 int get_type_idf(int numdec){
 int type_dst = -1;
@@ -103,7 +136,7 @@ case TYPE_STRUCT:
 type_dst = tabDeclaration[numdec].description;
 break;
 case C_FUNC_PROC:
-/*int nbChamps = tabRepr[tabDeclaration[numdec].description];
+int nbChamps = tabRepr[tabDeclaration[numdec].description];
 int decallage = tabDeclaration[numdec].description+(nbChamps * 2)+1;
 int check = -1;
 if(tabRepr[decallage] == -1)
@@ -117,7 +150,7 @@ type_dst = -1;
 }else{
 type_dst = tabRepr[tabDeclaration[numdec].description]+1;
 }
-}*/
+}
 break;
 case TYPE_TABLEAU:
 type_dst = tabDeclaration[numdec].description;
@@ -128,7 +161,9 @@ return type_dst;
 }
 
 void ajouter_tab_error(char * msg){
-
+int i;
+for(i=0;i<cpt_error_sem;i++)
+if(strcmp(msg,tab_error_sem[i]) == 0)return;
 tab_error_sem[cpt_error_sem] = msg;
 cpt_error_sem++;
 
@@ -202,7 +237,8 @@ char * get_nom_type(int nature){
                 type = "multiplication";
                 break;
 	    default:
-                type = "null";
+		
+                type = get_lexeme(nature);
 		break;
 return type;
 
@@ -232,4 +268,25 @@ int i;
 	    }
 	}
 return num_dec;
+}
+int get_numlex_arbre(arbre a){
+
+count_tab_exp = 0;
+arbre_to_tab(a);
+int i;
+for(i=0;i<count_tab_exp;i++){
+if(tab_exp[i].nature == C_IDF){
+return tab_exp[i].numlex;
+}
+}
+return -1;
+}
+void verifier_function(arbre _arbre){
+
+count_tab_exp = 0;
+arbre_to_tab(_arbre);
+int i;
+for(i=0;i<count_tab_exp;i++){
+printf("nature%d\n",tab_exp[i].nature);
+}
 }
