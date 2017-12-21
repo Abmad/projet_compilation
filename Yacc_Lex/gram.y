@@ -142,7 +142,7 @@ instruction           : affectation {$$=$1;}
                       | condition {$$=$1;}
                       | tant_que {$$=$1;}
                       | repeter_tant_que {$$=$1;}
-                      | appel {$$=$1; verifier_function($$);}
+                      | appel {$$=$1;}
                       | RETOURNE resultat_retourne {$$=concat_pere_fils(creer_noeud(C_RETOURNE,-999,-1),$2);}
                       ;
 
@@ -150,8 +150,8 @@ resultat_retourne     : {$$=arbre_vide();}
                       | expression {$$=$1;}
                       ;
 
-appel                 : IDF liste_arguments {$$= concat_pere_fils(creer_noeud(C_FUNC_PROC,$1,get_num_declaration($1)),$2);}
-                      ;
+appel                 : IDF liste_arguments {$$= concat_pere_fils(creer_noeud(C_FUNC_PROC,$1,get_num_declaration($1)),$2); verifier_function($$);}
+ 		      ;
 
 liste_arguments       : PARENTHESE_OUVRANTE PARENTHESE_FERMANTE {$$=arbre_vide();}
                       | PARENTHESE_OUVRANTE liste_args PARENTHESE_FERMANTE {$$=$2;}

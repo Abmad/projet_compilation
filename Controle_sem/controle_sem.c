@@ -5,8 +5,8 @@
 #include "../Table_declarations/table_declaration.h"
 #include "../Table_lexico/tablexico.h"
 #include "../Arbre/arbre.h"
+#include "../Table_representation/representation_entetes_sous_programmes.h"
 extern int nbLignes;
-int tabRepr[100];
 struct exp{
 int nature;
 int numlex;
@@ -70,10 +70,11 @@ if(count_tab_exp == 1){
 
 //	printf("cote droit:numdex: %d, type:%d cote gauche :numlex : %d",numlex_dec,tabDeclaration[dec2].description,tab_exp[0].numlex);
 int type_dst = get_type_idf(tab_exp[0].numlex);
-
-//printf("type_dst =%d numLigne:%d\n",type_dst,nbLignes);
-//tabDeclaration[tab_exp[0].numlex]
-	if(type_dst!= tabDeclaration[dec2].description){
+if(type_dst == -2){
+	char * msg = malloc(sizeof(char));
+	sprintf(msg,"Erreur semantique ligne: %d, une procedure ne peut pas etre affecter a une variable",nbLignes);
+	ajouter_tab_error(msg);
+}else if(type_dst!= tabDeclaration[dec2].description){
 	char * msg = malloc(sizeof(char));
 	if(tabDeclaration[tab_exp[0].numlex].type == TYPE_VARIABLE)
 	sprintf(msg,"Erreur semantique ligne: %d, %s est de type %s et %s est de type %s",nbLignes,get_lexeme(numlex_dec),get_nom_type(tabDeclaration[dec2].description),get_lexeme(tab_exp[0].numlex),get_nom_type(tabDeclaration[tab_exp[0].numlex].description));
@@ -116,7 +117,11 @@ for(j=0;j<count_tab_exp;j++){
 	}
 
 int type_dst = get_type_idf(tab_exp[j].numlex);
-	if(type_dst!= tabDeclaration[dec2].description){
+if(type_dst == -2){
+	char * msg = malloc(sizeof(char));
+	sprintf(msg,"Erreur semantique ligne: %d, une procedure ne peut pas etre affecter a une variable",nbLignes);
+	ajouter_tab_error(msg);
+}else if(type_dst!= tabDeclaration[dec2].description){
 	char * msg = malloc(sizeof(char));
 	if(tabDeclaration[tab_exp[j].numlex].type == TYPE_VARIABLE)
 	sprintf(msg,"Erreur semantique ligne: %d, %s est de type %s et %s est de type %s",nbLignes,get_lexeme(numlex_dec),get_nom_type(tabDeclaration[dec2].description),get_lexeme(tab_exp[j].numlex),get_nom_type(tabDeclaration[tab_exp[j].numlex].description));
@@ -128,6 +133,7 @@ int type_dst = get_type_idf(tab_exp[j].numlex);
 }
 int get_type_idf(int numdec){
 int type_dst = -1;
+int decallage,nbChamps,check;
 switch(tabDeclaration[numdec].type){
 case TYPE_VARIABLE:
 type_dst = tabDeclaration[numdec].description;
@@ -136,17 +142,17 @@ case TYPE_STRUCT:
 type_dst = tabDeclaration[numdec].description;
 break;
 case C_FUNC_PROC:
-int nbChamps = tabRepr[tabDeclaration[numdec].description];
-int decallage = tabDeclaration[numdec].description+(nbChamps * 2)+1;
-int check = -1;
+nbChamps = tabRepr[tabDeclaration[numdec].description];
+decallage = tabDeclaration[numdec].description+(nbChamps * 2)+1;
+check = -1;
 if(tabRepr[decallage] == -1)
 check = 1;
 else{
 for(int i=4;i<LNG_DECL;i++){
-if(tabDeclaration[i].description == decallage){check=1;break}
+if(tabDeclaration[i].description == decallage){check=1;break;}
 }
 if(check == 1){
-type_dst = -1;
+type_dst = -2;
 }else{
 type_dst = tabRepr[tabDeclaration[numdec].description]+1;
 }
@@ -281,12 +287,59 @@ return tab_exp[i].numlex;
 }
 return -1;
 }
+//arbre tab_func[200];
+void func_to_tab(arbre _arbre)
+{
+
+   tab_exp[count_tab_exp].nature = (*_arbre).nature;
+   tab_exp[count_tab_exp].numlex = (*_arbre).val_noeud;
+	count_tab_exp++;
+    if(_arbre->gauche != NULL){
+        arbre_to_tab(_arbre->gauche);
+    }
+    if(_arbre->droite != NULL){
+        arbre_to_tab(_arbre->droite);
+    }
+}
 void verifier_function(arbre _arbre){
 
 count_tab_exp = 0;
-arbre_to_tab(_arbre);
+func_to_tab(_arbre);
+printf("count: %d\n",count_tab_exp );
 int i;
-for(i=0;i<count_tab_exp;i++){
-printf("nature%d\n",tab_exp[i].nature);
+//for(i=0;i<count_tab_exp;i++){
+//printf("nature %d\n",tab_exp[i].numlex);
+//}
+int numdec = tab_exp[0].numlex;
+while(tabDeclaration[numdec].type != C_FUNC_PROC){
+if(tabDeclaration[numdec].suivant == -1)return;
+numdec = tabDeclaration[numdec].suivant;
+}
+int description = tabDeclaration[numdec].description;
+int nbChamps = tabRepr[description];
+char * procfunc = malloc(sizeof(char));
+int decallage = tabDeclaration[numdec].description+(nbChamps * 2)+1;
+int check = -1;
+if(tabRepr[decallage] == -1)
+check = 1;
+else{
+for(int i=4;i<LNG_DECL;i++){
+if(tabDeclaration[i].description == decallage){check=1;break;}
 }
 }
+if(check == 1)
+procfunc = "procedure";
+else
+procfunc = "fonction";
+
+	char * msg = malloc(sizeof(char));
+
+if(count_tab_exp-1 != nbChamps){
+	sprintf(msg,"Erreur semantique ligne: %d, %s est une %s a %d parametre(s)",nbLignes,get_lexeme(tab_exp[0].numlex),procfunc,nbChamps);
+
+	ajouter_tab_error(msg);
+}else{
+
+}
+}
+
