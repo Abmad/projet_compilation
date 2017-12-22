@@ -1,87 +1,60 @@
 
-             
-            
-  count: 2
-count: 1
+    ||6||   ||7||      
+      ||501||   ||9||   
+  desc 1 numdec = 11
+parametres 0
+desc 0 numdec = 5
+nbnbnbnb 0
+parametres 0
 
 
-0, TYPE_INT, -1, -1, -1, 1
-1, TYPE_FLOAT, -1, -1, -1, 1
-2, TYPE_BOOL, -1, -1, -1, 1
-3, TYPE_CHAR, -1, -1, -1, 1
-4, TYPE_STRING, -1, -1, -1, 1
-5, TYPE_STRING, -1, 0, 0, 0
-6, TYPE_VARIABLE, 500, 1, 0, 0
-7, TYPE_VARIABLE, -1, 1, 0, 0
-9, TYPE_VARIABLE, -1, 1, 1, 0
-11, TYPE_VARIABLE, -1, 0, 0, 0
-500, TYPE_VARIABLE, -1, 1, 0, 0
+[32m==============================[0m
+ > Table des declarations : 
+[32m==============================[0m
+[44m+-----+---------------+-----+-----+-----+-----+[0m
+[44m|[0m[32mINDEX[0m[44m|[0m[32mTYPE           [0m[44m|[0m[32mSUIV [0m[44m|[0m[32mREG  [0m[44m|[0m[32mDESC [0m[44m|[0m[32mEXEC [0m[44m|[0m
+[44m+-----+---------------+-----+-----+-----+-----+[0m
+[44m|[0m  0  [44m|[0mTYPE_INT       [44m|[0m  -1 [44m|[0m  -1 [44m|[0m  -1 [44m|[0m  1  [44m|[0m
+[44m+-----+---------------+-----+-----+-----+-----+[0m
+[44m|[0m  1  [44m|[0mTYPE_FLOAT     [44m|[0m  -1 [44m|[0m  -1 [44m|[0m  -1 [44m|[0m  1  [44m|[0m
+[44m+-----+---------------+-----+-----+-----+-----+[0m
+[44m|[0m  2  [44m|[0mTYPE_BOOL      [44m|[0m  -1 [44m|[0m  -1 [44m|[0m  -1 [44m|[0m  1  [44m|[0m
+[44m+-----+---------------+-----+-----+-----+-----+[0m
+[44m|[0m  3  [44m|[0mTYPE_CHAR      [44m|[0m  -1 [44m|[0m  -1 [44m|[0m  -1 [44m|[0m  1  [44m|[0m
+[44m+-----+---------------+-----+-----+-----+-----+[0m
+[44m|[0m  4  [44m|[0mTYPE_STRING    [44m|[0m  -1 [44m|[0m  -1 [44m|[0m  -1 [44m|[0m  1  [44m|[0m
+[44m+-----+---------------+-----+-----+-----+-----+[0m
+[44m|[0m  5  [44m|[0mTYPE_STRING    [44m|[0m  -1 [44m|[0m  0  [44m|[0m  0  [44m|[0m  1  [44m|[0m
+[44m+-----+---------------+-----+-----+-----+-----+[0m
+[44m|[0m  6  [44m|[0mTYPE_VARIABLE  [44m|[0m 500 [44m|[0m  1  [44m|[0m  0  [44m|[0m  0  [44m|[0m
+[44m+-----+---------------+-----+-----+-----+-----+[0m
+[44m|[0m  7  [44m|[0mTYPE_VARIABLE  [44m|[0m  -1 [44m|[0m  1  [44m|[0m  0  [44m|[0m  1  [44m|[0m
+[44m+-----+---------------+-----+-----+-----+-----+[0m
+[44m|[0m  9  [44m|[0mTYPE_VARIABLE  [44m|[0m  -1 [44m|[0m  2  [44m|[0m  1  [44m|[0m  2  [44m|[0m
+[44m+-----+---------------+-----+-----+-----+-----+[0m
+[44m|[0m 11  [44m|[0mTYPE_VARIABLE  [44m|[0m  -1 [44m|[0m  0  [44m|[0m  1  [44m|[0m  2  [44m|[0m
+[44m+-----+---------------+-----+-----+-----+-----+[0m
+[44m|[0m 500 [44m|[0mTYPE_VARIABLE  [44m|[0m  -1 [44m|[0m  2  [44m|[0m  0  [44m|[0m  2  [44m|[0m
+[44m+-----+---------------+-----+-----+-----+-----+[0m
+[32m==============================
+[0m
 
-0, 0, 0, 
+[32m==============================[0m
+ > Table de representation : 
+[32m==============================[0m
+	[44m+-----+-----+[0m
+	[44m|[0m[32mINDEX[0m[44m|[0m[32m VAL [0m[44m|[0m
+	[44m+-----+-----+[0m
+	[44m|[0m  0  [44m|[0m  0  [44m|[0m[40m[0m
+	[44m+-----+-----+[0m
+	[44m|[0m  1  [44m|[0m  0  [44m|[0m[40m[0m
+	[44m+-----+-----+[0m
+	[44m|[0m  2  [44m|[0m  0  [44m|[0m[40m[0m
+	[44m+-----+-----+[0m
+[32m==============================
+[0m
+
 Erreur de declaration :  L'element << z >> a la ligne 10 n'est pas declare.
  
 Erreur semantique ligne: 19, a est de type entier et 8.5 est de type reel 
-Erreur semantique ligne: 28, mafonc est une procedure a ! 
-Erreur semantique ligne:1 
-NIS: 1  TAILLE: 10 
-|LIST_INSTRUCTION:-1:-1
-|  OPAFF:-980:-1
-|    IDF:9:-1
-|    PLUS:-990:-1
-|      IDF:9:-1
-|      CSTE_STRING:10:-1
-|  OPAFF:-980:-1
-|    IDF:6:6
-|    CSTE_ENTIERE:8:-1
-NIS: 1  TAILLE: 15 
-|LIST_INSTRUCTION:-1:-1
-|  RETOURNE:-999:-1
-|    IDF:6:500
-|  OPAFF:-980:-1
-|    IDF:6:500
-|    MULT:-989:-1
-|      CSTE_ENTIERE:12:-1
-|      PLUS:-990:-1
-|        MOINS:-991:-1
-|          PLUS:-990:-1
-|            MULT:-989:-1
-|              CSTE_ENTIERE:12:-1
-|              CSTE_ENTIERE:13:-1
-|            CSTE_ENTIERE:14:-1
-|          DIV:-988:-1
-|            MULT:-989:-1
-|              CSTE_ENTIERE:15:-1
-|              CSTE_ENTIERE:13:-1
-|            CSTE_ENTIERE:16:-1
-|        MULT:-989:-1
-|          DIV:-988:-1
-|            CSTE_ENTIERE:14:-1
-|            CSTE_ENTIERE:16:-1
-|          PLUS:-990:-1
-|            CSTE_ENTIERE:16:-1
-|            CSTE_REEL:17:-1
-NIS: 0  TAILLE: 14 
-|LIST_INSTRUCTION:-1:-1
-|  APPELE:5:5
-|  OPAFF:-980:-1
-|    IDF:6:500
-|    APPELE:11:11
-|      IDF:7:7
-HashCode: 0,Lexeme: int,Longueur: 3
-HashCode: 1,Lexeme: float,Longueur: 5
-HashCode: 2,Lexeme: bool,Longueur: 4
-HashCode: 3,Lexeme: char,Longueur: 4
-HashCode: 4,Lexeme: string,Longueur: 6
-HashCode: 5,Lexeme: maProc,Longueur: 6
-HashCode: 6,Lexeme: a,Longueur: 1
-HashCode: 7,Lexeme: r,Longueur: 1
-HashCode: 8,Lexeme: 10,Longueur: 2
-HashCode: 9,Lexeme: z,Longueur: 1
-HashCode: 10,Lexeme: "zzz",Longueur: 5
-HashCode: 11,Lexeme: mafonc,Longueur: 6
-HashCode: 12,Lexeme: 2,Longueur: 1
-HashCode: 13,Lexeme: 5,Longueur: 1
-HashCode: 14,Lexeme: 6,Longueur: 1
-HashCode: 15,Lexeme: 9,Longueur: 1
-HashCode: 16,Lexeme: 8,Longueur: 1
-HashCode: 17,Lexeme: 8.5,Longueur: 3
+Erreur semantique ligne: 28, mafonc est une fonction a 0 champs 

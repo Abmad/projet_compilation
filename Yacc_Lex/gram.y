@@ -254,7 +254,7 @@ if(yyparse()==0){
 if(cpt_errors > 0){
 afficher_erreurs();
 afficher_erreur_sem();
-//exit(-1);
+exit(-1);
 }
 afficher_table_region();
 affiche_table_lexico();

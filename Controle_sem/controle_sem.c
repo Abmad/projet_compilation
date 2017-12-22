@@ -51,7 +51,7 @@ if(count_tab_exp == 1){
 	    }
 	    }
 	}
-	char * msg = malloc(sizeof(char));
+	char * msg = malloc(sizeof(char)*100);
 	sprintf(msg,"Erreur semantique ligne: %d, %s est de type %s et %s est de type %s",nbLignes,get_lexeme(numlex_dec),get_nom_type(tabDeclaration[dec2].description),get_lexeme(tab_exp[0].numlex),get_nom_type(tab_exp[0].nature));
 	ajouter_tab_error(msg);
     }   
@@ -142,7 +142,7 @@ case TYPE_STRUCT:
 type_dst = tabDeclaration[numdec].description;
 break;
 case C_FUNC_PROC:
-nbChamps = tabRepr[tabDeclaration[numdec].description];
+nbChamps = tabRepr[tabDeclaration[numdec].description+1];
 decallage = tabDeclaration[numdec].description+(nbChamps * 2)+1;
 check = -1;
 if(tabRepr[decallage] == -1)
@@ -305,8 +305,8 @@ void verifier_function(arbre _arbre){
 
 count_tab_exp = 0;
 func_to_tab(_arbre);
-printf("count: %d\n",count_tab_exp );
-int i;
+//printf("count: %d\n",count_tab_exp );
+int i,nbChamps;
 //for(i=0;i<count_tab_exp;i++){
 //printf("nature %d\n",tab_exp[i].numlex);
 //}
@@ -316,7 +316,8 @@ if(tabDeclaration[numdec].suivant == -1)return;
 numdec = tabDeclaration[numdec].suivant;
 }
 int description = tabDeclaration[numdec].description;
-int nbChamps = tabRepr[description];
+printf("desc %d numdec = %d\n",description,numdec);
+nbChamps = tabRepr[description+1];
 char * procfunc = malloc(sizeof(char));
 int decallage = tabDeclaration[numdec].description+(nbChamps * 2)+1;
 int check = -1;
@@ -327,16 +328,20 @@ for(int i=4;i<LNG_DECL;i++){
 if(tabDeclaration[i].description == decallage){check=1;break;}
 }
 }
-if(check == 1)
+if(check == 1){
+printf("nbnbnbnb %d\n",tabRepr[description]);
+nbChamps = tabRepr[description];
 procfunc = "procedure";
-else
+}else
 procfunc = "fonction";
 
-	char * msg = malloc(sizeof(char));
 
+
+printf("parametres %d\n",nbChamps);
 if(count_tab_exp-1 != nbChamps){
-	sprintf(msg,"Erreur semantique ligne: %d, %s est une %s a %d parametre(s)",nbLignes,get_lexeme(tab_exp[0].numlex),procfunc,nbChamps);
 
+	char * msg = malloc(sizeof(char)*1000);
+	sprintf(msg,"Erreur semantique ligne: %d, %s est une %s a %d champs",nbLignes,get_lexeme(tab_exp[0].numlex),procfunc,nbChamps);
 	ajouter_tab_error(msg);
 }else{
 
